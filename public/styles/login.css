@@ -1,0 +1,83 @@
+#principal{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#principal #cabecalho{
+    width: 100%;
+    height: 25%;
+    background-color: var(--cor-principal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+#principal #conteudo{
+    position: relative;
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--cor-secundaria);
+}
+
+#principal #conteudo form{
+    position: absolute;
+    top: -50px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--branco);
+    width: 40%;
+    min-width: 500px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 20px 30px;
+}
+
+#principal #conteudo form label{
+    font-weight: bold;
+    color: var(--verde-escuro);
+    margin-top: 10px;
+}
+
+#principal #conteudo form input{
+    height: 50px;
+    background-color: var(--cinza);
+    border: 0.5px solid rgba(0, 0, 0, 0.507);
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 0 15px;
+}
+
+#principal #conteudo form #bttEntrar{
+    height: 50px;
+    background-color: var(--verde-confirmar);
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    width: min-content;
+    padding: 0 15px;
+    transition: 0.5s;
+    cursor: pointer;
+    margin-top: 20px 0;
+}
+
+#principal #conteudo form #bttEntrar:hover{
+    background-color: var(--verde-confirmar-hover);
+    transition: 0.5s;
+}
+
+#principal #conteudo form #bttEntrar p{
+    font-size: 20px;
+}
+
+#principal #conteudo form #opcoes{
+    margin-top: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
