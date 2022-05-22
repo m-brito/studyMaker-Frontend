@@ -1,0 +1,58 @@
+:root{
+    --cor-principal: #00B2B2;
+    --cor-secundaria: #CCDDDD;
+    --verde-botao-menu: #4FCACA;
+    --verde-botao-menu-hover: #5ff8f8;
+    --verde-confirmar: #04D361;
+    --verde-confirmar-hover: #1de276;
+    --vermelho: #FF6060;
+    --vermelho-hover: #ff8b8b;
+    --azul: #04AED3;
+    --azul-hover: #1dc6ec;
+    --verde-escuro: #035B5B;
+    --branco: white;
+    --cinza: #F2F2F2;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+/* Carregamento */
+
+#divMensagens{
+    /* display: flex; */
+    display: none;
+    flex-direction: column;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.849);
+    align-items: center;
+    justify-content: center;
+}
+
+#divMensagens p{
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--cor-principal);
+}
+  
+#divCarregamento {
+    animation: rotacao 1s infinite;
+    border: 10px solid transparent;
+    border-radius: 50%;
+    border-top-color: var(--cor-principal);
+    height: 80px;
+    width: 80px;
+}
+
+@keyframes rotacao {
+    to {
+        transform: rotate(1turn);
+    }
+}
