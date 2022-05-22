@@ -1,4 +1,6 @@
 window.onload = () => {
+    var codigo = "";
+    var emailVerificado = false;
 
     // Mostrar na tela o nome do arquivo selecionado
     document.querySelector("input[id=foto]").addEventListener('change', function(){
@@ -11,36 +13,80 @@ window.onload = () => {
     document.querySelector("form").addEventListener("submit", async (event) => {
         event.preventDefault();
         carregamento();
-        if(document.getElementById("foto").value) {
-            var img = document.getElementById("foto").files[0];
+        if(emailVerificado == false) {
+            pararCarregamento();
+            mostrarMensagem("É necessário confirmar o email para cadastrar!")
         } else {
-            var img = "";
+            if(document.getElementById("foto").value) {
+                var img = document.getElementById("foto").files[0];
+            } else {
+                var img = "";
+            }
+            const dados = new FormData();
+            dados.append("imagem", img)
+            dados.append("nome", document.querySelector("#nomeCompleto").value)
+            dados.append("email", document.querySelector("#email").value)
+            dados.append("senha", document.querySelector("#senha").value)
+    
+            const resp = await fetch(`${HOST}/usuario/cadastrarUsuario.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: dados
+            })
+    
+            const data = await resp.json();
+            pararCarregamento();
+            mostrarMensagem(data.mensagem);
+            if(data.status == sucessoRequisicao) {
+                setTimeout(() => {
+                    window.location.href = "./login.html";
+                }, 4000);
+            } else {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 4000);
+            }
         }
-        const dados = new FormData();
-        dados.append("imagem", img)
-        dados.append("nome", document.querySelector("#nomeCompleto").value)
-        dados.append("email", document.querySelector("#email").value)
-        dados.append("senha", document.querySelector("#senha").value)
+    })
 
-        const resp = await fetch(`${HOST}/usuario/cadastrarUsuario.php`, {
-            "method": "POST",
-            headers: {
-                'Accept': 'application/json'
-            },
-            body: dados
-        })
-
-        const data = await resp.json();
-        pararCarregamento();
-        mostrarMensagem(data.mensagem);
-        if(data.status == sucessoRequisicao) {
-            setTimeout(() => {
-                window.location.href = "./login.html";
-            }, 4000);
+    document.querySelector("#bttConfirmarEmail").addEventListener("click", async (event)=> {
+        if(!document.querySelector("#email").checkValidity() || !document.querySelector("#nomeCompleto").checkValidity()) {
+            mostrarMensagem("Preencha os campos nome e email para validar!")
         } else {
-            setTimeout(() => {
-                window.location.reload();
-            }, 4000);
+            const data = await disponibilidadeEmail(document.querySelector("#email").value);
+            if(data.status == erroRequisicao) {
+                document.querySelector("#mensagemInputEmail").innerHTML = data.mensagem;
+                document.querySelector("#mensagemInputEmail").style.display = "flex";
+            } else {
+                document.querySelector("#mensagemInputEmail").innerHTML = "";
+                document.querySelector("#mensagemInputEmail").style.display = "none";
+                const respEnviarCodigo = await enviarCodigo(document.querySelector("#email").value, document.querySelector("#nomeCompleto").value)
+                codigo = respEnviarCodigo.resultado;
+                if(respEnviarCodigo.status == sucessoRequisicao) {
+                    mostrarMensagem("Um código foi enviado ao seu email <br> Preencha abaixo!")
+                }
+                document.querySelector("form .codigo").style.display = "flex";
+                document.querySelector("form .grupo #containerBttConfirmarEmail").style.display = "none";
+                document.querySelector("#statusValidando").style.display = "flex";
+                document.querySelector("#email").disabled = true;
+            }
+        }
+    })
+
+    document.querySelector("#codigo").addEventListener("blur", async (event) => {
+        const resp = await criptografa(document.querySelector("#codigo").value)
+        document.querySelector("#labelStatus").innerHTML = "";
+        if(resp.resultado == codigo) {
+            document.querySelector(".codigo").style.display = "none";
+            document.querySelector("#status").innerHTML = "✔";
+            document.querySelector("#status").style.backgroundColor = "#04D361";
+            emailVerificado = true;
+            
+        } else {
+            document.querySelector("#status").innerHTML = "✖";
+            document.querySelector("#status").style.backgroundColor = "#FF6060";
         }
     })
 }

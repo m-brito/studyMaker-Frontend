@@ -26,3 +26,75 @@ function mostrarMensagem(mensagem) {
     }, 4000)
     return;
 }
+
+// verificar disponibilidade de email
+async function disponibilidadeEmail(email) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/usuario/verificarEmail.php?email=${email}`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+// Envio de emails
+
+async function enviarCodigo(para, nomepara) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOSTEMAIL}/enviarcodigo`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    "nomeemail": "Study Maker",
+                    "para": para,
+                    "nomepara": nomepara
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function criptografa(codigo) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOSTEMAIL}/criptografa`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    "codigo": codigo
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    console.log(data)
+    return data;
+}

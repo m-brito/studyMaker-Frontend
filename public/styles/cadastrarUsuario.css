@@ -38,6 +38,78 @@
     padding: 20px 30px;
 }
 
+#principal #conteudo form .grupo{
+    display: flex;
+    width: 100%;
+}
+
+#principal #conteudo form .grupo div{
+    display: flex;
+    flex-direction: column;
+}
+
+#principal #conteudo form .grupo div:first-child{
+    width: calc(100% - 100px);
+}
+
+#principal #conteudo form .grupo div:first-child input{
+    justify-content: end;
+    border-radius: 5px 0 0 5px !important;
+}
+
+#principal #conteudo form .grupo div:last-child div{
+    justify-content: end;
+    transition: 0.5s;
+    border-radius: 0 5px 5px 0 !important;
+    background-color: var(--laranja);
+    height: 50px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    border: 0.5px solid rgba(0, 0, 0, 0.507);
+    border-left: none;
+    box-sizing: border-box;
+}
+
+#principal #conteudo form #statusValidando div {
+    justify-content: end;
+    transition: 0.5s;
+    border-radius: 0 5px 5px 0 !important;
+    background-color: var(--laranja);
+    height: 50px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    border: 0.5px solid rgba(0, 0, 0, 0.507);
+    border-left: none;
+    box-sizing: border-box;
+}
+
+#principal #conteudo form #statusValidando{
+    display: none;
+    justify-content: end;
+}
+
+#principal #conteudo form .codigo{
+    display: none;
+    flex-direction: column;
+    width: 100%;
+}
+
+#principal #conteudo form .grupo div:last-child div:hover{
+    transition: 0.5s;
+    background-color: var(--laranja-hover)
+}
+
 #principal #conteudo form h2{
     padding: 10px 0;
     color: var(--verde-escuro);
@@ -121,9 +193,19 @@
     background-color: rgb(211, 211, 211);
     border-radius: 0 5px 5px 0;
     border: 0.5px solid rgba(0, 0, 0, 0.507);
+    transition: 0.5s;
+}
+
+#principal #conteudo form label[for=foto]:hover {
+    transition: 0.5s;
+    background-color: rgb(233, 233, 233);
 }
 
 #principal #conteudo form label[for=foto] p {
     font-weight: bold;
 }
 
+#principal #conteudo form #mensagemInputEmail {
+    color: red;
+    display: none;
+}

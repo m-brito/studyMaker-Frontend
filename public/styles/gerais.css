@@ -12,6 +12,8 @@
     --verde-escuro: #035B5B;
     --branco: white;
     --cinza: #F2F2F2;
+    --laranja: #ffc039;
+    --laranja-hover: #ffcc5e;
 }
 
 *{
@@ -40,6 +42,9 @@
     font-weight: bold;
     font-size: 30px;
     color: var(--cor-principal);
+    width: 80%;
+    min-width: 500px;
+    text-align: center;
 }
   
 #divCarregamento {

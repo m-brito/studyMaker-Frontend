@@ -25,8 +25,26 @@
                 <label for="nome">Nome Completo</label>
                 <input type="text" name="nome" id="nomeCompleto" required>
 
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
+                <div class="grupo">
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" required>
+                        <p id="mensagemInputEmail">email ja esta em uso</p>
+                    </div>
+                    <div id="statusValidando">
+                        <label for="verificar" id="labelStatus">⌛</label>
+                        <div id="status"><p>⌛</p></div>
+                    </div>
+                    <div id="containerBttConfirmarEmail">
+                        <label for="verificar">⌛</label>
+                        <div id="bttConfirmarEmail"><p>Confirmar</p></div>
+                    </div>
+                </div>
+                
+                <div class="codigo">
+                    <label for="codigo">Código</label>
+                    <input type="text" name="codigo" id="codigo">
+                </div>
 
                 <label for="senha">Senha</label>
                 <input type="password" name="senha" id="senha" required>
