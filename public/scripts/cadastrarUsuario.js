@@ -52,11 +52,13 @@ window.onload = () => {
     })
 
     document.querySelector("#bttConfirmarEmail").addEventListener("click", async (event)=> {
+        carregamento();
         if(!document.querySelector("#email").checkValidity() || !document.querySelector("#nomeCompleto").checkValidity()) {
             mostrarMensagem("Preencha os campos nome e email para validar!")
         } else {
             const data = await disponibilidadeEmail(document.querySelector("#email").value);
             if(data.status == erroRequisicao) {
+                pararCarregamento();
                 document.querySelector("#mensagemInputEmail").innerHTML = data.mensagem;
                 document.querySelector("#mensagemInputEmail").style.display = "flex";
             } else {
@@ -65,12 +67,15 @@ window.onload = () => {
                 const respEnviarCodigo = await enviarCodigo(document.querySelector("#email").value, document.querySelector("#nomeCompleto").value)
                 codigo = respEnviarCodigo.resultado;
                 if(respEnviarCodigo.status == sucessoRequisicao) {
-                    mostrarMensagem("Um código foi enviado ao seu email <br> Preencha abaixo!")
+                    mostrarMensagem("Um código foi enviado ao seu email <br> Preencha o campo abaixo! <br><br> Obs: O email pode chegar como spam!");
+                    document.querySelector("#labelStatus").innerHTML = "";
+                    document.querySelector("form .codigo").style.display = "flex";
+                    document.querySelector("form .grupo #containerBttConfirmarEmail").style.display = "none";
+                    document.querySelector("#statusValidando").style.display = "flex";
+                    document.querySelector("#email").disabled = true;
+                } else {
+                    mostrarMensagem(respEnviarCodigo.mensagem);
                 }
-                document.querySelector("form .codigo").style.display = "flex";
-                document.querySelector("form .grupo #containerBttConfirmarEmail").style.display = "none";
-                document.querySelector("#statusValidando").style.display = "flex";
-                document.querySelector("#email").disabled = true;
             }
         }
     })
