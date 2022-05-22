@@ -73,6 +73,7 @@ window.onload = () => {
                     document.querySelector("form .grupo #containerBttConfirmarEmail").style.display = "none";
                     document.querySelector("#statusValidando").style.display = "flex";
                     document.querySelector("#email").disabled = true;
+                    document.querySelector("#email").style.cursor = "not-allowed";
                 } else {
                     mostrarMensagem(respEnviarCodigo.mensagem);
                 }
