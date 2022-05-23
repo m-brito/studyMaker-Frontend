@@ -27,5 +27,6 @@ window.onload = async () => {
 
 function mostrarDados(dados) {
     document.querySelector("#containerImgPerfil img").src = dados.resultados.foto;
-    document.querySelector("#nomeUsuario").src = dados.resultados.nome;
+    document.querySelector("#containerImgPerfil img").alt = "Imagem de perfil de "+dados.resultados.nome;
+    document.querySelector("#nomeUsuario").innerHTML = dados.resultados.nome;
 }
