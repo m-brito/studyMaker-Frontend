@@ -1,0 +1,31 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluno</title>
+    <link rel="stylesheet" href="../../public/styles/gerais.css">
+    <script src="../../public/scripts/gerais.js"></script>
+    <link rel="stylesheet" href="../../public/styles/fontes.css">
+
+    <link rel="stylesheet" href="../../public/styles/aluno.css">
+</head>
+<body>
+    <div id="principal">
+        <div id="menu">
+            <div id="containerImg">
+                <img src="../../public/assets/Imagens/perfilteste.png" alt="">
+            </div>
+            <h2>Mauricio Brito Teixeira</h2>
+            <div id="linkAcoes">
+                <a is="router-link" href="/feed"><p>Feed</p></a>
+                <a is="router-link" href="/meuscursos"><p>Cursos</p></a>
+                <a is="router-link" href="/requisicoes"><p>Requisições</p></a>
+            </div>
+        </div>
+        <router-outlet id="router" config="config"></router-outlet>
+    </div>
+
+    <script type="module" src="../../public/scripts/Router.js" onload="carregarRotas()"></script>
+</body>
+</html>

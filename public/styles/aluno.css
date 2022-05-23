@@ -1,0 +1,69 @@
+#principal{
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+#principal div#menu{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background-color: var(--cor-principal);
+    width: 15%;
+    min-width: 250px;
+}
+
+#principal div#menu #containerImg{
+    height: 200px;
+    width: 200px;
+    background-size: cover;
+    overflow: hidden;
+    border-radius: 50%;
+    padding: 15px 0;
+}
+
+#principal div#menu #containerImg img{
+    height: 200px;
+}
+
+#principal div#menu h2{
+    color: var(--branco);
+}
+
+#principal div#menu div#linkAcoes{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+#principal div#menu div#linkAcoes a{
+    width: 95%;
+    background-color: var(--verde-botao-menu);
+    box-sizing: border-box;
+    margin: 7px 0;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--verde-escuro);
+    font-size: 20px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+#principal div#menu div#linkAcoes a:hover{
+    transition: 0.5s;
+    background-color: var(--verde-botao-menu-hover);
+}
+
+#principal router-outlet#router{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: var(--cor-secundaria);
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
