@@ -119,6 +119,5 @@ async function buscarUsuario(tokenAluno) {
             tentativas++;
         }
     }
-    console.log("oi")
     return data;
 }

@@ -61,7 +61,7 @@ class Router {
         }.bind(config));
 
 
-        console.log(this);
+        // console.log(this);
     }
 
     static routes(routes) {

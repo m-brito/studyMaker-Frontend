@@ -4,20 +4,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aluno</title>
-    <link rel="stylesheet" href="../../public/styles/gerais.css">
-    <script src="../../public/scripts/gerais.js"></script>
     <link rel="stylesheet" href="../../public/styles/fontes.css">
+    <link rel="stylesheet" href="../../public/styles/gerais.css">
+    <script src="../../variaveisGlobais.js"></script>
+    <script src="../../public/scripts/gerais.js"></script>
 
     <link rel="stylesheet" href="../../public/styles/aluno.css">
     <script src="../../public/scripts/aluno.js"></script>
 </head>
 <body>
+    <div id="divMensagens"></div>
     <div id="principal">
         <div id="menu">
-            <div id="containerImg">
+            <div id="containerImgPerfil">
                 <img src="../../public/assets/Imagens/perfilteste.png" alt="">
             </div>
-            <h2>Mauricio Brito Teixeira</h2>
+            <h2 id="nomeUsuario">Mauricio Brito Teixeira</h2>
             <div id="linkAcoes">
                 <a is="router-link" href="/feed"><p>Feed</p></a>
                 <a is="router-link" href="/meuscursos"><p>Cursos</p></a>
