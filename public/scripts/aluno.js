@@ -1,7 +1,7 @@
 window.onload = async () => {
     window.location.href = "../../src/views/aluno.html#/feed";
 
-    tkn = localStorage.getItem("tkn");
+    var tkn = localStorage.getItem("tkn");
 
     if(tkn) {
         var respDadosUsuario = await buscarUsuario(tkn);
@@ -23,6 +23,17 @@ window.onload = async () => {
     } else {
         window.location.href = "../../index.html";
     }
+
+    document.querySelector("#deslogar").addEventListener("click", async () => {
+        respDeslogar = await deslogar(tkn);
+        if(respDeslogar.status == sucessoRequisicao) {
+            localStorage.removeItem("tkn");
+            mostrarMensagem("Saindo...")
+            setTimeout(() => {
+                window.location.href = "../../index.html";
+            }, 2000)
+        }
+    })
 }
 
 function mostrarDados(dados) {

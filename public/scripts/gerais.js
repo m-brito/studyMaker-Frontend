@@ -2,6 +2,7 @@ var sucessoRequisicao = "OK";
 var erroRequisicao = "ERRO";
 
 
+// Animacoes na tela
 // Animacoes de carregamento
 function carregamento() {
     document.getElementById("divMensagens").style.display = "flex";
@@ -11,6 +12,7 @@ function carregamento() {
     `;
 }
 
+// Parar animacao de carregamento
 function pararCarregamento() {
     document.querySelector("#divMensagens").innerHTML = "";
     document.getElementById("divMensagens").style.display = "none";
@@ -27,29 +29,8 @@ function mostrarMensagem(mensagem) {
     return;
 }
 
-// verificar disponibilidade de email
-async function disponibilidadeEmail(email) {
-    var tentativas = 0;
-    var ok = false
-    while(tentativas <= 4 && ok == false) {
-        try {
-            const resp = await fetch(`${HOST}/usuario/verificarEmail.php?email=${email}`, {
-                "method": "GET",
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            var data = await resp.json();
-            ok = true;
-        } catch (error) {
-            tentativas++;
-        }
-    }
-    return data;
-}
-
 // Envio de emails
-
+// Envio de codigo por email
 async function enviarCodigo(para, nomepara) {
     var tentativas = 0;
     var ok = false
@@ -75,6 +56,8 @@ async function enviarCodigo(para, nomepara) {
     return data;
 }
 
+// Criptografias
+// Criptografar um texto
 async function criptografa(codigo) {
     var tentativas = 0;
     var ok = false
@@ -99,12 +82,58 @@ async function criptografa(codigo) {
 }
 
 // Usuario
+// Buscar usuario
 async function buscarUsuario(tokenAluno) {
     var tentativas = 0;
     var ok = false
     while(tentativas <= 4 && ok == false) {
         try {
             const resp = await fetch(`${HOST}/usuario/dadosUsuario.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    "token": tokenAluno
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+// verificar disponibilidade de email
+async function disponibilidadeEmail(email) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/usuario/verificarEmail.php?email=${email}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+// Deslogar do site
+async function deslogar(tokenAluno) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/usuario/sair.php`, {
                 "method": "POST",
                 headers: {
                     'Accept': 'application/json'

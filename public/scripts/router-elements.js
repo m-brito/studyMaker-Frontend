@@ -5,7 +5,7 @@ customElements.define('router-link', class extends HTMLAnchorElement {
         super();
         this.href = "#" + this.getAttribute('href');
     }
-}, {extends: "a"});
+}, { extends: "a" });
 
 
 customElements.define('router-outlet', class extends HTMLElement {
@@ -48,7 +48,7 @@ customElements.define('router-outlet', class extends HTMLElement {
         if (dest) {
             let params = dest.exec(path);
 
-            console.log(params)
+            // console.log(params)
 
             // var teste = await dest.render(params);
 

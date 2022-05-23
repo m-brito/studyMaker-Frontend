@@ -57,6 +57,23 @@
     transition: 0.5s;
 }
 
+#principal div#menu div#linkAcoes p#deslogar {
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 10px 0;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--verde-escuro);
+    font-size: 20px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+#principal div#menu div#linkAcoes p#deslogar:hover {
+    transition: 0.5s;
+    color: var(--verde-escuro-hover);
+}
+
 #principal div#menu div#linkAcoes a:hover{
     transition: 0.5s;
     background-color: var(--verde-botao-menu-hover);
