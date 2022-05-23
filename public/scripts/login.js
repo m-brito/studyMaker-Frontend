@@ -16,7 +16,18 @@ window.onload = () => {
             })
             const data = await resp.json();
             pararCarregamento();
-            mostrarMensagem(data.mensagem);
+            if(data.status == erroRequisicao) {
+                mostrarMensagem(data.mensagem);
+            } else {
+                localStorage.setItem("tkn", data.resultados.token);
+                const respDadosUsuario = await buscarUsuario(data.resultados.token);
+                if(respDadosUsuario.status == sucessoRequisicao && respDadosUsuario.resultados.tipoUsuario == "Aluno") {
+                    window.location.href = "./aluno.html";
+                } else if(respDadosUsuario.status == sucessoRequisicao && respDadosUsuario.resultados.tipoUsuario == "Administrador") {
+                    window.location.href = "./administrador.html";
+                }
+
+            }
             if(data.status == erroRequisicao) {
                 setTimeout(() => {
                     window.location.reload();
@@ -26,6 +37,5 @@ window.onload = () => {
             pararCarregamento();
             mostrarMensagem("Tivemos problemas com o servidor! <br> Tente realizar o login novamente")
         }
-        console.log(data)
     })
 }

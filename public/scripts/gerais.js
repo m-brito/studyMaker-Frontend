@@ -34,7 +34,7 @@ async function disponibilidadeEmail(email) {
     while(tentativas <= 4 && ok == false) {
         try {
             const resp = await fetch(`${HOST}/usuario/verificarEmail.php?email=${email}`, {
-                "method": "POST",
+                "method": "GET",
                 headers: {
                     'Accept': 'application/json'
                 }
@@ -95,6 +95,30 @@ async function criptografa(codigo) {
             tentativas++;
         }
     }
-    console.log(data)
+    return data;
+}
+
+// Usuario
+async function buscarUsuario(tokenAluno) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/usuario/dadosUsuario.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    "token": tokenAluno
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    console.log("oi")
     return data;
 }
