@@ -75,7 +75,7 @@ async function iniciarMeuscursos() {
             var idCurso = document.querySelector("#meuscursosEditar input[name=idCurso]").value;
             const respCadastrarCurso = await editarCurso(token, nome, descricao, idCurso);
             if(respCadastrarCurso.status == sucessoRequisicao) {
-                mostrarMensagem("Curso cadastrado com sucesso");
+                mostrarMensagem("Curso editado com sucesso");
                 setTimeout(() => {
                     mostrarCursos(token);
                     document.querySelector("#meuscursosEditar").style.display = "none";
