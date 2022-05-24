@@ -80,11 +80,11 @@
 }
 
 #principal router-outlet#router{
+    position: relative;
     display: flex;
     flex-direction: column;
-    padding: 10px;
     background-color: var(--cor-secundaria);
-    flex: 1;
+    width: 85%;
     align-items: center;
     justify-content: center;
 }

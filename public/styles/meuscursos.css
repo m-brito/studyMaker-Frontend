@@ -1,0 +1,603 @@
+#meuscursosPrincipal {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#meuscursosPrincipal #meuscursosCabecalho {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+}
+
+#meuscursosPrincipal #meuscursosCabecalho h1 {
+  color: var(--cor-principal);
+}
+
+#meuscursosPrincipal #meuscursosFerramentas {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+#meuscursosPrincipal #meuscursosFerramentas h2 {
+  display: flex;
+  margin-right: 30px;
+  font-size: 20px;
+  color: var(--verde-escuro);
+  cursor: pointer;
+  transition: 0.5s;
+  margin: 0 30px 30px 0;
+}
+
+#meuscursosPrincipal #meuscursosFerramentas h2:hover {
+  color: var(--verde-escuro-hover);
+  transition: 0.5s;
+}
+
+#meuscursosPrincipal #meuscursosConteudo {
+  box-sizing: border-box;
+  padding: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#meuscursosPrincipal #meuscursosConteudo .meuscursosCartao {
+  width: 270px;
+  height: auto;
+  /* min-height: 300px; */
+  background-color: var(--branco);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  margin: 70px 20px;
+  padding: 20px;
+}
+
+#meuscursosPrincipal
+  #meuscursosConteudo
+  .meuscursosCartao
+  .meuscursosNomeCartao {
+  width: 100%;
+  text-align: center;
+  flex-wrap: nowrap;
+  word-wrap: break-word;
+}
+
+#meuscursosPrincipal
+  #meuscursosConteudo
+  .meuscursosCartao
+  .meuscursosImagemCartao {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  top: -50px;
+  border-radius: 50%;
+  background-color: rgb(209, 209, 209);
+  border: 5px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#meuscursosPrincipal
+  #meuscursosConteudo
+  .meuscursosCartao
+  .meuscursosImagemCartao
+  img {
+  height: 100px;
+  width: 100px;
+}
+
+#meuscursosPrincipal .meuscursosCartao .meuscursosConteudoCartao {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosEstados {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  margin: 15px 0;
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosEstados
+  img {
+  height: 35px;
+  width: 35px;
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosEstados
+  img + img {
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosEstados
+  img + img:hover {
+      transform: scale(1.5);
+    transition: 0.5s;
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosCartaoOpcoes {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosCartaoOpcoes
+  button {
+  height: 45px;
+  padding: 10px 15px;
+  border: 0;
+  cursor: pointer;
+  transition: 0.5s;
+  overflow: hidden;
+  border-radius: 10px;
+  flex: 1;
+  margin: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosCartaoOpcoes
+  button
+  img {
+  height: 25px;
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosCartaoOpcoes
+  button.meuscursosAbrir {
+  background-color: var(--verde-confirmar);
+  min-width: 70px !important;
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosCartaoOpcoes
+  button.meuscursosAbrir:hover {
+  background-color: var(--verde-confirmar-hover);
+  transition: 0.5s;
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosCartaoOpcoes
+  button.meuscursosAbrir
+  p {
+  font-weight: bold;
+  color: white;
+  font-size: 17px;
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosCartaoOpcoes
+  button.meuscursosEditar {
+  background-color: var(--azul);
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosCartaoOpcoes
+  button.meuscursosEditar:hover {
+  background-color: var(--azul-hover);
+  transition: 0.5s;
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosCartaoOpcoes
+  button.meuscursosDeletar {
+  background-color: var(--vermelho);
+}
+
+#meuscursosPrincipal
+  .meuscursosCartao
+  .meuscursosConteudoCartao
+  .meuscursosCartaoOpcoes
+  button.meuscursosDeletar:hover {
+  background-color: var(--vermelho-hover);
+  transition: 0.5s;
+}
+
+/* Pop up Cadastrar */
+
+#meuscursosCadastrar {
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.705);
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* display: flex; */
+  display: none;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+#meuscursosCadastrar #meuscursosCadastrarForm {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  min-width: 300px;
+  max-width: 800px;
+  height: fit-content;
+  background-color: var(--branco);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#meuscursosCadastrar #meuscursosCadastrarForm h2 {
+  color: var(--verde-escuro);
+}
+
+#meuscursosCadastrar #meuscursosCadastrarForm p {
+  color: var(--verde-escuro);
+  font-weight: bold;
+}
+
+#meuscursosCadastrar #meuscursosCadastrarForm input {
+  padding: 0 15px;
+  font-size: 15px;
+  height: 50px;
+  border: 0.5px solid rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f2f2f2;
+}
+
+#meuscursosCadastrar #meuscursosCadastrarForm textarea {
+  padding: 15px;
+  font-size: 15px;
+  height: 200px;
+  border: 0.5px solid rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f2f2f2;
+  resize: none;
+}
+
+#meuscursosCadastrar #meuscursosCadastrarForm .meuscursosCadastrarAcoes {
+  margin: 15px 0;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+#meuscursosCadastrar #meuscursosCadastrarForm .meuscursosCadastrarAcoes button,
+#meuscursosCadastrar
+  #meuscursosCadastrarForm
+  .meuscursosCadastrarAcoes
+  div#cancelar {
+  border: 0;
+  border-radius: 10px;
+  height: 50px;
+  width: 150px;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.5s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#meuscursosCadastrar
+  #meuscursosCadastrarForm
+  .meuscursosCadastrarAcoes
+  button#cadastrar {
+  background-color: var(--verde-confirmar);
+}
+
+#meuscursosCadastrar
+  #meuscursosCadastrarForm
+  .meuscursosCadastrarAcoes
+  button#cadastrar:hover {
+  background-color: var(--verde-confirmar-hover);
+  transition: 0.5s;
+}
+
+#meuscursosCadastrar
+  #meuscursosCadastrarForm
+  .meuscursosCadastrarAcoes
+  div#cancelar {
+  background-color: var(--vermelho);
+}
+
+#meuscursosCadastrar
+  #meuscursosCadastrarForm
+  .meuscursosCadastrarAcoes
+  div#cancelar:hover {
+  background-color: var(--vermelho-hover);
+  transition: 0.5s;
+}
+
+#meuscursosCadastrar
+  #meuscursosCadastrarForm
+  .meuscursosCadastrarAcoes
+  button
+  p,
+#meuscursosCadastrar
+  #meuscursosCadastrarForm
+  .meuscursosCadastrarAcoes
+  div#cancelar
+  p {
+  color: white !important;
+}
+
+/* html {
+    overflow: hidden;
+} */
+
+/* Pop up Excluir */
+
+#meuscursosExcluir {
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.705);
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* display: flex; */
+  display: none;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+#meuscursosExcluir #meuscursosExcluirForm {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  min-width: 300px;
+  max-width: 800px;
+  height: fit-content;
+  background-color: var(--branco);
+  padding: 40px 20px 20px 20px;
+  border-radius: 10px;
+}
+
+#meuscursosExcluir #meuscursosExcluirForm p {
+  color: var(--verde-escuro);
+  font-weight: bold;
+  text-align: center;
+}
+
+#meuscursosExcluir #meuscursosExcluirForm .meuscursosExcluirAcoes {
+  margin: 15px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#meuscursosExcluir #meuscursosExcluirForm .meuscursosExcluirAcoes button,
+#meuscursosExcluir #meuscursosExcluirForm .meuscursosExcluirAcoes div#cancelar {
+  border: 0;
+  border-radius: 10px;
+  height: 50px;
+  width: 150px;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.5s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#meuscursosExcluir
+  #meuscursosExcluirForm
+  .meuscursosExcluirAcoes
+  button#excluir {
+  background-color: var(--verde-confirmar);
+}
+
+#meuscursosExcluir
+  #meuscursosExcluirForm
+  .meuscursosExcluirAcoes
+  button#excluir:hover {
+  background-color: var(--verde-confirmar-hover);
+  transition: 0.5s;
+}
+
+#meuscursosExcluir #meuscursosExcluirForm .meuscursosExcluirAcoes div#cancelar {
+  background-color: var(--vermelho);
+}
+
+#meuscursosExcluir
+  #meuscursosExcluirForm
+  .meuscursosExcluirAcoes
+  div#cancelar:hover {
+  background-color: var(--vermelho-hover);
+  transition: 0.5s;
+}
+
+#meuscursosExcluir #meuscursosExcluirForm .meuscursosExcluirAcoes button p,
+#meuscursosExcluir
+  #meuscursosExcluirForm
+  .meuscursosExcluirAcoes
+  div#cancelar
+  p {
+  color: white !important;
+}
+
+/* Popup Excluir */
+
+#meuscursosEditar {
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.705);
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* display: flex; */
+    display: none;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  
+  #meuscursosEditar #meuscursosEditarForm {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    min-width: 300px;
+    max-width: 800px;
+    height: fit-content;
+    background-color: var(--branco);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  #meuscursosEditar #meuscursosEditarForm h2 {
+    color: var(--verde-escuro);
+  }
+  
+  #meuscursosEditar #meuscursosEditarForm p {
+    color: var(--verde-escuro);
+    font-weight: bold;
+  }
+  
+  #meuscursosEditar #meuscursosEditarForm input {
+    padding: 0 15px;
+    font-size: 15px;
+    height: 50px;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f2f2f2;
+  }
+
+  #meuscursosEditar #meuscursosEditarForm input[name=idCurso] {
+    display: none;
+  }
+  
+  #meuscursosEditar #meuscursosEditarForm textarea {
+    padding: 15px;
+    font-size: 15px;
+    height: 200px;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    resize: none;
+  }
+  
+  #meuscursosEditar #meuscursosEditarForm .meuscursosEditarAcoes {
+    margin: 15px 0;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+  
+  #meuscursosEditar #meuscursosEditarForm .meuscursosEditarAcoes button,
+  #meuscursosEditar
+    #meuscursosEditarForm
+    .meuscursosEditarAcoes
+    div#cancelar {
+    border: 0;
+    border-radius: 10px;
+    height: 50px;
+    width: 150px;
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #meuscursosEditar
+    #meuscursosEditarForm
+    .meuscursosEditarAcoes
+    button#editar {
+    background-color: var(--azul);
+  }
+  
+  #meuscursosEditar
+    #meuscursosEditarForm
+    .meuscursosEditarAcoes
+    button#editar:hover {
+    background-color: var(--azul-hover);
+    transition: 0.5s;
+  }
+  
+  #meuscursosEditar
+    #meuscursosEditarForm
+    .meuscursosEditarAcoes
+    div#cancelar {
+    background-color: var(--vermelho);
+  }
+  
+  #meuscursosEditar
+    #meuscursosEditarForm
+    .meuscursosEditarAcoes
+    div#cancelar:hover {
+    background-color: var(--vermelho-hover);
+    transition: 0.5s;
+  }
+  
+  #meuscursosEditar
+    #meuscursosEditarForm
+    .meuscursosEditarAcoes
+    button
+    p,
+  #meuscursosEditar
+    #meuscursosEditarForm
+    .meuscursosEditarAcoes
+    div#cancelar
+    p {
+    color: white !important;
+  }

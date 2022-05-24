@@ -150,3 +150,32 @@ async function deslogar(tokenAluno) {
     }
     return data;
 }
+
+// Buscar token
+function buscarToken() {
+    return localStorage.getItem("tkn");
+}
+
+// Verificar se esta logado
+async function verificarLogado(tkn) {
+    if(tkn) {
+        var respDadosUsuario = await buscarUsuario(tkn);
+        if(respDadosUsuario.status == erroRequisicao && respDadosUsuario.mensagem == "Token expirado") {
+            mostrarMensagem(respDadosUsuario.mensagem);
+            setTimeout(() => {
+                window.location.href = "../../index.html";
+            }, 4000);
+        } else if(respDadosUsuario.status == sucessoRequisicao && respDadosUsuario.resultados.tipoUsuario != "Aluno") {
+            mostrarMensagem("Você não tem autorização para acessar esta pagina!")
+            setTimeout(() => {
+                window.location.href = "../../index.html";
+            }, 4000);
+        } else if(respDadosUsuario.status == erroRequisicao) {
+            window.location.href = "../../index.html";
+        } else if(respDadosUsuario.status == sucessoRequisicao && respDadosUsuario.resultados.tipoUsuario == "Aluno") {
+            mostrarDados(respDadosUsuario);
+        }
+    } else {
+        window.location.href = "../../index.html";
+    }
+}

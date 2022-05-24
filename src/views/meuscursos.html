@@ -1,1 +1,70 @@
-<div>Meus cursos</div>
+<link rel="stylesheet" href="../../public/styles/meuscursos.css">
+<div id="meuscursosCadastrar">
+    <form action="#" id="meuscursosCadastrarForm">
+        <h2>Dados do curso</h2>
+        <label for="Nome do curso"><p>Nome do curso</p></label>
+        <input type="text" name="Nome do curso" required>
+        <label for="Descricao"><p>Descrição</p></label>
+        <textarea name="descricao" id="descricao" cols="30" rows="10" required></textarea>
+        <div class="meuscursosCadastrarAcoes">
+            <div id="cancelar"><p>Cancelar</p></div>
+            <button type="submit" id="cadastrar"><p>Cadastrar</p></button>
+        </div>
+    </form>
+</div>
+<div id="meuscursosEditar">
+    <form action="#" id="meuscursosEditarForm">
+        <h2>Dados do curso</h2>
+        <label for="Nome do curso"><p>Nome do curso</p></label>
+        <input type="text" name="Nome do curso" required>
+        <input type="text" name="idCurso" required>
+        <label for="Descricao"><p>Descrição</p></label>
+        <textarea name="descricao" id="descricao" cols="30" rows="10" required></textarea>
+        <div class="meuscursosEditarAcoes">
+            <div id="cancelar"><p>Cancelar</p></div>
+            <button type="submit" id="editar"><p>Editar</p></button>
+        </div>
+    </form>
+</div>
+<div id="meuscursosExcluir">
+    <form action="#" id="meuscursosExcluirForm">
+        <p>Tem certeza que deseja excluir este curso?</p>
+        <div class="meuscursosExcluirAcoes">
+            <div id="cancelar"><p>Cancelar</p></div>
+            <button type="submit" id="excluir"><p>Sim</p></button>
+        </div>
+    </form>
+</div>
+<div id="meuscursosPrincipal">
+    <div id="meuscursosCabecalho"><h1>Cursos</h1></div>
+    <div id="meuscursosFerramentas">
+        <h2 id="bttCadastrarNovoCurso">+ Novo Curso</h2>
+    </div>
+    <div id="meuscursosConteudo">
+        <!-- 
+                Template cartao
+            <div class="meuscursosCartao">
+            <div class="meuscursosImagemCartao">
+                <img src="../../public/assets/Imagens/Alfabeto/0cc175b9c0f1b6a831c399e269772661.png" alt="Letra A">
+            </div>
+            <div class="meuscursosConteudoCartao">
+                <h2 class="meuscursosNomeCartao">ADS</h2>
+                <div class="meuscursosEstados">
+                    <img src="../../public/assets/Imagens/Icone-publico.svg" alt="Curso publico">
+                    <img src="../../public/assets/Imagens/Icone-oculto.svg" alt="Curso oculto">
+                </div>
+                <div class="meuscursosCartaoOpcoes">
+                    <button class="meuscursosAbrir">
+                        <p>Abrir</p>
+                    </button>
+                    <button class="meuscursosEditar">
+                        <img src="../../public/assets/Imagens/Icone-editar-branco.svg" alt="Editar">
+                    </button>
+                    <button class="meuscursosDeletar">
+                        <img src="../../public/assets/Imagens/Icone-deletar.svg" alt="Deletar">
+                    </button>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
