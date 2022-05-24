@@ -55,7 +55,7 @@ async function iniciarMeuscursos() {
             var nome = document.querySelector("#meuscursosCadastrar input").value;
             var descricao = document.querySelector("#meuscursosCadastrar textarea").value;
             const respCadastrarCurso = await cadastrarCurso(token, nome, descricao);
-            if(respCadastrarCurso.status == sucessoRequisicao) {
+            if(respCadastrarCurso["status"] && respCadastrarCurso["status"] == sucessoRequisicao) {
                 mostrarMensagem("Curso cadastrado com sucesso");
                 setTimeout(() => {
                     mostrarCursos(token);
@@ -74,7 +74,7 @@ async function iniciarMeuscursos() {
             var descricao = document.querySelector("#meuscursosEditar textarea").value;
             var idCurso = document.querySelector("#meuscursosEditar input[name=idCurso]").value;
             const respCadastrarCurso = await editarCurso(token, nome, descricao, idCurso);
-            if(respCadastrarCurso.status == sucessoRequisicao) {
+            if(respCadastrarCurso["status"] && respCadastrarCurso["status"] == sucessoRequisicao) {
                 mostrarMensagem("Curso editado com sucesso");
                 setTimeout(() => {
                     mostrarCursos(token);
@@ -143,7 +143,7 @@ async function excluirCurso(token, idCurso) {
 
 async function deletarCurso(token, idCurso) {
     const respExcluirCurso = await excluirCurso(token, idCurso);
-    if(respExcluirCurso.status == sucessoRequisicao) {
+    if(respExcluirCurso["status"] && respExcluirCurso["status"] == sucessoRequisicao) {
         mostrarMensagem("Curso excluido com sucesso");
         setTimeout(() => {
             document.querySelector("#meuscursosExcluir").style.display = "none";
@@ -214,7 +214,7 @@ async function mostrarCursos(token) {
 
     const meusCursos = await buscarMeusCursos(token);
     
-    if(meusCursos.status == erroRequisicao) {
+    if(meusCursos["status"] && meusCursos["status"] == erroRequisicao) {
         divCartoes.innerHTML = `<p style='text-align: center; font-size: 20px;'>${meusCursos.mensagem}</p>`;
     } else {
         for(let x = 0; x<meusCursos["resultados"].length; x++) {
@@ -307,8 +307,7 @@ async function ocultarDesoCurso(idCurso) {
 async function popupEditarCurso(idCurso) {
     const token = buscarToken();
     const respCurso = await buscarCurso(token, idCurso);
-    console.log(respCurso)
-    if(respCurso.status == sucessoRequisicao) {
+    if(respCurso["status"] && respCurso["status"] == sucessoRequisicao) {
         document.querySelector("#meuscursosEditar input").value = respCurso["resultados"][0]["nome"];
         document.querySelector("#meuscursosEditar textarea").value = respCurso["resultados"][0]["descricao"];
         document.querySelector("#meuscursosEditar input[name=idCurso]").value = respCurso["resultados"][0]["id"];
@@ -319,7 +318,7 @@ async function popupEditarCurso(idCurso) {
 
 async function editarOculto(idCurso, acao) {
     const respEditaCurso = await ocultarDesoCurso(idCurso);
-    if(respEditaCurso.status == sucessoRequisicao) {
+    if(respEditaCurso["status"] && respEditaCurso["status"] == sucessoRequisicao) {
         mostrarMensagem("Seu curso foi "+acao+" com sucesso!")
         setTimeout(() => {
             mostrarCursos(buscarToken())
