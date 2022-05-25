@@ -1,5 +1,5 @@
 window.onload = async () => {
-    window.location.href = "../../src/views/aluno.html#/feed";
+    // window.location.href = "../../src/views/aluno.html#/feed";
 
     var tkn = localStorage.getItem("tkn");
 

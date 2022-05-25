@@ -131,7 +131,7 @@ let router = Router.routes([
     funcao: () => {},
   },
   {
-    path: "/feed",
+    path: "",
     render: "../views/feed.html",
     funcao: () => {},
   },
