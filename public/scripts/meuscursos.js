@@ -149,7 +149,7 @@ async function deletarCurso(token, idCurso) {
             document.querySelector("#meuscursosExcluir").style.display = "none";
             document.querySelector("html").style.overflow = "auto";
             mostrarCursos(token);
-        }, 4000)
+        }, 3000)
     }
 }
 

@@ -25,7 +25,7 @@ function mostrarMensagem(mensagem) {
     setTimeout(() => {
         document.querySelector("#divMensagens").innerHTML = "";
         document.getElementById("divMensagens").style.display = "none";
-    }, 4000)
+    }, 3000)
     return;
 }
 

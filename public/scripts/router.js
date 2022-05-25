@@ -88,7 +88,7 @@ let router = Router.routes([
             path: "",
             exact: true,
             render: "../views/minhasmaterias.html",
-            funcao: () => {},
+            funcao: iniciarMinhasMaterias,
           },
           {
             path: "/materia/:idMateria",
