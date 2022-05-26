@@ -1,18 +1,18 @@
-async function iniciarCadastrarMateria(parametros) {
+async function iniciarCadastrarCurso() {
     await verificarLogado(buscarToken());
-    document.querySelector("#minhasmateriasCadastrar form").addEventListener("submit", async (event) => {
+    document.querySelector("#meuscursosCadastrar form").addEventListener("submit", async (event) => {
         event.preventDefault();
         return;
     })
 
-    document.querySelector("#minhasmateriasCadastrar .minhasmateriasCadastrarAcoes #cadastrar").addEventListener("click", async () => {
-        var nome = document.querySelector("#minhasmateriasCadastrar input").value;
-        var descricao = document.querySelector("#minhasmateriasCadastrar textarea").value;
-        const respCadastro = await cadastrarMateria(nome, descricao, parametros["idCurso"]);
+    document.querySelector("#meuscursosCadastrar .meuscursosCadastrarAcoes #cadastrar").addEventListener("click", async () => {
+        var nome = document.querySelector("#meuscursosCadastrar input").value;
+        var descricao = document.querySelector("#meuscursosCadastrar textarea").value;
+        const respCadastro = await cadastrarCurso(nome, descricao);
         if(respCadastro["status"] && respCadastro["status"] == sucessoRequisicao) {
-            mostrarMensagem("Materia cadastrado com sucesso");
+            mostrarMensagem("Curso cadastrado com sucesso");
             setTimeout(() => {
-                window.location.href = "../../"
+                voltarPagina();
             }, 3000)
         }
     })
@@ -22,13 +22,13 @@ async function iniciarCadastrarMateria(parametros) {
     });
 }
 
-async function cadastrarMateria(nome, descricao, idCurso) {
+async function cadastrarCurso(nome, descricao) {
     carregamento();
     var tentativas = 0;
     var ok = false
     while(tentativas <= 4 && ok == false) {
         try {
-            const resp = await fetch(`${HOST}/materia/cadastrarMateria.php`, {
+            const resp = await fetch(`${HOST}/curso/cadastrarCurso.php`, {
                 "method": "POST",
                 headers: {
                     'Accept': 'application/json',
@@ -36,8 +36,7 @@ async function cadastrarMateria(nome, descricao, idCurso) {
                 body: JSON.stringify({
                     "token": buscarToken(),
                     "nome": nome,
-                    "descricao": descricao,
-                    "idCurso": idCurso
+                    "descricao": descricao
                 })
             })
             var data = await resp.json();

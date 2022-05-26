@@ -1,0 +1,126 @@
+#meuscursosCadastrar {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor-secundaria);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    /* display: none; */
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    align-items: center;
+  }
+  
+  #meuscursosCadastrar #meuscursosCadastrarForm {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    min-width: 300px;
+    height: fit-content;
+    background-color: var(--branco);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  #meuscursosCadastrar #meuscursosCadastrarForm h2 {
+    color: var(--verde-escuro);
+  }
+  
+  #meuscursosCadastrar #meuscursosCadastrarForm p {
+    color: var(--verde-escuro);
+    font-weight: bold;
+  }
+  
+  #meuscursosCadastrar #meuscursosCadastrarForm input {
+    padding: 0 15px;
+    font-size: 15px;
+    height: 50px;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f2f2f2;
+  }
+  
+  #meuscursosCadastrar #meuscursosCadastrarForm textarea {
+    padding: 15px;
+    font-size: 15px;
+    height: 300px;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    resize: none;
+  }
+  
+  #meuscursosCadastrar #meuscursosCadastrarForm .meuscursosCadastrarAcoes {
+    margin: 15px 0;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+  
+  #meuscursosCadastrar #meuscursosCadastrarForm .meuscursosCadastrarAcoes button,
+  #meuscursosCadastrar
+    #meuscursosCadastrarForm
+    .meuscursosCadastrarAcoes
+    div#cancelar {
+    border: 0;
+    border-radius: 10px;
+    height: 50px;
+    width: 150px;
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #meuscursosCadastrar
+    #meuscursosCadastrarForm
+    .meuscursosCadastrarAcoes
+    button#cadastrar {
+    background-color: var(--verde-confirmar);
+  }
+  
+  #meuscursosCadastrar
+    #meuscursosCadastrarForm
+    .meuscursosCadastrarAcoes
+    button#cadastrar:hover {
+    background-color: var(--verde-confirmar-hover);
+    transition: 0.5s;
+  }
+  
+  #meuscursosCadastrar
+    #meuscursosCadastrarForm
+    .meuscursosCadastrarAcoes
+    div#cancelar {
+    background-color: var(--vermelho);
+  }
+  
+  #meuscursosCadastrar
+    #meuscursosCadastrarForm
+    .meuscursosCadastrarAcoes
+    div#cancelar:hover {
+    background-color: var(--vermelho-hover);
+    transition: 0.5s;
+  }
+  
+  #meuscursosCadastrar
+    #meuscursosCadastrarForm
+    .meuscursosCadastrarAcoes
+    button
+    p,
+  #meuscursosCadastrar
+    #meuscursosCadastrarForm
+    .meuscursosCadastrarAcoes
+    div#cancelar
+    p {
+    color: white !important;
+  }

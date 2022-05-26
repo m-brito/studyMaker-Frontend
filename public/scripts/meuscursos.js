@@ -1,209 +1,49 @@
 async function iniciarMeuscursos() {
-    var token = buscarToken();
-    await verificarLogado(token);
-
-    await mostrarCursos(token);
+    await verificarLogado(buscarToken());
+    await mostrarCursos(buscarToken());
 
     document.querySelector("#meuscursosPrincipal #bttCadastrarNovoCurso").addEventListener("click", (event) => {
-        document.querySelector("#meuscursosCadastrar").style.display = "flex";
-        window.scrollTo(0, 0);
-        // document.querySelector("html").style.overflow = "hidden";
+        window.location.href += "/cadastrar"
     });
 
-    document.querySelector("#meuscursosCadastrar form").addEventListener("submit", async (event) => {
-        event.preventDefault();
-        return;
-    })
+    // document.querySelector("#meuscursosExcluir form").addEventListener("submit", async (event) => {
+    //     event.preventDefault();
+    //     return;
+    // })
 
-    document.querySelector("#meuscursosEditar form").addEventListener("submit", async (event) => {
-        event.preventDefault();
-        return;
-    })
+    // document.querySelector("#meuscursosExcluir .meuscursosExcluirAcoes #cancelar").addEventListener("click", async () => {
+    //     setTimeout(() => {
+    //         document.querySelector("#meuscursosExcluir").style.display = "none";
+    //         document.querySelector("html").style.overflow = "auto";
+    //     }, 1)
+    // })
+}
 
-    document.querySelector("#meuscursosExcluir form").addEventListener("submit", async (event) => {
-        event.preventDefault();
-        return;
-    })
-
-    document.querySelector("#meuscursosCadastrar .meuscursosCadastrarAcoes #cancelar").addEventListener("click", async () => {
-        setTimeout(() => {
-            document.querySelector("#meuscursosCadastrar").style.display = "none";
-            document.querySelector("#meuscursosCadastrar input").value = "";
-            document.querySelector("#meuscursosCadastrar textarea").value = "";
-            document.querySelector("html").style.overflow = "auto";
-        }, 1)
-    })
-
-    document.querySelector("#meuscursosEditar .meuscursosEditarAcoes #cancelar").addEventListener("click", async () => {
-        setTimeout(() => {
-            document.querySelector("#meuscursosEditar").style.display = "none";
-            document.querySelector("#meuscursosEditar input").value = "";
-            document.querySelector("#meuscursosEditar textarea").value = "";
-            document.querySelector("html").style.overflow = "auto";
-        }, 1)
-    })
-
-    document.querySelector("#meuscursosExcluir .meuscursosExcluirAcoes #cancelar").addEventListener("click", async () => {
-        setTimeout(() => {
-            document.querySelector("#meuscursosExcluir").style.display = "none";
-            document.querySelector("html").style.overflow = "auto";
-        }, 1)
-    })
-
-    document.querySelector("#meuscursosCadastrar .meuscursosCadastrarAcoes #cadastrar").addEventListener("click", async () => {
-        setTimeout(async () => {
-            var nome = document.querySelector("#meuscursosCadastrar input").value;
-            var descricao = document.querySelector("#meuscursosCadastrar textarea").value;
-            const respCadastrarCurso = await cadastrarCurso(token, nome, descricao);
-            if(respCadastrarCurso["status"] && respCadastrarCurso["status"] == sucessoRequisicao) {
-                mostrarMensagem("Curso cadastrado com sucesso");
+async function deletarCurso(idCurso) {
+    Confirm.open({
+        mensagem: "Tem certeza que deseja exluir este curso?",
+        textoOK: "Sim",
+        textoCancelar: "Cancelar",
+        onok: async () => {
+            const respExcluirCurso = await apiDeletarCurso(idCurso);
+            if(respExcluirCurso["status"] && respExcluirCurso["status"] == sucessoRequisicao) {
+                mostrarMensagem("Curso excluido com sucesso");
                 setTimeout(() => {
-                    mostrarCursos(token);
-                    document.querySelector("#meuscursosCadastrar").style.display = "none";
-                    document.querySelector("#meuscursosCadastrar input").value = "";
-                    document.querySelector("#meuscursosCadastrar textarea").value = "";
-                    document.querySelector("html").style.overflow = "auto";
+                    mostrarCursos(buscarToken());
                 }, 3000)
             }
-        }, 1)
-    })
-
-    document.querySelector("#meuscursosEditar .meuscursosEditarAcoes #editar").addEventListener("click", async () => {
-        setTimeout(async () => {
-            var nome = document.querySelector("#meuscursosEditar input").value;
-            var descricao = document.querySelector("#meuscursosEditar textarea").value;
-            var idCurso = document.querySelector("#meuscursosEditar input[name=idCurso]").value;
-            const respCadastrarCurso = await editarCurso(token, nome, descricao, idCurso);
-            if(respCadastrarCurso["status"] && respCadastrarCurso["status"] == sucessoRequisicao) {
-                mostrarMensagem("Curso editado com sucesso");
-                setTimeout(() => {
-                    mostrarCursos(token);
-                    document.querySelector("#meuscursosEditar").style.display = "none";
-                    document.querySelector("#meuscursosEditar input").value = "";
-                    document.querySelector("#meuscursosEditar textarea").value = "";
-                    document.querySelector("html").style.overflow = "auto";
-                }, 3000)
-            }
-        }, 1)
+        }
     })
 }
 
-async function cadastrarCurso(token, nome, descricao) {
-    carregamento();
-    var tentativas = 0;
-    var ok = false
-    while(tentativas <= 4 && ok == false) {
-        try {
-            const resp = await fetch(`${HOST}/curso/cadastrarCurso.php`, {
-                "method": "POST",
-                headers: {
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({
-                    "token": token,
-                    "nome": nome,
-                    "descricao": descricao
-                })
-            })
-            var data = await resp.json();
-            ok = true;
-        } catch (error) {
-            tentativas++;
-        }
-    }
-    pararCarregamento();
-    return data;
-}
-
-async function excluirCurso(token, idCurso) {
-    carregamento();
-    var tentativas = 0;
-    var ok = false
-    while(tentativas <= 4 && ok == false) {
-        try {
-            const resp = await fetch(`${HOST}/curso/deletarCurso.php`, {
-                "method": "POST",
-                headers: {
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    "token": token,
-                    "id": idCurso
-                })
-            });
-            var data = await resp.json();
-            ok = true;
-        } catch (error) {
-            tentativas++;
-        }
-    }
-    pararCarregamento();
-    return data;
-}
-
-async function deletarCurso(token, idCurso) {
-    const respExcluirCurso = await excluirCurso(token, idCurso);
-    if(respExcluirCurso["status"] && respExcluirCurso["status"] == sucessoRequisicao) {
-        mostrarMensagem("Curso excluido com sucesso");
+async function editarOculto(idCurso, acao) {
+    const respEditaCurso = await ocultarDesocultarCurso(idCurso);
+    if(respEditaCurso["status"] && respEditaCurso["status"] == sucessoRequisicao) {
+        mostrarMensagem("Seu curso foi "+acao+" com sucesso!")
         setTimeout(() => {
-            document.querySelector("#meuscursosExcluir").style.display = "none";
-            document.querySelector("html").style.overflow = "auto";
-            mostrarCursos(token);
+            mostrarCursos(buscarToken())
         }, 3000)
     }
-}
-
-async function popupDeletarCurso(idCurso) {
-    token = buscarToken();
-    document.querySelector("#meuscursosExcluir").style.display = "flex";
-    document.querySelector("#meuscursosExcluir .meuscursosExcluirAcoes button#excluir").onclick = () => {deletarCurso(token, idCurso)};
-    window.scrollTo(0, 0);
-    // document.querySelector("html").style.overflow = "hidden";
-}
-
-async function buscarCurso(token, idCurso) {
-    carregamento();
-    var tentativas = 0;
-    var ok = false
-    while(tentativas <= 4 && ok == false) {
-        try {
-            const resp = await fetch(`${HOST}/curso/dadosCursoId.php?id=${idCurso}&token=${token}`, {
-                "method": "GET",
-                headers: {
-                    'Accept': 'application/json',
-                }
-            })
-            var data = await resp.json();
-            ok = true;
-        } catch (error) {
-            tentativas++;
-        }
-    }
-    pararCarregamento();
-    return data;
-}
-
-async function buscarMeusCursos(token) {
-    var tentativas = 0;
-    var ok = false
-    while(tentativas <= 4 && ok == false) {
-        try {
-            const resp = await fetch(`${HOST}/curso/dadosCursosAluno.php`, {
-                "method": "POST",
-                headers: {
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({
-                    "token": token
-                })
-            })
-            var data = await resp.json();
-            ok = true;
-        } catch (error) {
-            tentativas++;
-        }
-    }
-    return data;
 }
 
 async function mostrarCursos(token) {
@@ -233,10 +73,10 @@ async function mostrarCursos(token) {
                             <button class="meuscursosAbrir" onclick="abrirCurso(${meusCursos["resultados"][x]["id"]})">
                                 <p id="${meusCursos["resultados"][x]["id"]}">Abrir</p>
                             </button>
-                            <button class="meuscursosEditar" onclick="popupEditarCurso(${meusCursos["resultados"][x]["id"]})" id="${meusCursos["resultados"][x]["id"]}">
+                            <button class="meuscursosEditar" onclick="redirecionarEditarCurso(${meusCursos["resultados"][x]["id"]})" id="${meusCursos["resultados"][x]["id"]}">
                                 <img src="../../public/assets/Imagens/Icone-editar-branco.svg" alt="Editar">
                             </button>
-                            <button class="meuscursosDeletar" onclick="popupDeletarCurso(${meusCursos["resultados"][x]["id"]})" id="${meusCursos["resultados"][x]["id"]}">
+                            <button class="meuscursosDeletar" onclick="deletarCurso(${meusCursos["resultados"][x]["id"]})" id="${meusCursos["resultados"][x]["id"]}">
                                 <img src="../../public/assets/Imagens/Icone-deletar.svg" alt="Deletar">
                             </button>
                         </div>
@@ -249,24 +89,46 @@ async function mostrarCursos(token) {
     pararCarregamento();
 }
 
-async function editarCurso(token, nome, descricao, idCurso) {
-    carregamento();
+// APIs
+async function buscarMeusCursos(token) {
     var tentativas = 0;
     var ok = false
     while(tentativas <= 4 && ok == false) {
         try {
-            const resp = await fetch(`${HOST}/curso/editarCurso.php`, {
+            const resp = await fetch(`${HOST}/curso/dadosCursosAluno.php`, {
                 "method": "POST",
                 headers: {
                     'Accept': 'application/json',
                 },
                 body: JSON.stringify({
-                    "token": token,
-                    "id": idCurso,
-                    "nome": nome,
-                    "descricao": descricao
+                    "token": token
                 })
             })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function apiDeletarCurso(idCurso) {
+    carregamento();
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/curso/deletarCurso.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "id": idCurso
+                })
+            });
             var data = await resp.json();
             ok = true;
         } catch (error) {
@@ -277,7 +139,7 @@ async function editarCurso(token, nome, descricao, idCurso) {
     return data;
 }
 
-async function ocultarDesoCurso(idCurso) {
+async function ocultarDesocultarCurso(idCurso) {
     const token = buscarToken();
     carregamento();
     var tentativas = 0;
@@ -304,28 +166,11 @@ async function ocultarDesoCurso(idCurso) {
     return data;
 }
 
-async function popupEditarCurso(idCurso) {
-    const token = buscarToken();
-    const respCurso = await buscarCurso(token, idCurso);
-    if(respCurso["status"] && respCurso["status"] == sucessoRequisicao) {
-        document.querySelector("#meuscursosEditar input").value = respCurso["resultados"][0]["nome"];
-        document.querySelector("#meuscursosEditar textarea").value = respCurso["resultados"][0]["descricao"];
-        document.querySelector("#meuscursosEditar input[name=idCurso]").value = respCurso["resultados"][0]["id"];
-        document.querySelector("#meuscursosEditar").style.display = "flex";
-        window.scrollTo(0, 0);
-    }
-}
-
-async function editarOculto(idCurso, acao) {
-    const respEditaCurso = await ocultarDesoCurso(idCurso);
-    if(respEditaCurso["status"] && respEditaCurso["status"] == sucessoRequisicao) {
-        mostrarMensagem("Seu curso foi "+acao+" com sucesso!")
-        setTimeout(() => {
-            mostrarCursos(buscarToken())
-        }, 3000)
-    }
-}
-
+// Redirecionamentos
 function abrirCurso(idCurso) {
     window.location.href += `/${idCurso}`;
+}
+
+function redirecionarEditarCurso(idCurso) {
+    window.location.href += `/editar/${idCurso}`;
 }

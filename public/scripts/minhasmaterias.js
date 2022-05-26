@@ -1,5 +1,6 @@
 var parametrosJson;
 async function iniciarMinhasMaterias(parametros) {
+    await verificarLogado(buscarToken());
     parametrosJson = parametros;
 
     await mostrarMaterias();

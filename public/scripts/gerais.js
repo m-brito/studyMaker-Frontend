@@ -184,3 +184,65 @@ async function verificarLogado(tkn) {
 function voltarPagina() {
     window.history.back();
 }
+
+// poPup confirmar
+const Confirm = {
+    open (options) {
+        options = Object.assign({}, {
+            mensagem: "",
+            textoOK: "Confirmar",
+            textoCancelar: "Cancelar",
+            onok: function () {},
+            oncancel: function () {}
+        }, options);
+
+        const html = `
+            <div class="containerConfirmar">
+                <div class="janelaConfirmar">
+                    <button class="fecharJanelaConfirmar">&times;</button>
+                    <p>${options.mensagem}</p>
+                    <div class="janelaConfirmarAcoes">
+                        <button class="cancelar"><p>${options.textoCancelar}</p></button>
+                        <button class="confirmar"><p>${options.textoOK}</p></button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        const template = document.createElement('Template');
+        template.innerHTML = html;
+
+        const confirmEl = template.content.querySelector(".containerConfirmar");
+        const bttFechar = template.content.querySelector(".fecharJanelaConfirmar");
+        const bttOk = template.content.querySelector(".confirmar");
+        const bttCancelar = template.content.querySelector(".cancelar");
+
+        document.body.appendChild(template.content);
+
+        confirmEl.addEventListener("click", e => {
+            if(e.target === confirmEl) {
+                options.oncancel();
+                this._close(confirmEl);
+            }
+        });
+
+        bttOk.addEventListener("click", () => {
+            options.onok();
+            this._close(confirmEl);
+        });
+
+        [bttCancelar, bttFechar].forEach(el => {
+            el.addEventListener("click", () => {
+                options.oncancel();
+                this._close(confirmEl);
+            })
+        });
+    },
+    _close (confirmEl) {
+        confirmEl.classList.add("fecharConfirmar")
+
+        confirmEl.addEventListener("animationend", () => {
+            document.body.removeChild(confirmEl);
+        })
+    }
+}

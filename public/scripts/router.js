@@ -82,6 +82,18 @@ let router = Router.routes([
         funcao: iniciarMeuscursos,
       },
       {
+        path: "/cadastrar",
+        exact: true,
+        render: "../views/cadastrarcurso.html",
+        funcao: iniciarCadastrarCurso,
+      },
+      {
+        path: "/editar/:idCurso",
+        exact: true,
+        render: "../views/editarCurso.html",
+        funcao: iniciarEditarCurso,
+      },
+      {
         path: "/:idCurso",
         children: [
           {
