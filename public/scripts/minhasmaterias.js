@@ -62,7 +62,7 @@ async function mostrarMaterias() {
                             <button class="minhasmateriasAbrir" onclick="abrirMateria(${respMaterias["resultados"][x]["id"]})">
                                 <p id="${respMaterias["resultados"][x]["id"]}">Abrir</p>
                             </button>
-                            <button class="minhasmateriasEditar" onclick="editarMateria(${respMaterias["resultados"][x]["id"]}, ${respMaterias["resultados"][x]["oculto"] == true ? 'exposto' : 'ocultado'})" id="${respMaterias["resultados"][x]["id"]}">
+                            <button class="minhasmateriasEditar" onclick="redirecionarEditarMateria(${respMaterias["resultados"][x]["id"]})" id="${respMaterias["resultados"][x]["id"]}">
                                 <img src="../../public/assets/Imagens/Icone-editar-branco.svg" alt="Editar">
                             </button>
                             <button class="minhasmateriasDeletar" onclick="deletarMateria(${respMaterias["resultados"][x]["id"]})" id="${respMaterias["resultados"][x]["id"]}">
@@ -152,4 +152,9 @@ async function apiDeletarMateria(idMateria) {
         }
     }
     return data;
+}
+
+// Redirecionamentos
+function redirecionarEditarMateria(idMateria) {
+    window.location.href = `./aluno.html#/meuscursos/59/materia/editar/${idMateria}`;
 }

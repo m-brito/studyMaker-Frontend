@@ -112,6 +112,12 @@ let router = Router.routes([
                 funcao: iniciarCadastrarMateria,
               },
               {
+                path: "/editar/:idMateria",
+                exact: true,
+                render: "../views/editarmateria.html",
+                funcao: iniciarEditarMateria,
+              },
+              {
                 path: "/:idMateria",
                 exact: true,
                 render: "../views/meusquestionarios.html",

@@ -5,18 +5,6 @@ async function iniciarMeuscursos() {
     document.querySelector("#meuscursosPrincipal #bttCadastrarNovoCurso").addEventListener("click", (event) => {
         window.location.href += "/cadastrar"
     });
-
-    // document.querySelector("#meuscursosExcluir form").addEventListener("submit", async (event) => {
-    //     event.preventDefault();
-    //     return;
-    // })
-
-    // document.querySelector("#meuscursosExcluir .meuscursosExcluirAcoes #cancelar").addEventListener("click", async () => {
-    //     setTimeout(() => {
-    //         document.querySelector("#meuscursosExcluir").style.display = "none";
-    //         document.querySelector("html").style.overflow = "auto";
-    //     }, 1)
-    // })
 }
 
 async function deletarCurso(idCurso) {
