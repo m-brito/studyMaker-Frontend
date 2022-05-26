@@ -16,7 +16,7 @@ async function iniciarMinhasMaterias(parametros) {
 
 async function editarOcultoMateria(idMateria, acao) {
     carregamento();
-    const respOcultarMateria = await ocultarMateria(idMateria);
+    const respOcultarMateria = await apiOcultarMateria(idMateria);
     if(respOcultarMateria["status"] && respOcultarMateria["status"] == sucessoRequisicao) {
         alert("Sua materia foi "+acao+" com sucesso")
     }
@@ -24,9 +24,26 @@ async function editarOcultoMateria(idMateria, acao) {
     pararCarregamento();
 }
 
+async function deletarMateria(idMateria) {
+    Confirm.open({
+        mensagem: "Tem certeza que deseja exluir esta materia?",
+        textoOK: "Sim",
+        textoCancelar: "Cancelar",
+        onok: async () => {
+            const respDeletar = await apiDeletarMateria(idMateria);
+            if(respDeletar["status"] && respDeletar["status"] == sucessoRequisicao) {
+                mostrarMensagem("Sua materia foi excluida com sucesso!");
+                setTimeout(() => {
+                    mostrarMaterias(buscarToken())
+                }, 3000)
+            }
+        }
+    })
+}
+
 async function mostrarMaterias() {
     carregamento();
-    let respMaterias = await buscarMaterias(parametrosJson["idCurso"]);
+    let respMaterias = await apiBuscarMaterias(parametrosJson["idCurso"]);
     if(respMaterias["status"] && respMaterias["status"] == sucessoRequisicao) {
         document.querySelector("#minhasmateriasPrincipal #minhasmateriasConteudo").innerHTML = "";
         for(let x=0; x<respMaterias["resultados"].length; x++) {
@@ -65,7 +82,7 @@ async function mostrarMaterias() {
 
 // APIs
 
-async function buscarMaterias(idCurso) {
+async function apiBuscarMaterias(idCurso) {
     var tentativas = 0;
     var ok = false
     while(tentativas <= 4 && ok == false) {
@@ -89,7 +106,7 @@ async function buscarMaterias(idCurso) {
     return data;
 }
 
-async function ocultarMateria(idMateria) {
+async function apiOcultarMateria(idMateria) {
     var tentativas = 0;
     var ok = false
     while(tentativas <= 4 && ok == false) {
@@ -102,6 +119,30 @@ async function ocultarMateria(idMateria) {
                 body: JSON.stringify({
                     "token": buscarToken(),
                     "id": idMateria
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function apiDeletarMateria(idMateria) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/materia/deletarMateria.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "id": idMateria,
                 })
             })
             var data = await resp.json();

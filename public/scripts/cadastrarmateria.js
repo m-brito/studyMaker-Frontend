@@ -1,4 +1,7 @@
+var parametrosJson;
+
 async function iniciarCadastrarMateria(parametros) {
+    parametrosJson = parametros;
     await verificarLogado(buscarToken());
     document.querySelector("#minhasmateriasCadastrar form").addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -12,7 +15,7 @@ async function iniciarCadastrarMateria(parametros) {
         if(respCadastro["status"] && respCadastro["status"] == sucessoRequisicao) {
             mostrarMensagem("Materia cadastrado com sucesso");
             setTimeout(() => {
-                window.location.href = "../../"
+                voltarPagina();
             }, 3000)
         }
     })
