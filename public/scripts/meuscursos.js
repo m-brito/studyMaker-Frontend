@@ -230,8 +230,8 @@ async function mostrarCursos(token) {
                             <img onclick="editarOculto(${meusCursos["resultados"][x]["id"]}, '${meusCursos["resultados"][x]["oculto"] == "true" ? 'exposto' : 'ocultado'}')" src="${meusCursos["resultados"][x]["oculto"] == "true" ? '../../public/assets/Imagens/Icone-oculto.svg' : '../../public/assets/Imagens/Icone-exposto.svg'}" alt="Curso ${meusCursos["resultados"][x]["oculto"] == true ? 'oculto' : 'exposto'}">
                         </div>
                         <div class="meuscursosCartaoOpcoes">
-                            <button class="meuscursosAbrir">
-                                <p id="${meusCursos["resultados"][x]["id"]}" onclick="abrirCurso(${meusCursos["resultados"][x]["id"]})">Abrir</p>
+                            <button class="meuscursosAbrir" onclick="abrirCurso(${meusCursos["resultados"][x]["id"]})">
+                                <p id="${meusCursos["resultados"][x]["id"]}">Abrir</p>
                             </button>
                             <button class="meuscursosEditar" onclick="popupEditarCurso(${meusCursos["resultados"][x]["id"]})" id="${meusCursos["resultados"][x]["id"]}">
                                 <img src="../../public/assets/Imagens/Icone-editar-branco.svg" alt="Editar">
