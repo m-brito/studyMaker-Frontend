@@ -1,0 +1,126 @@
+#minhasmateriasCadastrar {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor-secundaria);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    /* display: none; */
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    align-items: center;
+  }
+  
+  #minhasmateriasCadastrar #minhasmateriasCadastrarForm {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    min-width: 400px;
+    height: fit-content;
+    background-color: var(--branco);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  #minhasmateriasCadastrar #minhasmateriasCadastrarForm h2 {
+    color: var(--verde-escuro);
+  }
+  
+  #minhasmateriasCadastrar #minhasmateriasCadastrarForm p {
+    color: var(--verde-escuro);
+    font-weight: bold;
+  }
+  
+  #minhasmateriasCadastrar #minhasmateriasCadastrarForm input {
+    padding: 0 15px;
+    font-size: 15px;
+    height: 50px;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f2f2f2;
+  }
+  
+  #minhasmateriasCadastrar #minhasmateriasCadastrarForm textarea {
+    padding: 15px;
+    font-size: 15px;
+    height: 300px;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    resize: none;
+  }
+  
+  #minhasmateriasCadastrar #minhasmateriasCadastrarForm .minhasmateriasCadastrarAcoes {
+    margin: 15px 0;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+  
+  #minhasmateriasCadastrar #minhasmateriasCadastrarForm .minhasmateriasCadastrarAcoes button,
+  #minhasmateriasCadastrar
+    #minhasmateriasCadastrarForm
+    .minhasmateriasCadastrarAcoes
+    div#cancelar {
+    border: 0;
+    border-radius: 10px;
+    height: 50px;
+    width: 150px;
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #minhasmateriasCadastrar
+    #minhasmateriasCadastrarForm
+    .minhasmateriasCadastrarAcoes
+    button#cadastrar {
+    background-color: var(--verde-confirmar);
+  }
+  
+  #minhasmateriasCadastrar
+    #minhasmateriasCadastrarForm
+    .minhasmateriasCadastrarAcoes
+    button#cadastrar:hover {
+    background-color: var(--verde-confirmar-hover);
+    transition: 0.5s;
+  }
+  
+  #minhasmateriasCadastrar
+    #minhasmateriasCadastrarForm
+    .minhasmateriasCadastrarAcoes
+    div#cancelar {
+    background-color: var(--vermelho);
+  }
+  
+  #minhasmateriasCadastrar
+    #minhasmateriasCadastrarForm
+    .minhasmateriasCadastrarAcoes
+    div#cancelar:hover {
+    background-color: var(--vermelho-hover);
+    transition: 0.5s;
+  }
+  
+  #minhasmateriasCadastrar
+    #minhasmateriasCadastrarForm
+    .minhasmateriasCadastrarAcoes
+    button
+    p,
+  #minhasmateriasCadastrar
+    #minhasmateriasCadastrarForm
+    .minhasmateriasCadastrarAcoes
+    div#cancelar
+    p {
+    color: white !important;
+  }

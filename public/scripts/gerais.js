@@ -179,3 +179,8 @@ async function verificarLogado(tkn) {
         window.location.href = "../../index.html";
     }
 }
+
+// Funcao voltar
+function voltarPagina() {
+    window.history.back();
+}

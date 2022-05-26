@@ -62,3 +62,28 @@
         transform: rotate(1turn);
     }
 }
+
+/* Estilo imagem voltar */
+img.voltarPagina {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+img.voltarPagina:hover {
+    transition: 1s;
+    animation: voltar 1s infinite alternate;
+}
+
+@keyframes voltar {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}

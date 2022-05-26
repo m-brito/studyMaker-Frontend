@@ -1,5 +1,13 @@
 async function iniciarMinhasMaterias(parametros) {
     await mostrarMaterias(parametros["idCurso"]);
+
+    document.querySelector("#voltarPagina").addEventListener("click", () => {
+        voltarPagina();
+    });
+
+    document.querySelector("#bttCadastrarNovoCurso").addEventListener("click", () => {
+        window.location.href += "/materia/cadastrar";
+    })
 }
 
 async function buscarMaterias(idCurso) {
@@ -28,40 +36,39 @@ async function buscarMaterias(idCurso) {
 
 async function mostrarMaterias(idCurso) {
     carregamento();
-    const respMaterias = await buscarMaterias(idCurso);
-    let divMaterias = document.querySelector("#minhasmateriasPrincipal #minhasmateriasConteudo");
+    let respMaterias = await buscarMaterias(idCurso);
     if(respMaterias["status"] && respMaterias["status"] == sucessoRequisicao) {
-        divMaterias = "";
+        document.querySelector("#minhasmateriasPrincipal #minhasmateriasConteudo").innerHTML = "";
         for(let x=0; x<respMaterias["resultados"].length; x++) {
             let cartaoMateria = `
-                <div class="minhasmateriasCartao" id="${minhasmaterias["resultados"][x]["id"]}">
-                    <div class="minhasmateriastao" style="background-color: ${minhasmaterias["resultados"][x]["cor"]} !important">
-                        <img src="${minhasmaterias["resultados"][x]["imagem"]}" alt="${minhasmaterias["resultados"][x]["nome"][0]}">
+                <div class="minhasmateriasCartao" id="${respMaterias["resultados"][x]["id"]}">
+                    <div class="minhasmateriasImagemCartao" style="background-color: ${respMaterias["resultados"][x]["cor"]} !important">
+                        <img src="${respMaterias["resultados"][x]["imagem"]}" alt="${respMaterias["resultados"][x]["nome"][0]}">
                     </div>
                     <div class="minhasmateriasConteudoCartao">
-                        <h2 class="minhasmateriasNomeCartao">${minhasmaterias["resultados"][x]["nome"]}</h2>
+                        <h2 class="minhasmateriasNomeCartao">${respMaterias["resultados"][x]["nome"]}</h2>
                         <div class="minhasmateriasEstados">
-                            <img src="${minhasmaterias["resultados"][x]["publico"] == "true" ? '../../public/assets/Imagens/Icone-publico.svg' : '../../public/assets/Imagens/Icone-privado.svg'}" alt="Materia ${meusCursos["resultados"][x]["privado"] == "true" ? 'privado' : 'publico'}">
-                            <img onclick="editarOculto(${minhasmaterias["resultados"][x]["id"]}, '${minhasmaterias["resultados"][x]["oculto"] == "true" ? 'exposto' : 'ocultado'}')" src="${minhasmaterias["resultados"][x]["oculto"] == "true" ? '../../public/assets/Imagens/Icone-oculto.svg' : '../../public/assets/Imagens/Icone-exposto.svg'}" alt="Materia ${minhasmaterias["resultados"][x]["oculto"] == true ? 'oculto' : 'exposto'}">
+                            <img src="${respMaterias["resultados"][x]["publico"] == "true" ? '../../public/assets/Imagens/Icone-publico.svg' : '../../public/assets/Imagens/Icone-privado.svg'}" alt="Materia ${respMaterias["resultados"][x]["privado"] == "true" ? 'privado' : 'publico'}">
+                            <img onclick="editarOcultoMateria(${respMaterias["resultados"][x]["id"]}, '${respMaterias["resultados"][x]["oculto"] == "true" ? 'exposto' : 'ocultado'}')" src="${respMaterias["resultados"][x]["oculto"] == "true" ? '../../public/assets/Imagens/Icone-oculto.svg' : '../../public/assets/Imagens/Icone-exposto.svg'}" alt="Materia ${respMaterias["resultados"][x]["oculto"] == true ? 'oculto' : 'exposto'}">
                         </div>
                         <div class="minhasmateriasCartaoOpcoes">
                             <button class="minhasmateriasAbrir">
-                                <p id="${minhasmaterias["resultados"][x]["id"]}" onclick="abrirMateria(${minhasmaterias["resultados"][x]["id"]})">Abrir</p>
+                                <p id="${respMaterias["resultados"][x]["id"]}" onclick="abrirMateria(${respMaterias["resultados"][x]["id"]})">Abrir</p>
                             </button>
-                            <button class="minhasmateriasEditar" onclick="editarMateria(${minhasmaterias["resultados"][x]["id"]})" id="${minhasmaterias["resultados"][x]["id"]}">
+                            <button class="minhasmateriasEditar" onclick="editarMateria(${respMaterias["resultados"][x]["id"]})" id="${respMaterias["resultados"][x]["id"]}">
                                 <img src="../../public/assets/Imagens/Icone-editar-branco.svg" alt="Editar">
                             </button>
-                            <button class="minhasmateriasDeletar" onclick="deletarMateria(${minhasmaterias["resultados"][x]["id"]})" id="${minhasmaterias["resultados"][x]["id"]}">
+                            <button class="minhasmateriasDeletar" onclick="deletarMateria(${respMaterias["resultados"][x]["id"]})" id="${respMaterias["resultados"][x]["id"]}">
                                 <img src="../../public/assets/Imagens/Icone-deletar.svg" alt="Deletar">
                             </button>
                         </div>
                     </div>
                 </div>
             `;
-            divMaterias.innerHTML += cartaoMateria;
+            document.querySelector("#minhasmateriasPrincipal #minhasmateriasConteudo").innerHTML += cartaoMateria;
         }
     } else {
-        divMaterias.innerHTML = `<p style='text-align: center; font-size: 20px;'>${respMaterias["mensagem"]}</p>`;
+        document.querySelector("#minhasmateriasPrincipal #minhasmateriasConteudo").innerHTML = `<p style='text-align: center; font-size: 20px;'>${respMaterias["mensagem"]}</p>`;
     }
     pararCarregamento();
 }

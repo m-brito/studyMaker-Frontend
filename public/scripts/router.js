@@ -91,10 +91,16 @@ let router = Router.routes([
             funcao: iniciarMinhasMaterias,
           },
           {
-            path: "/materia/:idMateria",
+            path: "/materia",
             children: [
               {
-                path: "",
+                path: "/cadastrar",
+                exact: true,
+                render: "../views/cadastrarmateria.html",
+                funcao: iniciarCadastrarMateria,
+              },
+              {
+                path: "/:idMateria",
                 exact: true,
                 render: "../views/meusquestionarios.html",
                 funcao: () => {},
