@@ -3,7 +3,7 @@ var parametrosJson;
 async function iniciarEditarCurso(parametros) {
     parametrosJson = parametros;
 
-    const respCurso = await buscarCurso(parametros["idCurso"]);
+    const respCurso = await ecBuscarCurso();
     if(respCurso["status"] && respCurso["status"] == sucessoRequisicao) {
         document.querySelector("#meuscursosEditar input").value = respCurso["resultados"][0]["nome"];
         document.querySelector("#meuscursosEditar textarea").value = respCurso["resultados"][0]["descricao"];
@@ -20,10 +20,11 @@ async function iniciarEditarCurso(parametros) {
         var descricao = document.querySelector("#meuscursosEditar textarea").value;
         const respCadastro = await editarCurso(nome, descricao);
         if(respCadastro["status"] && respCadastro["status"] == sucessoRequisicao) {
-            mostrarMensagem("Curso editado com sucesso");
-            setTimeout(() => {
-                window.location.href = "./aluno.html#/meuscursos"
-            }, 3000)
+            mensagemPopUp.show({
+                mensagem: "Curso editado com sucesso!",
+                cor: "green"
+            });
+            window.location.href = "./aluno.html#/meuscursos"
         }
     })
 
@@ -32,7 +33,7 @@ async function iniciarEditarCurso(parametros) {
     });
 }
 
-async function editarCurso(nome, descricao, idCurso) {
+async function editarCurso(nome, descricao) {
     carregamento();
     var tentativas = 0;
     var ok = false
@@ -60,13 +61,13 @@ async function editarCurso(nome, descricao, idCurso) {
     return data;
 }
 
-async function buscarCurso(idCurso) {
+async function ecBuscarCurso() {
     carregamento();
     var tentativas = 0;
-    var ok = false
+    var ok = false;
     while(tentativas <= 4 && ok == false) {
         try {
-            const resp = await fetch(`${HOST}/curso/dadosCursoId.php?id=${idCurso}&token=${buscarToken()}`, {
+            const resp = await fetch(`${HOST}/curso/dadosCursoId.php?id=${parametrosJson["idCurso"]}&token=${buscarToken()}`, {
                 "method": "GET",
                 headers: {
                     'Accept': 'application/json',
@@ -79,5 +80,12 @@ async function buscarCurso(idCurso) {
         }
     }
     pararCarregamento();
+    if(ok == true && data["status"] == erroRequisicao) {
+        mensagemPopUp.show({
+            mensagem: data["mensagem"],
+            cor: "red"
+        });
+        voltarPagina();
+    }
     return data;
 }

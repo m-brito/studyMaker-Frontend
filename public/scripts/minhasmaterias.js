@@ -18,7 +18,10 @@ async function editarOcultoMateria(idMateria, acao) {
     carregamento();
     const respOcultarMateria = await apiOcultarMateria(idMateria);
     if(respOcultarMateria["status"] && respOcultarMateria["status"] == sucessoRequisicao) {
-        alert("Sua materia foi "+acao+" com sucesso")
+        mensagemPopUp.show({
+            mensagem: "Sua materia foi "+acao+" com sucesso!",
+            cor: "green"
+        });
     }
     mostrarMaterias();
     pararCarregamento();
@@ -32,10 +35,11 @@ async function deletarMateria(idMateria) {
         onok: async () => {
             const respDeletar = await apiDeletarMateria(idMateria);
             if(respDeletar["status"] && respDeletar["status"] == sucessoRequisicao) {
-                mostrarMensagem("Sua materia foi excluida com sucesso!");
-                setTimeout(() => {
-                    mostrarMaterias(buscarToken())
-                }, 3000)
+                mensagemPopUp.show({
+                    mensagem: "Sua materia foi excluida com sucesso!",
+                    cor: "green"
+                });
+                mostrarMaterias(buscarToken())
             }
         }
     })
@@ -45,6 +49,7 @@ async function mostrarMaterias() {
     carregamento();
     let respMaterias = await apiBuscarMaterias(parametrosJson["idCurso"]);
     if(respMaterias["status"] && respMaterias["status"] == sucessoRequisicao) {
+        // document.querySelector("#minhasmateriasPrincipal #minhasmateriasFerramentas #caminho").innerHTML = `<a href="./aluno.html#/meuscursos"><p>${respMaterias["resultados"][0]["nomeCurso"]}</p></a>`;
         document.querySelector("#minhasmateriasPrincipal #minhasmateriasConteudo").innerHTML = "";
         for(let x=0; x<respMaterias["resultados"].length; x++) {
             let cartaoMateria = `
@@ -156,5 +161,5 @@ async function apiDeletarMateria(idMateria) {
 
 // Redirecionamentos
 function redirecionarEditarMateria(idMateria) {
-    window.location.href = `./aluno.html#/meuscursos/59/materia/editar/${idMateria}`;
+    window.location.href = `./aluno.html#/meuscursos/${parametrosJson["idCurso"]}/materia/editar/${idMateria}`;
 }

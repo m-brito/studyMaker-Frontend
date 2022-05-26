@@ -13,10 +13,11 @@ async function iniciarCadastrarMateria(parametros) {
         var descricao = document.querySelector("#minhasmateriasCadastrar textarea").value;
         const respCadastro = await cadastrarMateria(nome, descricao, parametros["idCurso"]);
         if(respCadastro["status"] && respCadastro["status"] == sucessoRequisicao) {
-            mostrarMensagem("Materia cadastrado com sucesso");
-            setTimeout(() => {
-                voltarPagina();
-            }, 3000)
+            mensagemPopUp.show({
+                mensagem: "Materia cadastrado com sucesso!",
+                cor: "green"
+            });
+            voltarPagina();
         }
     })
 

@@ -246,3 +246,44 @@ const Confirm = {
         })
     }
 }
+
+const mensagemPopUp = {
+    show (options) {
+        options = Object.assign({}, {
+            mensagem: "",
+            cor: "",
+        }, options);
+
+        const html = `
+            <div class="mensagempopup">
+                <p style="color: ${options.cor}">${options.mensagem}</p>
+                <div class="mensagemPopUpOpcoes">
+                    <button class="fecharJanelaMensagemPopUp">&times;</button>
+                </div>
+            </div>
+        `;
+
+        const Template = document.createElement('Template');
+        Template.innerHTML = html;
+
+        const mensagemPopUpEl = Template.content.querySelector(".mensagempopup");
+        const bttFechar = Template.content.querySelector(".fecharJanelaMensagemPopUp");
+
+        document.querySelector("body").appendChild(Template.content);
+
+        bttFechar.addEventListener("click", () => {
+            this._close(mensagemPopUpEl);
+        })
+
+        setTimeout(() => {
+            this._close(mensagemPopUpEl);
+        }, 3500)
+    },
+    _close (mensagemPopUpEl) {
+        mensagemPopUpEl.classList.add("fecharMensagemPopUp")
+
+        mensagemPopUpEl.addEventListener("animationend", () => {
+            document.body.removeChild(mensagemPopUpEl);
+        })
+    }
+}

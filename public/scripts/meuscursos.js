@@ -15,10 +15,11 @@ async function deletarCurso(idCurso) {
         onok: async () => {
             const respExcluirCurso = await apiDeletarCurso(idCurso);
             if(respExcluirCurso["status"] && respExcluirCurso["status"] == sucessoRequisicao) {
-                mostrarMensagem("Curso excluido com sucesso");
-                setTimeout(() => {
-                    mostrarCursos(buscarToken());
-                }, 3000)
+                mensagemPopUp.show({
+                    mensagem: "Curso excluido com sucesso!",
+                    cor: "green"
+                });
+                mostrarCursos(buscarToken());
             }
         }
     })
@@ -27,10 +28,11 @@ async function deletarCurso(idCurso) {
 async function editarOculto(idCurso, acao) {
     const respEditaCurso = await ocultarDesocultarCurso(idCurso);
     if(respEditaCurso["status"] && respEditaCurso["status"] == sucessoRequisicao) {
-        mostrarMensagem("Seu curso foi "+acao+" com sucesso!")
-        setTimeout(() => {
-            mostrarCursos(buscarToken())
-        }, 3000)
+        mensagemPopUp.show({
+            mensagem: "Seu curso foi "+acao+" com sucesso!",
+            cor: "green"
+        });
+        mostrarCursos(buscarToken())
     }
 }
 
@@ -78,7 +80,7 @@ async function mostrarCursos(token) {
 }
 
 // APIs
-async function buscarMeusCursos(token) {
+async function buscarMeusCursos() {
     var tentativas = 0;
     var ok = false
     while(tentativas <= 4 && ok == false) {
@@ -89,7 +91,7 @@ async function buscarMeusCursos(token) {
                     'Accept': 'application/json',
                 },
                 body: JSON.stringify({
-                    "token": token
+                    "token": buscarToken()
                 })
             })
             var data = await resp.json();

@@ -21,7 +21,11 @@
   #minhasmateriasPrincipal #minhasmateriasFerramentas {
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
+  }
+  
+  #minhasmateriasPrincipal #minhasmateriasFerramentas p {
+    margin: 0 0 30px 30px;
   }
   
   #minhasmateriasPrincipal #minhasmateriasFerramentas h2 {

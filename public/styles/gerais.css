@@ -98,7 +98,7 @@ img.voltarPagina:hover {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.705);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     display: flex;
@@ -238,5 +238,73 @@ button.cancelar:hover {
         opacity: 1;
     } to{
         opacity: 0;
+    }
+}
+
+/* Mensagem popup */
+.mensagempopup{
+    width: 300px;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    bottom: 10px;
+    z-index: 200;
+    background-color: #F2F2F2;
+    padding: 10px;
+    border-radius: 0 10px 10px 0;
+    display: flex;
+
+    animation-name: abrirMensagemPopUp;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.mensagempopup p{
+    width: calc(100% - 50px);
+    text-align: left;
+    word-wrap: break-word;
+    flex-wrap: nowrap;
+}
+
+button.fecharJanelaMensagemPopUp{
+    top: 0;
+    right: 0;
+    border: 0;
+    font-size: 30px;
+    padding: 0;
+    margin: 0;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.mensagempopup .mensagemPopUpOpcoes{
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fecharMensagemPopUp{
+    animation-name: fecharMensagemPopUp !important;
+}
+
+@keyframes abrirMensagemPopUp {
+    from {
+        opacity: 0;
+        left: -500;
+    } to{
+        opacity: 1;
+        left: 10px;
+    }
+}
+
+@keyframes fecharMensagemPopUp {
+    from {
+        opacity: 1;
+        left: 10px;
+    } to{
+        opacity: 0;
+        left: -500;
     }
 }

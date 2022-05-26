@@ -2,8 +2,16 @@ var parametrosJson;
 
 async function iniciarEditarMateria(parametros) {
     parametrosJson = parametros;
+    const respCurso = await buscarCurso();
+    if(respCurso["status"] && respCurso["status"] == sucessoRequisicao && respCurso["resultado"][0]["excluido"] == "true") {
+        mensagemPopUp.show({
+            mensagem: "Essa materia foi excluida!",
+            cor: "red"
+        });
+        voltarPagina();
+    } 
 
-    const respMateria = await buscarMateria(parametros["idMateria"]);
+    const respMateria = await buscarMateria();
     if(respMateria["status"] && respMateria["status"] == sucessoRequisicao) {
         document.querySelector("#minhasmateriasEditar input").value = respMateria["resultados"][0]["nome"];
         document.querySelector("#minhasmateriasEditar textarea").value = respMateria["resultados"][0]["descricao"];
@@ -20,16 +28,39 @@ async function iniciarEditarMateria(parametros) {
         var descricao = document.querySelector("#minhasmateriasEditar textarea").value;
         const respCadastro = await editarMateria(nome, descricao);
         if(respCadastro["status"] && respCadastro["status"] == sucessoRequisicao) {
-            mostrarMensagem("Materia editada com sucesso");
-            setTimeout(() => {
-                window.location.href = `./aluno.html#/meuscursos/${parametrosJson["idCurso"]}`;
-            }, 3000)
+            mensagemPopUp.show({
+                mensagem: "Materia editada com sucesso!",
+                cor: "green"
+            });
+            window.location.href = `./aluno.html#/meuscursos/${parametrosJson["idCurso"]}`;
         }
     })
 
     document.querySelector("#voltarPagina").addEventListener("click", () => {
         voltarPagina();
     });
+}
+
+async function buscarCurso(idCurso) {
+    carregamento();
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/curso/dadosCursoId.php?id=${idCurso}&token=${buscarToken()}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json',
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    pararCarregamento();
+    return data;
 }
 
 async function editarMateria(nome, descricao) {
@@ -66,7 +97,7 @@ async function buscarMateria() {
     var ok = false
     while(tentativas <= 4 && ok == false) {
         try {
-            const resp = await fetch(`${HOST}/materia/dadosMateriaId.php?id=${parametrosJson["idMateria"]}&token=${buscarToken()}`, {
+            const resp = await fetch(`${HOST}/materia/dadosMateriaId.php?id=${parametrosJson["idMateria"]}&idCurso=${parametrosJson["idCurso"]}&token=${buscarToken()}`, {
                 "method": "GET",
                 headers: {
                     'Accept': 'application/json',
@@ -79,5 +110,12 @@ async function buscarMateria() {
         }
     }
     pararCarregamento();
+    if(ok == true && data["status"] == erroRequisicao) {
+        mensagemPopUp.show({
+            mensagem: data["mensagem"],
+            cor: "red"
+        });
+        voltarPagina();
+    }
     return data;
 }

@@ -10,10 +10,11 @@ async function iniciarCadastrarCurso() {
         var descricao = document.querySelector("#meuscursosCadastrar textarea").value;
         const respCadastro = await cadastrarCurso(nome, descricao);
         if(respCadastro["status"] && respCadastro["status"] == sucessoRequisicao) {
-            mostrarMensagem("Curso cadastrado com sucesso");
-            setTimeout(() => {
-                voltarPagina();
-            }, 3000)
+            mensagemPopUp.show({
+                mensagem: "Curso cadastrado com sucesso!",
+                cor: "green"
+            });
+            voltarPagina();
         }
     })
 
