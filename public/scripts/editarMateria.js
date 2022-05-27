@@ -77,6 +77,7 @@ async function editarMateria(nome, descricao) {
                 body: JSON.stringify({
                     "token": buscarToken(),
                     "id": parametrosJson["idMateria"],
+                    "idCurso": parametrosJson["idCurso"],
                     "nome": nome,
                     "descricao": descricao
                 })

@@ -15,7 +15,10 @@ window.onload = () => {
         carregamento();
         if(emailVerificado == false) {
             pararCarregamento();
-            mostrarMensagem("É necessário confirmar o email para cadastrar!")
+            mensagemPopUp.show({
+                mensagem: "É necessário confirmar o email para cadastrar!",
+                cor: "green"
+            });
         } else {
             if(document.getElementById("foto").value) {
                 var img = document.getElementById("foto").files[0];
@@ -38,15 +41,22 @@ window.onload = () => {
     
             const data = await resp.json();
             pararCarregamento();
-            mostrarMensagem(data.mensagem);
             if(data.status == sucessoRequisicao) {
+                mensagemPopUp.show({
+                    mensagem: data.mensagem,
+                    cor: "green"
+                });
                 setTimeout(() => {
                     window.location.href = "./login.html";
-                }, 4000);
+                }, 2500);
             } else {
+                mensagemPopUp.show({
+                    mensagem: data.mensagem,
+                    cor: "red"
+                });
                 setTimeout(() => {
                     window.location.reload();
-                }, 4000);
+                }, 2500);
             }
         }
     })

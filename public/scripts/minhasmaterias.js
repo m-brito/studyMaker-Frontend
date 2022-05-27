@@ -47,7 +47,7 @@ async function deletarMateria(idMateria) {
 
 async function mostrarMaterias() {
     carregamento();
-    let respMaterias = await apiBuscarMaterias(parametrosJson["idCurso"]);
+    let respMaterias = await apiBuscarMaterias();
     if(respMaterias["status"] && respMaterias["status"] == sucessoRequisicao) {
         // document.querySelector("#minhasmateriasPrincipal #minhasmateriasFerramentas #caminho").innerHTML = `<a href="./aluno.html#/meuscursos"><p>${respMaterias["resultados"][0]["nomeCurso"]}</p></a>`;
         document.querySelector("#minhasmateriasPrincipal #minhasmateriasConteudo").innerHTML = "";
@@ -64,7 +64,7 @@ async function mostrarMaterias() {
                             <img onclick="editarOcultoMateria(${respMaterias["resultados"][x]["id"]}, '${respMaterias["resultados"][x]["oculto"] == "true" ? 'exposta' : 'ocultado'}')" src="${respMaterias["resultados"][x]["oculto"] == "true" ? '../../public/assets/Imagens/Icone-oculto.svg' : '../../public/assets/Imagens/Icone-exposto.svg'}" alt="Materia ${respMaterias["resultados"][x]["oculto"] == true ? 'oculto' : 'exposto'}">
                         </div>
                         <div class="minhasmateriasCartaoOpcoes">
-                            <button class="minhasmateriasAbrir" onclick="abrirMateria(${respMaterias["resultados"][x]["id"]})">
+                            <button class="minhasmateriasAbrir" onclick="redirecionarAbrirMateria(${respMaterias["resultados"][x]["id"]})">
                                 <p id="${respMaterias["resultados"][x]["id"]}">Abrir</p>
                             </button>
                             <button class="minhasmateriasEditar" onclick="redirecionarEditarMateria(${respMaterias["resultados"][x]["id"]})" id="${respMaterias["resultados"][x]["id"]}">
@@ -87,7 +87,7 @@ async function mostrarMaterias() {
 
 // APIs
 
-async function apiBuscarMaterias(idCurso) {
+async function apiBuscarMaterias() {
     var tentativas = 0;
     var ok = false
     while(tentativas <= 4 && ok == false) {
@@ -99,7 +99,7 @@ async function apiBuscarMaterias(idCurso) {
                 },
                 body: JSON.stringify({
                     "token": buscarToken(),
-                    "idCurso": idCurso
+                    "idCurso": parametrosJson["idCurso"],
                 })
             })
             var data = await resp.json();
@@ -123,7 +123,8 @@ async function apiOcultarMateria(idMateria) {
                 },
                 body: JSON.stringify({
                     "token": buscarToken(),
-                    "id": idMateria
+                    "id": idMateria,
+                    "idCurso": parametrosJson["idCurso"],
                 })
             })
             var data = await resp.json();
@@ -148,6 +149,7 @@ async function apiDeletarMateria(idMateria) {
                 body: JSON.stringify({
                     "token": buscarToken(),
                     "id": idMateria,
+                    "idCurso": parametrosJson["idCurso"],
                 })
             })
             var data = await resp.json();
@@ -162,4 +164,8 @@ async function apiDeletarMateria(idMateria) {
 // Redirecionamentos
 function redirecionarEditarMateria(idMateria) {
     window.location.href = `./aluno.html#/meuscursos/${parametrosJson["idCurso"]}/materia/editar/${idMateria}`;
+}
+
+function redirecionarAbrirMateria(idMateria) {
+    window.location.href = `./aluno.html#/meuscursos/${parametrosJson["idCurso"]}/materia/${idMateria}`;
 }

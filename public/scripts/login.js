@@ -17,7 +17,10 @@ window.onload = () => {
             const data = await resp.json();
             pararCarregamento();
             if(data.status == erroRequisicao) {
-                mostrarMensagem(data.mensagem);
+                mensagemPopUp.show({
+                    mensagem: data.mensagem,
+                    cor: "red"
+                });
             } else {
                 localStorage.setItem("tkn", data.resultados.token);
                 const respDadosUsuario = await buscarUsuario(data.resultados.token);
@@ -29,13 +32,20 @@ window.onload = () => {
 
             }
             if(data.status == erroRequisicao) {
+                mensagemPopUp.show({
+                    mensagem: data.mensagem,
+                    cor: "red"
+                });
                 setTimeout(() => {
                     window.location.reload();
                 }, 4000);
             }
         } catch (error) {
             pararCarregamento();
-            mostrarMensagem("Tivemos problemas com o servidor! <br> Tente realizar o login novamente")
+            mensagemPopUp.show({
+                mensagem: "Tivemos problemas com o servidor! <br> Tente realizar o login",
+                cor: "red"
+            });
         }
     })
 }
