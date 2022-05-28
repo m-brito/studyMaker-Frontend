@@ -6,7 +6,7 @@ async function iniciarMeusQuestionarios(parametros) {
     await mostrarQuestionarios();
 
     document.querySelector("#meusquestionariosPrincipal #bttCadastrarNovoCurso").addEventListener("click", (event) => {
-        window.location.href += "/cadastrar"
+        window.location.href += "/questionario/cadastrar"
     });
 
     document.querySelector("#voltarPagina").addEventListener("click", () => {

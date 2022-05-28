@@ -15,6 +15,12 @@ async function iniciarCadastrarCurso() {
                 cor: "green"
             });
             voltarPagina();
+        } else {
+            mensagemPopUp.show({
+                mensagem: respCadastro["mensagem"],
+                cor: "red"
+            });
+            voltarPagina();
         }
     })
 

@@ -18,6 +18,12 @@ async function iniciarCadastrarMateria(parametros) {
                 cor: "green"
             });
             voltarPagina();
+        } else {
+            mensagemPopUp.show({
+                mensagem: respCadastro["mensagem"],
+                cor: "red"
+            });
+            voltarPagina();
         }
     })
 
