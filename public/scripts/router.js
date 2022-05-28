@@ -119,29 +119,34 @@ let router = Router.routes([
               },
               {
                 path: "/:idMateria",
-                exact: true,
-                render: "../views/meusquestionarios.html",
-                funcao: () => {},
-              },
-              {
-                path: "/questionarios",
                 children: [
                   {
-                    path: "/cadastrar",
-                    render: "../views/cadastrarquestionario.html",
-                    funcao: () => {},
+                    path: "",
+                    exact: true,
+                    render: "../views/meusquestionarios.html",
+                    funcao: iniciarMeusQuestionarios,
                   },
                   {
-                    path: "/editar/:idQuestionario",
-                    render: "../views/editarquestionario.html",
-                    funcao: () => {},
+                    path: "/questionario",
+                    children: [
+                      {
+                        path: "/cadastrar",
+                        render: "../views/cadastrarquestionario.html",
+                        funcao: () => {},
+                      },
+                      {
+                        path: "/editar/:idQuestionario",
+                        render: "../views/editarquestionario.html",
+                        funcao: () => {},
+                      },
+                      {
+                        path: "/:idQuestionario",
+                        render: "../views/responderquestionario.html",
+                        funcao: () => {},
+                      },
+                    ],
                   },
-                  {
-                    path: "/:idQuestionario",
-                    render: "../views/responderquestionario.html",
-                    funcao: () => {},
-                  },
-                ],
+                ]
               },
             ],
           },
