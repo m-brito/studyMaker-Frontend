@@ -18,7 +18,7 @@ function mostrarSalvarPergunta(pergunta) {
     let cartaoMostrarPergunta = `
         <div class="mostraPergunta">
             <hr>
-            <p class="textoPerguntaMostrar" style="font-size: 20px;">${pergunta.id+1}) ${pergunta.pergunta}</p>
+            <p class="textoPerguntaMostrar" style="font-size: 20px;">${pergunta.id+1}) ${pergunta.texto}</p>
             <p ${pergunta.alternativas[0] == pergunta.resposta ? "style='color: green; font-weight: bold;'" : ""}>${pergunta.alternativas[0] == pergunta.resposta ? "C" : "X"} - ${pergunta.alternativas[0]}</p>
             <p ${pergunta.alternativas[1] == pergunta.resposta ? "style='color: green; font-weight: bold;'" : ""}>${pergunta.alternativas[1] == pergunta.resposta ? "C" : "X"} - ${pergunta.alternativas[1]}</p>
             <p ${pergunta.alternativas[2] == pergunta.resposta ? "style='color: green; font-weight: bold;'" : ""}>${pergunta.alternativas[2] == pergunta.resposta ? "C" : "X"} - ${pergunta.alternativas[2]}</p>
