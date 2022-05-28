@@ -1,0 +1,378 @@
+#meusquestionariosCadastrar {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor-secundaria);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    /* display: none; */
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    min-width: 400px;
+    height: fit-content;
+    background-color: var(--branco);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm .dadosPerguntas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm h2 {
+    color: var(--verde-escuro);
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm h2.bttCadastrarNovaPergunta {
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm h2.bttCadastrarNovaPergunta:hover {
+    transition: 0.5s;
+    color: var(--verde-escuro-hover);
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm p {
+    color: var(--verde-escuro);
+    font-weight: bold;
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm input {
+    padding: 0 15px;
+    font-size: 15px;
+    height: 50px;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f2f2f2;
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm textarea {
+    padding: 15px;
+    font-size: 15px;
+    height: 300px;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    resize: none;
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm .meusquestionariosCadastrarAcoes {
+    margin: 15px 0;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm .meusquestionariosCadastrarAcoes button,
+  #meusquestionariosCadastrar
+    #meusquestionariosCadastrarForm
+    .meusquestionariosCadastrarAcoes
+    div#cancelar {
+    border: 0;
+    border-radius: 10px;
+    height: 50px;
+    width: 150px;
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #meusquestionariosCadastrar
+    #meusquestionariosCadastrarForm
+    .meusquestionariosCadastrarAcoes
+    button#cadastrar {
+    background-color: var(--verde-confirmar);
+  }
+  
+  #meusquestionariosCadastrar
+    #meusquestionariosCadastrarForm
+    .meusquestionariosCadastrarAcoes
+    button#cadastrar:hover {
+    background-color: var(--verde-confirmar-hover);
+    transition: 0.5s;
+  }
+  
+  #meusquestionariosCadastrar
+    #meusquestionariosCadastrarForm
+    .meusquestionariosCadastrarAcoes
+    div#cancelar {
+    background-color: var(--vermelho);
+  }
+  
+  #meusquestionariosCadastrar
+    #meusquestionariosCadastrarForm
+    .meusquestionariosCadastrarAcoes
+    div#cancelar:hover {
+    background-color: var(--vermelho-hover);
+    transition: 0.5s;
+  }
+  
+  #meusquestionariosCadastrar
+    #meusquestionariosCadastrarForm
+    .meusquestionariosCadastrarAcoes
+    button
+    p,
+  #meusquestionariosCadastrar
+    #meusquestionariosCadastrarForm
+    .meusquestionariosCadastrarAcoes
+    div#cancelar
+    p {
+    color: white !important;
+  }
+
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm .meusquestionariosConteudoPerguntas .mostraPergunta {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0;
+  }
+
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm .meusquestionariosConteudoPerguntas .mostraPergunta p {
+    color: black;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm .meusquestionariosConteudoPerguntas .mostraPergunta p.textoPerguntaMostrar {
+    margin-bottom: 15px;
+  }
+
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm .meusquestionariosConteudoPerguntas .mostraPergunta div.opcoesMostrarPerguntas {
+    width: 100%;
+    display: flex;
+    margin: 10px 0 0 0;
+  }
+
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm .meusquestionariosConteudoPerguntas .mostraPergunta div {
+    height: 45px;
+    padding: 10px 0;
+    border: 0;
+    cursor: pointer;
+    transition: 0.5s;
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm .meusquestionariosConteudoPerguntas .mostraPergunta div img {
+    height: 25px;
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm .meusquestionariosConteudoPerguntas .mostraPergunta div.meusquestionariosPerguntaEditar {
+    background-color: var(--azul);
+    width: calc(100% - 50px - 10px);
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm .meusquestionariosConteudoPerguntas .mostraPergunta div.meusquestionariosPerguntaEditar:hover {
+    background-color: var(--azul-hover);
+    transition: 0.5s;
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm .meusquestionariosConteudoPerguntas .mostraPergunta div.meusquestionariosPerguntaDeletar {
+    background-color: var(--vermelho);
+    width: 50px !important;
+    margin-left: 10px;
+  }
+  
+  #meusquestionariosCadastrar #meusquestionariosCadastrarForm .meusquestionariosConteudoPerguntas .mostraPergunta div.meusquestionariosPerguntaDeletar:hover {
+    background-color: var(--vermelho-hover);
+    transition: 0.5s;
+  }
+
+  .containerCadastrarPergunta {
+      overflow: auto;
+      width: 100%;
+      height: 100vh;
+      min-height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.705);
+      z-index: 10;
+      display: flex;
+      /* display: none; */
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .containerCadastrarPergunta .janelaCadastroPergunta {
+      width: 80%;
+      max-width: 1200px;
+      /* min-height: 300px; */
+      background-color: var(--branco);
+      margin: 100px 0;
+      border-radius: 10px;
+      box-sizing: border-box;
+      padding: 20px;
+  }
+
+  .containerCadastrarPergunta .janelaCadastroPergunta p {
+      color: var(--verde-escuro);
+      font-weight: bold;
+  }
+
+  .containerCadastrarPergunta .janelaCadastroPergunta textarea.textopergunta {
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    resize: none;
+    font-size: 15px;
+  }
+
+  .containerCadastrarPergunta .janelaCadastroPergunta .containerCadastrarRespostas {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .containerCadastrarPergunta .janelaCadastroPergunta .containerCadastrarRespostas .opcoesCadastrarResposta {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .containerCadastrarPergunta .janelaCadastroPergunta .containerCadastrarRespostas .opcoesCadastrarResposta h2 {
+    color: var(--verde-escuro);
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    font-size: 20px;
+  }
+
+  .containerCadastrarPergunta .janelaCadastroPergunta .containerCadastrarRespostas .opcoesCadastrarResposta h2#bttCadastrarResposta {
+    color: var(--verde-escuro);
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    font-size: 20px;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+
+  .containerCadastrarPergunta .janelaCadastroPergunta .containerCadastrarRespostas .opcoesCadastrarResposta h2#bttCadastrarResposta:hover {
+    color: var(--verde-escuro-hover);
+    transition: 0.5s;
+  }
+  
+  .containerCadastrarPergunta .janelaCadastroPergunta .containerCadastrarRespostas .respostasRadios {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .containerCadastrarPergunta .janelaCadastroPergunta .containerCadastrarRespostas .respostasRadios .resposta {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    margin: 10px 0;
+  }
+  
+  .containerCadastrarPergunta .janelaCadastroPergunta .containerCadastrarRespostas .respostasRadios .resposta textarea {
+    flex: 1;
+    height: 100px;
+    padding: 10px;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    resize: none;
+    font-size: 15px;
+    margin-left: 5px;
+  }
+  
+  .containerCadastrarPergunta .janelaCadastroPergunta .containerCadastrarRespostas .respostasRadios .resposta div.respostasRadiosDeletar {
+    height: 100px;
+    padding: 10px 15px;
+    border: 0;
+    cursor: pointer;
+    transition: 0.5s;
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--vermelho);
+    width: 50px !important;
+    margin-left: 10px;
+    box-sizing: border-box;
+  }
+  
+  .containerCadastrarPergunta .janelaCadastroPergunta .containerCadastrarRespostas .respostasRadios .resposta div.respostasRadiosDeletar:hover {
+    background-color: var(--vermelho-hover);
+    transition: 0.5s;
+  }
+
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta div#cancelarPerg, .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta button#cadastrarPerg {
+    border: 0;
+    border-radius: 10px;
+    height: 50px;
+    width: 150px;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta div#cancelarPerg p, .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta button#cadastrarPerg p {
+    color: white;
+  }
+  
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta button#cadastrarPerg {
+    background-color: var(--verde-confirmar);
+  }
+  
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta button#cadastrarPerg:hover {
+    background-color: var(--verde-confirmar-hover);
+    transition: 0.5s;
+  }
+  
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta div#cancelarPerg {
+    background-color: var(--vermelho);
+  }
+  
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta div#cancelarPerg:hover {
+    background-color: var(--vermelho-hover);
+    transition: 0.5s;
+  }
+  
