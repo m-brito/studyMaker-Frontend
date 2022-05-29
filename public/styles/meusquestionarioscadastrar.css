@@ -340,7 +340,9 @@
     margin-top: 15px;
   }
 
-  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta div#cancelarPerg, .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta button#cadastrarPerg {
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta div#cancelarPerg,
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta button#cadastrarPerg,
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta button#editarPerg {
     border: 0;
     border-radius: 10px;
     height: 50px;
@@ -354,7 +356,9 @@
     justify-content: center;
   }
 
-  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta div#cancelarPerg p, .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta button#cadastrarPerg p {
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta div#cancelarPerg p,
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta button#cadastrarPerg p,
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta button#editarPerg p {
     color: white;
   }
   
@@ -376,3 +380,11 @@
     transition: 0.5s;
   }
   
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta button#editarPerg {
+    background-color: var(--azul);
+  }
+  
+  .containerCadastrarPergunta .janelaCadastroPergunta .opcoesEnviarCadastroPergunta button#editarPerg:hover {
+    background-color: var(--azul-hover);
+    transition: 0.5s;
+  }
