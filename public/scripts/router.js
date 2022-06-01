@@ -137,7 +137,7 @@ let router = Router.routes([
                       {
                         path: "/editar/:idQuestionario",
                         render: "../views/editarquestionario.html",
-                        funcao: () => {},
+                        funcao: iniciarEditarQuestionario,
                       },
                       {
                         path: "/:idQuestionario",

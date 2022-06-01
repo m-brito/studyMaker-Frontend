@@ -288,3 +288,244 @@ const mensagemPopUp = {
         })
     }
 }
+
+// Janela Criar Pergunta
+const CriarPergunta = {
+    open (options) {
+        options = Object.assign({}, {
+            numero: "",
+            textoOK: "",
+            textoCancelar: "",
+            onok: function () {},
+            oncancel: function () {}
+        }, options);
+
+        const html = `
+            <div class="containerCadastrarPergunta">
+                <form class="janelaCadastroPergunta" action="#">
+                    <p>Texto da pergunta ${options.numero+1}</p>
+                    <textarea name="textopergunta" class="textopergunta" cols="30" rows="10" required></textarea>
+                    <div class="containerCadastrarRespostas">
+                        <div class="opcoesCadastrarResposta">
+                            <h2>Respostas</h2>
+                        </div>
+                        <div class="respostasRadios">
+                            <div class="resposta" id="resposta-1">
+                                <input type="radio" name="respostaPergunta" id="inputRadio-1" value="" required>
+                                <textarea name="resposta" id="textarea-1" cols="30" rows="10" required></textarea>
+                            </div>
+                            <div class="resposta" id="resposta-2">
+                                <input type="radio" name="respostaPergunta" id="inputRadio-2" value="" required>
+                                <textarea name="resposta" id="textarea-2" cols="30" rows="10" required></textarea>
+                            </div>
+                            <div class="resposta" id="resposta-3">
+                                <input type="radio" name="respostaPergunta" id="inputRadio-3" value="" required>
+                                <textarea name="resposta" id="textarea-3" cols="30" rows="10" required></textarea>
+                            </div>
+                            <div class="resposta" id="resposta-4">
+                                <input type="radio" name="respostaPergunta" id="inputRadio-4" value="" required>
+                                <textarea name="resposta" id="textarea-4" cols="30" rows="10" required></textarea>
+                            </div>
+                            <div class="resposta" id="resposta-5">
+                                <input type="radio" name="respostaPergunta" id="inputRadio-5" value="" required>
+                                <textarea name="resposta" id="textarea-5" cols="30" rows="10" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="opcoesEnviarCadastroPergunta">
+                        <div id="cancelarPerg"><p>Cancelar</p></div>
+                        <button id="cadastrarPerg"><p>Cadastrar</p></button>
+                    </div>
+                </form>
+            </div>
+        `;
+
+        const template = document.createElement('Template');
+        template.innerHTML = html;
+
+        const criarPerguntaEl = template.content.querySelector(".containerCadastrarPergunta");
+        const bttOk = template.content.querySelector("form.janelaCadastroPergunta");
+        const bttCancelar = template.content.querySelector("#cancelarPerg");
+        const textareasText = template.content.querySelectorAll(".containerCadastrarPergunta form.janelaCadastroPergunta .respostasRadios .resposta textarea[name=resposta]");
+
+        document.body.appendChild(template.content);
+
+        criarPerguntaEl.addEventListener("click", e => {
+            if(e.target === criarPerguntaEl) {
+                options.oncancel();
+                this._close(criarPerguntaEl);
+            }
+        });
+
+        textareasText.forEach(el => {
+            el.addEventListener("keyup", (event) => {
+                criarPerguntaEl.querySelector(`.containerCadastrarPergunta form.janelaCadastroPergunta .respostasRadios #inputRadio-${event.target.id.split("-")[1]}`).value = criarPerguntaEl.querySelector(`.containerCadastrarPergunta form.janelaCadastroPergunta .respostasRadios .resposta textarea#${event.target.id}`).value;
+            })  
+        });
+
+        bttOk.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const resps = criarPerguntaEl.querySelectorAll(".resposta")
+            if(resps.length <=1) {
+                mensagemPopUp.show({
+                    mensagem: "Para cadastrar uma pergunta é necessário pelo menos duas respostas!",
+                    cor: "red"
+                });
+            } else {
+                const opcoesRadios = criarPerguntaEl.querySelectorAll(".containerCadastrarPergunta .respostasRadios input[name=respostaPergunta]");
+                let textoPergunta = criarPerguntaEl.querySelector(".containerCadastrarPergunta textarea[name=textopergunta]").value;
+                let alternativaCorreta;
+                let alternativas = [];
+                for (var i=0;i<opcoesRadios.length;i++){
+                    alternativas.push(opcoesRadios[i].value);
+                    if ( opcoesRadios[i].checked ) {
+                        alternativaCorreta = opcoesRadios[i].value;
+                    }
+                }
+                options.onok({
+                    "excluido": false, 
+                    "id": options.numero,
+                    "texto": textoPergunta,
+                    "resposta": alternativaCorreta,
+                    "alternativas": alternativas
+                });
+                this._close(criarPerguntaEl);   
+            }
+        });
+
+        bttCancelar.addEventListener("click", () => {
+            options.oncancel();
+            this._close(criarPerguntaEl);
+        })
+    },
+    _close (criarPerguntaEl) {
+        criarPerguntaEl.classList.add("fecharConfirmar");
+
+        criarPerguntaEl.addEventListener("animationend", () => {
+            document.body.removeChild(criarPerguntaEl);
+        })
+    },
+}
+
+// Janela Editar Pergunta
+const EditarPergunta = {
+    open (options) {
+        options = Object.assign({}, {
+            numero: "",
+            texto: "",
+            resposta: "",
+            alternativas: "",
+            idPergunta: "",
+            textoOK: "",
+            textoCancelar: "",
+            onok: function () {},
+            oncancel: function () {}
+        }, options);
+
+        const html = `
+            <div class="containerCadastrarPergunta">
+                <form class="janelaCadastroPergunta" action="#">
+                    <p>Texto da pergunta ${options.numero}</p>
+                    <textarea name="textopergunta" class="textopergunta" cols="30" rows="10" required>${options.texto}</textarea>
+                    <div class="containerCadastrarRespostas">
+                        <div class="opcoesCadastrarResposta">
+                            <h2>Respostas</h2>
+                        </div>
+                        <div class="respostasRadios">
+                            <div class="resposta" id="resposta-1">
+                                <input type="radio" name="respostaPergunta" id="inputRadio-1" ${options.alternativas[0] == options.resposta ? "checked" : ""} value="${options.alternativas[0]}" required>
+                                <textarea name="resposta" id="textarea-1" cols="30" rows="10" required>${options.alternativas[0]}</textarea>
+                            </div>
+                            <div class="resposta" id="resposta-2">
+                                <input type="radio" name="respostaPergunta" id="inputRadio-2" ${options.alternativas[1] == options.resposta ? "checked" : ""} value="${options.alternativas[1]}" required>
+                                <textarea name="resposta" id="textarea-2" cols="30" rows="10" required>${options.alternativas[1]}</textarea>
+                            </div>
+                            <div class="resposta" id="resposta-3">
+                                <input type="radio" name="respostaPergunta" id="inputRadio-3" ${options.alternativas[2] == options.resposta ? "checked" : ""} value="${options.alternativas[2]}" required>
+                                <textarea name="resposta" id="textarea-3" cols="30" rows="10" required>${options.alternativas[2]}</textarea>
+                            </div>
+                            <div class="resposta" id="resposta-4">
+                                <input type="radio" name="respostaPergunta" id="inputRadio-4" ${options.alternativas[3] == options.resposta ? "checked" : ""} value="${options.alternativas[3]}" required>
+                                <textarea name="resposta" id="textarea-4" cols="30" rows="10" required>${options.alternativas[3]}</textarea>
+                            </div>
+                            <div class="resposta" id="resposta-5">
+                                <input type="radio" name="respostaPergunta" id="inputRadio-5" ${options.alternativas[4] == options.resposta ? "checked" : ""} value="${options.alternativas[4]}" required>
+                                <textarea name="resposta" id="textarea-5" cols="30" rows="10" required>${options.alternativas[4]}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="opcoesEnviarCadastroPergunta">
+                        <div id="cancelarPerg"><p>Cancelar</p></div>
+                        <button id="editarPerg"><p>Editar</p></button>
+                    </div>
+                </form>
+            </div>
+        `;
+
+        const template = document.createElement('Template');
+        template.innerHTML = html;
+
+        const criarPerguntaEl = template.content.querySelector(".containerCadastrarPergunta");
+        const bttOk = template.content.querySelector("form.janelaCadastroPergunta");
+        const bttCancelar = template.content.querySelector("#cancelarPerg");
+        const textareasText = template.content.querySelectorAll(".containerCadastrarPergunta form.janelaCadastroPergunta .respostasRadios .resposta textarea[name=resposta]");
+
+        document.body.appendChild(template.content);
+
+        criarPerguntaEl.addEventListener("click", e => {
+            if(e.target === criarPerguntaEl) {
+                options.oncancel();
+                this._close(criarPerguntaEl);
+            }
+        });
+
+        textareasText.forEach(el => {
+            el.addEventListener("keyup", (event) => {
+                criarPerguntaEl.querySelector(`.containerCadastrarPergunta form.janelaCadastroPergunta .respostasRadios #inputRadio-${event.target.id.split("-")[1]}`).value = criarPerguntaEl.querySelector(`.containerCadastrarPergunta form.janelaCadastroPergunta .respostasRadios .resposta textarea#${event.target.id}`).value;
+            })  
+        });
+
+        bttOk.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const resps = criarPerguntaEl.querySelectorAll(".resposta")
+            if(resps.length <=1) {
+                mensagemPopUp.show({
+                    mensagem: "Para cadastrar uma pergunta é necessário pelo menos duas respostas!",
+                    cor: "red"
+                });
+            } else {
+                const opcoesRadios = criarPerguntaEl.querySelectorAll(".containerCadastrarPergunta .respostasRadios input[name=respostaPergunta]");
+                let textoPergunta = criarPerguntaEl.querySelector(".containerCadastrarPergunta textarea[name=textopergunta]").value;
+                let alternativaCorreta;
+                let alternativas = [];
+                for (var i=0;i<opcoesRadios.length;i++){
+                    alternativas.push(opcoesRadios[i].value);
+                    if ( opcoesRadios[i].checked ) {
+                        alternativaCorreta = opcoesRadios[i].value;
+                    }
+                }
+                options.onok({
+                    "idPergunta": options.idPergunta,
+                    "excluido": false,
+                    "id": options.numero,
+                    "texto": textoPergunta,
+                    "resposta": alternativaCorreta,
+                    "alternativas": alternativas
+                });
+                this._close(criarPerguntaEl);   
+            }
+        });
+
+        bttCancelar.addEventListener("click", () => {
+            options.oncancel();
+            this._close(criarPerguntaEl);
+        })
+    },
+    _close (criarPerguntaEl) {
+        criarPerguntaEl.classList.add("fecharConfirmar");
+
+        criarPerguntaEl.addEventListener("animationend", () => {
+            document.body.removeChild(criarPerguntaEl);
+        })
+    },
+}
