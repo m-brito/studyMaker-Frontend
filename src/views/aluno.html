@@ -4,24 +4,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aluno</title>
-    <script src="../../public/scripts/gerais.js"></script>
-
-    <script src="../../public/scripts/meuscursos.js"></script>
-    <script src="../../public/scripts/cadastrarCurso.js"></script>
-    <script src="../../public/scripts/editarCurso.js"></script>
-    <script src="../../public/scripts/minhasmaterias.js"></script>
-    <script src="../../public/scripts/cadastrarmateria.js"></script>
-    <script src="../../public/scripts/editarMateria.js"></script>
-    <script src="../../public/scripts/meusquestionarios.js"></script>
-    <script src="../../public/scripts/cadastrarQuestionario.js"></script>
-    <script src="../../public/scripts/editarQuestionario.js"></script>
-
-    <link rel="stylesheet" href="../../public/styles/fontes.css">
-    <link rel="stylesheet" href="../../public/styles/gerais.css">
+    <script src="../../public/scripts/aluno/gerais/gerais.js"></script>
+    <script src="../../public/scripts/aluno/gerais/api.js"></script>
     <script src="../../variaveisGlobais.js"></script>
 
-    <link rel="stylesheet" href="../../public/styles/aluno.css">
-    <script src="../../public/scripts/aluno.js"></script>
+    <script src="../../public/scripts/aluno/curso/meuscursos.js"></script>
+    <script src="../../public/scripts/aluno/curso/cadastrarCurso.js"></script>
+    <script src="../../public/scripts/aluno/curso/editarCurso.js"></script>
+    <script src="../../public/scripts/aluno/materia/minhasmaterias.js"></script>
+    <script src="../../public/scripts/aluno/materia/cadastrarmateria.js"></script>
+    <script src="../../public/scripts/aluno/materia/editarMateria.js"></script>
+    <script src="../../public/scripts/aluno/questionario/meusquestionarios.js"></script>
+    <script src="../../public/scripts/aluno/questionario/cadastrarQuestionario.js"></script>
+    <script src="../../public/scripts/aluno/questionario/editarQuestionario.js"></script>
+
+    <link rel="stylesheet" href="../../public/styles/aluno/gerais/gerais.css">
+    <link rel="stylesheet" href="../../public/styles/aluno/gerais/fontes.css">
+
+    <link rel="stylesheet" href="../../public/styles/aluno/curso/meuscursos.css">
+    <link rel="stylesheet" href="../../public/styles/aluno/curso/cadastrarCurso.css">
+    <link rel="stylesheet" href="../../public/styles/aluno/curso/editarCurso.css">
+    <link rel="stylesheet" href="../../public/styles/aluno/materia/minhasmaterias.css">
+    <link rel="stylesheet" href="../../public/styles/aluno/materia/minhasmateriascadastrar.css">
+    <link rel="stylesheet" href="../../public/styles/aluno/materia/editarMateria.css">
+    <link rel="stylesheet" href="../../public/styles/aluno/questionario/meusquestionarios.css">
+    <link rel="stylesheet" href="../../public/styles/aluno/questionario/meusquestionarioscadastrar.css">
+    <link rel="stylesheet" href="../../public/styles/aluno/aluno.css">
+
+    <script src="../../public/scripts/aluno/aluno.js"></script>
+    <link rel="stylesheet" href="../../public/styles/aluno/aluno.css">
 </head>
 <body>
     <div id="divMensagens"></div>
@@ -32,15 +43,15 @@
             </div>
             <h2 id="nomeUsuario">Carregando...</h2>
             <div id="linkAcoes">
-                <a is="router-link" href="/feed"><p>Feed</p></a>
-                <a is="router-link" href="/meuscursos"><p>Cursos</p></a>
-                <a is="router-link" href="/requisicoes"><p>Requisições</p></a>
+                <a is="router-link" href="/aluno/feed"><p>Feed</p></a>
+                <a is="router-link" href="/aluno/meuscursos"><p>Cursos</p></a>
+                <a is="router-link" href="/aluno/requisicoes"><p>Requisições</p></a>
                 <p id="deslogar">Sair</p>
             </div>
         </div>
         <router-outlet id="router" config="config"></router-outlet>
     </div>
 
-    <script type="module" src="../../public/scripts/Router.js"></script>
+    <script type="module" src="../../public/scripts/router/Router.js"></script>
 </body>
 </html>
