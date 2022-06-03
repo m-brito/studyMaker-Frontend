@@ -30,6 +30,7 @@ async function iniciarCadastrarQuestionario(parametros) {
                     mensagem: "Questionario cadastrado com sucesso!",
                     cor: "green"
                 });
+                perguntas = [];
                 voltarPagina();
             } else {
                 mensagemPopUp.show({
@@ -108,7 +109,9 @@ function mostrarPerguntas() {
 }
 
 function mostrarSalvarPergunta(pergunta) {
+    carregamento();
     perguntas.push(pergunta);
     qtdePerguntasJaCadastradas++;
+    pararCarregamento();
     mostrarPerguntas();
 }

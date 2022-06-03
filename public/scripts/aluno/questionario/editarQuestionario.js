@@ -70,26 +70,37 @@ async function mostrarQuestionario() {
 }
 
 async function deletarPerguntaEQ(idPergunta) {
-    Confirm.open({
-        mensagem: "Tem certeza que deseja exluir esta pergunta?",
-        textoOK: "Sim",
-        textoCancelar: "Cancelar",
-        onok: async () => {
-            const respExcluirPergunta = await deletarPerguntaAPI(idPergunta);
-            if(respExcluirPergunta["status"] && respExcluirPergunta["status"] == sucessoRequisicao) {
-                mensagemPopUp.show({
-                    mensagem: "Pergunta excluida com sucesso!",
-                    cor: "green"
-                });
-            } else {
-                mensagemPopUp.show({
-                    mensagem: "Erro ao excluir a pergunta!",
-                    cor: "red"
-                });
-            }
-            mostrarQuestionario();
+    const respQuestionario = await buscarQuestionarioCompletoAPI();
+    perguntasQuest = respQuestionario["resultados"][0]["perguntas"];
+    if(respQuestionario["status"] && respQuestionario["status"] == sucessoRequisicao) {
+        if(perguntasQuest.length <= 1) {
+            mensagemPopUp.show({
+                mensagem: "É necessario pelo menos uma pergunta para o questionario!",
+                cor: "red"
+            });
+        } else {
+            Confirm.open({
+                mensagem: "Tem certeza que deseja exluir esta pergunta?",
+                textoOK: "Sim",
+                textoCancelar: "Cancelar",
+                onok: async () => {
+                    const respExcluirPergunta = await deletarPerguntaAPI(idPergunta);
+                    if(respExcluirPergunta["status"] && respExcluirPergunta["status"] == sucessoRequisicao) {
+                        mensagemPopUp.show({
+                            mensagem: "Pergunta excluida com sucesso!",
+                            cor: "green"
+                        });
+                    } else {
+                        mensagemPopUp.show({
+                            mensagem: "Erro ao excluir a pergunta!",
+                            cor: "red"
+                        });
+                    }
+                    mostrarQuestionario();
+                }
+            })
         }
-    })
+    }
 }
 
 function editarPerguntaEQ(idPergunta, numero) {

@@ -87,9 +87,9 @@ async function mostrarMaterias() {
 
 // Redirecionamentos
 function redirecionarEditarMateria(idMateria) {
-    window.location.href = `./aluno.html#/meuscursos/${parametrosJson["idCurso"]}/materia/editar/${idMateria}`;
+    window.location.href = `./aluno.html#/aluno/meuscursos/${parametrosJson["idCurso"]}/materia/editar/${idMateria}`;
 }
 
 function redirecionarAbrirMateria(idMateria) {
-    window.location.href = `./aluno.html#/meuscursos/${parametrosJson["idCurso"]}/materia/${idMateria}`;
+    window.location.href = `./aluno.html#/aluno/meuscursos/${parametrosJson["idCurso"]}/materia/${idMateria}`;
 }

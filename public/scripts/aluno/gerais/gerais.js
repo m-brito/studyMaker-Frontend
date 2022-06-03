@@ -319,7 +319,7 @@ const CriarPergunta = {
                     "resposta": alternativaCorreta,
                     "alternativas": alternativas
                 });
-                this._close(criarPerguntaEl);   
+                this._close(criarPerguntaEl);
             }
         });
 

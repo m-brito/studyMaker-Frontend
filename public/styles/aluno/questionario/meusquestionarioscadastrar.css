@@ -116,6 +116,21 @@
     background-color: var(--verde-confirmar-hover);
     transition: 0.5s;
   }
+
+  #meusquestionariosCadastrar
+    #meusquestionariosCadastrarForm
+    .meusquestionariosCadastrarAcoes
+    button.editarbtt {
+    background-color: var(--azul) !important;
+  }
+  
+  #meusquestionariosCadastrar
+    #meusquestionariosCadastrarForm
+    .meusquestionariosCadastrarAcoes
+    button.editarbtt:hover {
+    background-color: var(--azul-hover) !important;
+    transition: 0.5s;
+  }
   
   #meusquestionariosCadastrar
     #meusquestionariosCadastrarForm
