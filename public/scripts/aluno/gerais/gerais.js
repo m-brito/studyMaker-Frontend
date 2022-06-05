@@ -226,6 +226,7 @@ const CriarPergunta = {
             numero: "",
             textoOK: "",
             textoCancelar: "",
+            idQuestionario: "",
             onok: function () {},
             oncancel: function () {}
         }, options);
@@ -316,9 +317,9 @@ const CriarPergunta = {
                     "excluido": false, 
                     "id": options.numero,
                     "texto": textoPergunta,
-                    "resposta": alternativaCorreta,
-                    "alternativas": alternativas
-                });
+                    "resposta": alternativaCorreta.toString().replaceAll(",", "&#44;"),
+                    "alternativas": [alternativas[0].toString().replaceAll(",", "&#44;"), alternativas[1].toString().replaceAll(",", "&#44;"), alternativas[2].toString().replaceAll(",", "&#44;"), alternativas[3].toString().replaceAll(",", "&#44;"), alternativas[4].toString().replaceAll(",", "&#44;")]
+                }, options.idQuestionario);
                 this._close(criarPerguntaEl);
             }
         });
@@ -347,6 +348,7 @@ const EditarPergunta = {
             alternativas: "",
             idPergunta: "",
             textoOK: "",
+            idQuestionario: "",
             textoCancelar: "",
             onok: function () {},
             oncancel: function () {}
@@ -439,9 +441,9 @@ const EditarPergunta = {
                     "excluido": false,
                     "id": options.numero,
                     "texto": textoPergunta,
-                    "resposta": alternativaCorreta,
-                    "alternativas": alternativas
-                });
+                    "resposta": alternativaCorreta.toString().replaceAll(",", "&#44;"),
+                    "alternativas": [alternativas[0].toString().replaceAll(",", "&#44;"), alternativas[1].toString().replaceAll(",", "&#44;"), alternativas[2].toString().replaceAll(",", "&#44;"), alternativas[3].toString().replaceAll(",", "&#44;"), alternativas[4].toString().replaceAll(",", "&#44;")]
+                }, options.idQuestionario);
                 this._close(criarPerguntaEl);   
             }
         });

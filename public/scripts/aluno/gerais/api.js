@@ -474,6 +474,193 @@ async function ocultarDesocultarQuestionario(idQuestionario) {
     return data;
 }
 
+async function deletarPerguntaAPI(idPergunta) {
+    carregamento();
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/pergunta/deletarPergunta.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "id": idPergunta,
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    pararCarregamento();
+    return data;
+}
+
+async function cadastrarPerguntaAPI(pergunta, idQuestionario) {
+    carregamento();
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/pergunta/cadastrarPergunta`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "texto": pergunta["texto"],
+                    "idQuestionario": idQuestionario,
+                    "resposta": pergunta["resposta"],
+                    "alternativas": pergunta["alternativas"],
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    pararCarregamento();
+    if(data["status"] && data["status"] == sucessoRequisicao) {
+        mensagemPopUp.show({
+            mensagem: "Pergunta cadastrada com sucesso!",
+            cor: "green"
+        });
+        await mostrarQuestionario();
+    } else {
+        mensagemPopUp.show({
+            mensagem: data["mensagem"],
+            cor: "red"
+        });
+        await mostrarQuestionario();
+    }
+    return data;
+}
+
+async function editarPerguntaAPI(pergunta, idQuestionario) {
+    carregamento();
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/pergunta/editarPergunta.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "id": pergunta["idPergunta"],
+                    "idQuestionario": idQuestionario,
+                    "texto": pergunta["texto"],
+                    "resposta": pergunta["resposta"],
+                    "alternativas": pergunta["alternativas"],
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    pararCarregamento();
+    if(data["status"] && data["status"] == sucessoRequisicao) {
+        mensagemPopUp.show({
+            mensagem: "Pergunta editada com sucesso!",
+            cor: "green"
+        });
+        await mostrarQuestionario();
+    } else {
+        mensagemPopUp.show({
+            mensagem: data["mensagem"],
+            cor: "red"
+        });
+        await mostrarQuestionario();
+    }
+    return data;
+}
+
+async function buscarQuestionarioCompletoAPI(id) {
+    carregamento();
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/questionario/dadosQuestionarioCompleto?id=${id}&token=${buscarToken()}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json',
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    pararCarregamento();
+    return data;
+}
+
+async function editarQuestionarioAPI(nome, descricao, id) {
+    carregamento();
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/questionario/editarQuestionario.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "nome": nome,
+                    "descricao": descricao,
+                    "id": id,
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    pararCarregamento();
+    return data;
+}
+
+async function resultadoQuestionario(perguntasQuest, perguntasUsuario, idQuestionario) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/questionario/resultadoQuestionario.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "perguntasQuest": perguntasQuest,
+                    "perguntasUsuario": perguntasUsuario,
+                    "idQuestionario": idQuestionario,
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
 // verificar disponibilidade de email
 async function disponibilidadeEmail(email) {
     var tentativas = 0;

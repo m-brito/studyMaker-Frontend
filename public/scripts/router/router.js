@@ -142,7 +142,7 @@ let router = Router.routes([
                       {
                         path: "/:idQuestionario",
                         render: "../views/aluno/questionario/responderquestionario.html",
-                        funcao: () => {},
+                        funcao: iniciarResponderQuestionarios,
                       },
                     ],
                   },

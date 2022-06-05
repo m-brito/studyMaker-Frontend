@@ -12,13 +12,14 @@ async function iniciarEditarQuestionario(parametros) {
     document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm .bttCadastrarNovaPergunta").addEventListener("click", async () => {
         CriarPergunta.open({
             numero: perguntasQuest.length,
+            idQuestionario: parametrosJsonEQ["idQuestionario"],
             onok: cadastrarPerguntaAPI
         });
     })
 
     document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm").addEventListener("submit", async (event) => {
         event.preventDefault();
-        const respEditarQuestionario = await editarQuestionarioAPI();
+        const respEditarQuestionario = await editarQuestionarioAPI(document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm input[name=nomeQuestionario]").value, document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm textarea[name=descricao]").value, parametrosJsonEQ["idQuestionario"]);
         if(respEditarQuestionario["status"] && respEditarQuestionario["status"] == sucessoRequisicao) {
             mensagemPopUp.show({
                 mensagem: "Questionario editado com sucesso!",
@@ -36,11 +37,11 @@ async function iniciarEditarQuestionario(parametros) {
 }
 
 async function mostrarQuestionario() {
-    const respQuestionario = await buscarQuestionarioCompletoAPI();
+    const respQuestionario = await buscarQuestionarioCompletoAPI(parametrosJsonEQ["idQuestionario"]);
     perguntasQuest = respQuestionario["resultados"][0]["perguntas"];
     if(respQuestionario["status"] && respQuestionario["status"] == sucessoRequisicao) {
-        document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm input[name=nomeQuestionario]").value = respQuestionario["resultados"][0]["nome"];
-        document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm textarea[name=descricao]").value = respQuestionario["resultados"][0]["descricao"];
+        document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm input[name=nomeQuestionario]").value = respQuestionario["resultados"][0]["nome"].toString().replaceAll("\n", "\n");
+        document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm textarea[name=descricao]").value = respQuestionario["resultados"][0]["descricao"].toString().replaceAll("\n", "\n");
         document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm .meusquestionariosConteudoPerguntas").innerHTML = "";
         for(let x=0; x<respQuestionario["resultados"][0]["perguntas"].length; x++) {
             let alternativasQuest = respQuestionario["resultados"][0]["perguntas"][x]["alternativa"];
@@ -70,7 +71,7 @@ async function mostrarQuestionario() {
 }
 
 async function deletarPerguntaEQ(idPergunta) {
-    const respQuestionario = await buscarQuestionarioCompletoAPI();
+    const respQuestionario = await buscarQuestionarioCompletoAPI(parametrosJsonEQ["idQuestionario"]);
     perguntasQuest = respQuestionario["resultados"][0]["perguntas"];
     if(respQuestionario["status"] && respQuestionario["status"] == sucessoRequisicao) {
         if(perguntasQuest.length <= 1) {
@@ -109,6 +110,7 @@ function editarPerguntaEQ(idPergunta, numero) {
             EditarPergunta.open({
                 numero: numero,
                 idPergunta: idPergunta,
+                idQuestionario: parametrosJsonEQ["idQuestionario"],
                 texto: perguntasQuest[z].texto,
                 resposta: perguntasQuest[z].resposta.texto,
                 alternativas: [perguntasQuest[z].alternativa[0].texto, perguntasQuest[z].alternativa[1].texto, perguntasQuest[z].alternativa[2].texto, perguntasQuest[z].alternativa[3].texto, perguntasQuest[z].alternativa[4].texto],
@@ -116,167 +118,4 @@ function editarPerguntaEQ(idPergunta, numero) {
             });
         }
     }
-}
-
-// APIs
-
-async function deletarPerguntaAPI(idPergunta) {
-    carregamento();
-    var tentativas = 0;
-    var ok = false
-    while(tentativas <= 4 && ok == false) {
-        try {
-            const resp = await fetch(`${HOST}/pergunta/deletarPergunta.php`, {
-                "method": "POST",
-                headers: {
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({
-                    "token": buscarToken(),
-                    "id": idPergunta,
-                })
-            })
-            var data = await resp.json();
-            ok = true;
-        } catch (error) {
-            tentativas++;
-        }
-    }
-    pararCarregamento();
-    return data;
-}
-
-async function cadastrarPerguntaAPI(pergunta) {
-    carregamento();
-    var tentativas = 0;
-    var ok = false
-    while(tentativas <= 4 && ok == false) {
-        try {
-            const resp = await fetch(`${HOST}/pergunta/cadastrarPergunta`, {
-                "method": "POST",
-                headers: {
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({
-                    "token": buscarToken(),
-                    "texto": pergunta["texto"],
-                    "idQuestionario": parametrosJsonEQ["idQuestionario"],
-                    "resposta": pergunta["resposta"],
-                    "alternativas": pergunta["alternativas"],
-                })
-            })
-            var data = await resp.json();
-            ok = true;
-        } catch (error) {
-            tentativas++;
-        }
-    }
-    pararCarregamento();
-    if(data["status"] && data["status"] == sucessoRequisicao) {
-        mensagemPopUp.show({
-            mensagem: "Pergunta cadastrada com sucesso!",
-            cor: "green"
-        });
-        await mostrarQuestionario();
-    } else {
-        mensagemPopUp.show({
-            mensagem: data["mensagem"],
-            cor: "red"
-        });
-        await mostrarQuestionario();
-    }
-    return data;
-}
-
-async function editarPerguntaAPI(pergunta) {
-    carregamento();
-    var tentativas = 0;
-    var ok = false
-    while(tentativas <= 4 && ok == false) {
-        try {
-            const resp = await fetch(`${HOST}/pergunta/editarPergunta.php`, {
-                "method": "POST",
-                headers: {
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({
-                    "token": buscarToken(),
-                    "id": pergunta["idPergunta"],
-                    "idQuestionario": parametrosJsonEQ["idQuestionario"],
-                    "texto": pergunta["texto"],
-                    "resposta": pergunta["resposta"],
-                    "alternativas": pergunta["alternativas"]
-                })
-            })
-            var data = await resp.json();
-            ok = true;
-        } catch (error) {
-            tentativas++;
-        }
-    }
-    pararCarregamento();
-    if(data["status"] && data["status"] == sucessoRequisicao) {
-        mensagemPopUp.show({
-            mensagem: "Pergunta editada com sucesso!",
-            cor: "green"
-        });
-        await mostrarQuestionario();
-    } else {
-        mensagemPopUp.show({
-            mensagem: data["mensagem"],
-            cor: "red"
-        });
-        await mostrarQuestionario();
-    }
-    return data;
-}
-
-async function buscarQuestionarioCompletoAPI() {
-    carregamento();
-    var tentativas = 0;
-    var ok = false
-    while(tentativas <= 4 && ok == false) {
-        try {
-            const resp = await fetch(`${HOST}/questionario/dadosQuestionarioCompleto?id=${parametrosJsonEQ["idQuestionario"]}&token=${buscarToken()}`, {
-                "method": "GET",
-                headers: {
-                    'Accept': 'application/json',
-                }
-            })
-            var data = await resp.json();
-            ok = true;
-        } catch (error) {
-            tentativas++;
-        }
-    }
-    pararCarregamento();
-    return data;
-}
-
-async function editarQuestionarioAPI() {
-    carregamento();
-    var tentativas = 0;
-    var ok = false
-    while(tentativas <= 4 && ok == false) {
-        try {
-            const resp = await fetch(`${HOST}/questionario/editarQuestionario.php`, {
-                "method": "POST",
-                headers: {
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({
-                    "token": buscarToken(),
-                    "nome": document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm input[name=nomeQuestionario]").value,
-                    "descricao": document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm textarea[name=descricao]").value,
-                    "id": parametrosJsonEQ["idQuestionario"],
-                })
-            })
-            var data = await resp.json();
-            ok = true;
-        } catch (error) {
-            tentativas++;
-        }
-    }
-    pararCarregamento();
-    return data;
 }
