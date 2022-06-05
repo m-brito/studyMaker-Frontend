@@ -14,10 +14,8 @@ async function iniciarResponderQuestionarios(parametros) {
         let respostasForm = [];
         const perguntas = document.querySelectorAll("div#responderQuestionarios form#responderQuestionariosForm div.responderQuestionariosConteudoPerguntas div.pergunta");
         for(let x=0; x<perguntas.length; x++) {
-            console.log(perguntas[x])
             let alternativaCorreta;
             const opcoesRadio = perguntas[x].querySelectorAll(`input[name=pergunta${perguntas[x].id}]`);
-            console.log(opcoesRadio)
             for (var i=0;i<opcoesRadio.length;i++){
                 if (opcoesRadio[i].checked) {
                     alternativaCorreta = opcoesRadio[i].value.replaceAll(",", "&#44;");
@@ -40,7 +38,6 @@ async function iniciarResponderQuestionarios(parametros) {
 
 async function mostrarResultados(perguntasQuest, respostasForm) {
     const respResultQuest = await resultadoQuestionario(perguntasQuest, respostasForm, parametrosJsonResponderQuestionarios["idQuestionario"]);
-    console.log(respResultQuest)
 }
 
 async function mostrarQuestionarioRQ() {
