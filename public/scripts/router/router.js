@@ -138,12 +138,7 @@ let router = Router.routes([
                         path: "/editar/:idQuestionario",
                         render: "../views/aluno/questionario/editarquestionario.html",
                         funcao: iniciarEditarQuestionario,
-                      },
-                      {
-                        path: "/:idQuestionario",
-                        render: "../views/aluno/questionario/responderquestionario.html",
-                        funcao: iniciarResponderQuestionarios,
-                      },
+                      }
                     ],
                   },
                 ]
@@ -153,6 +148,12 @@ let router = Router.routes([
         ],
       },
     ],
+  },
+  {
+    path: "/responderQuestionario/curso/:idCurso/materia/:idMateria/questionario/:idQuestionario",
+    render: "../views/aluno/questionario/responderquestionario.html",
+    funcao: iniciarResponderQuestionarios,
+    exact: false,
   },
   {
     path: "/aluno/requisicoes",

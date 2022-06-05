@@ -88,7 +88,7 @@ async function mostrarQuestionarios() {
 
 // Redirecionamentos
 function abrirQuestionario(idQuestionario) {
-    window.location.href += `/questionario/${idQuestionario}`;
+    window.location.href = `./aluno.html#/responderQuestionario/curso/${parametrosJsonQuestionarios["idCurso"]}/materia/${parametrosJsonQuestionarios["idMateria"]}/questionario/${idQuestionario}`;
 }
 
 function redirecionarEditarQuestionario(idQuestionario) {
