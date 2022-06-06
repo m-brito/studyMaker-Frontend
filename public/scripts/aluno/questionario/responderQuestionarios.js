@@ -38,6 +38,8 @@ async function iniciarResponderQuestionarios(parametros) {
 
 async function mostrarResultados(perguntasQuest, respostasForm) {
     const respResultQuest = await resultadoQuestionario(perguntasQuest, respostasForm, parametrosJsonResponderQuestionarios["idQuestionario"]);
+    console.log(respResultQuest);
+    alert("Result => Console!");
 }
 
 async function mostrarQuestionarioRQ() {
