@@ -156,6 +156,12 @@ let router = Router.routes([
     exact: false,
   },
   {
+    path: "/revisao/curso/:idCurso/materia/:idMateria/questionario/:idQuestionario/resultado/:idResultado",
+    render: "../views/aluno/questionario/revisaoquestionario.html",
+    funcao: iniciarRevisaoQuestionarios,
+    exact: false,
+  },
+  {
     path: "/aluno/requisicoes",
     render: "../views/requisicoes/requisicoes.html",
     exact: false,

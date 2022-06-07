@@ -661,6 +661,28 @@ async function resultadoQuestionario(perguntasQuest, perguntasUsuario, idQuestio
     return data;
 }
 
+// Historico
+
+async function resultadoHistorico(idResponde) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/historico/buscarHistoricoQuestionario.php?idResponde=${idResponde}&token=${buscarToken()}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json'
+                },
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
 // verificar disponibilidade de email
 async function disponibilidadeEmail(email) {
     var tentativas = 0;

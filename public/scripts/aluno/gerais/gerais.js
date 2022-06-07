@@ -29,6 +29,12 @@ function mostrarMensagem(mensagem) {
     return;
 }
 
+// Embaralhar Array
+function embaralharArray(inputArray){
+    inputArray.sort(()=> Math.random() - 0.5);
+    return inputArray;
+}
+
 // Envio de emails
 // Envio de codigo por email
 async function enviarCodigo(para, nomepara) {
