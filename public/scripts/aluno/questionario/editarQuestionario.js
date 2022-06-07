@@ -49,12 +49,12 @@ async function mostrarQuestionario() {
             let cartaoQuestionario = `
                 <div class="mostraPergunta">
                     <hr>
-                    <p class="textoPerguntaMostrar" style="font-size: 20px;">${x+1}) ${respQuestionario["resultados"][0]["perguntas"][x]["texto"]}</p>
-                    <p ${alternativasQuest[0]["texto"] == resposta ? "style='color: green; font-weight: bold;'" : ""}>${alternativasQuest[0]["texto"] == resposta ? "C" : "X"} - ${alternativasQuest[0]["texto"]}</p>
-                    <p ${alternativasQuest[1]["texto"] == resposta ? "style='color: green; font-weight: bold;'" : ""}>${alternativasQuest[1]["texto"] == resposta ? "C" : "X"} - ${alternativasQuest[1]["texto"]}</p>
-                    <p ${alternativasQuest[2]["texto"] == resposta ? "style='color: green; font-weight: bold;'" : ""}>${alternativasQuest[2]["texto"] == resposta ? "C" : "X"} - ${alternativasQuest[2]["texto"]}</p>
-                    <p ${alternativasQuest[3]["texto"] == resposta ? "style='color: green; font-weight: bold;'" : ""}>${alternativasQuest[3]["texto"] == resposta ? "C" : "X"} - ${alternativasQuest[3]["texto"]}</p>
-                    <p ${alternativasQuest[4]["texto"] == resposta ? "style='color: green; font-weight: bold;'" : ""}>${alternativasQuest[4]["texto"] == resposta ? "C" : "X"} - ${alternativasQuest[4]["texto"]}</p>
+                    <p class="textoPerguntaMostrar" style="font-size: 20px;">${x+1}) ${respQuestionario["resultados"][0]["perguntas"][x]["texto"].toString().replaceAll("\n", "<br>")}</p>
+                    <p ${alternativasQuest[0]["texto"] == resposta ? "style='color: green; font-weight: bold;'" : ""}>${alternativasQuest[0]["texto"] == resposta ? "C" : "X"} - ${alternativasQuest[0]["texto"].toString().replaceAll("\n", "<br>")}</p>
+                    <p ${alternativasQuest[1]["texto"] == resposta ? "style='color: green; font-weight: bold;'" : ""}>${alternativasQuest[1]["texto"] == resposta ? "C" : "X"} - ${alternativasQuest[1]["texto"].toString().replaceAll("\n", "<br>")}</p>
+                    <p ${alternativasQuest[2]["texto"] == resposta ? "style='color: green; font-weight: bold;'" : ""}>${alternativasQuest[2]["texto"] == resposta ? "C" : "X"} - ${alternativasQuest[2]["texto"].toString().replaceAll("\n", "<br>")}</p>
+                    <p ${alternativasQuest[3]["texto"] == resposta ? "style='color: green; font-weight: bold;'" : ""}>${alternativasQuest[3]["texto"] == resposta ? "C" : "X"} - ${alternativasQuest[3]["texto"].toString().replaceAll("\n", "<br>")}</p>
+                    <p ${alternativasQuest[4]["texto"] == resposta ? "style='color: green; font-weight: bold;'" : ""}>${alternativasQuest[4]["texto"] == resposta ? "C" : "X"} - ${alternativasQuest[4]["texto"].toString().replaceAll("\n", "<br>")}</p>
                     <div class="opcoesMostrarPerguntas">
                         <div class="meusquestionariosPerguntaEditar" onclick="editarPerguntaEQ(${respQuestionario["resultados"][0]["perguntas"][x]["id"]}, ${x+1})">
                             <img src="../../public/assets/Imagens/Icone-editar-branco.svg" alt="Editar">

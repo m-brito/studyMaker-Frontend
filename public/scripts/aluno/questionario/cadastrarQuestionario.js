@@ -4,6 +4,7 @@ var perguntas = [];
 async function iniciarCadastrarQuestionario(parametros) {
     await verificarLogado(buscarToken());
     document.querySelector("#meusquestionariosCadastrar .bttCadastrarNovaPergunta").addEventListener("click", async () => {
+        qtdePerguntasJaCadastradas = 0;
         CriarPergunta.open({
             numero: qtdePerguntasJaCadastradas,
             onok: mostrarSalvarPergunta
@@ -87,12 +88,12 @@ function mostrarPerguntas() {
         let cartaoMostrarPergunta = `
             <div class="mostraPergunta">
                 <hr>
-                <p class="textoPerguntaMostrar" style="font-size: 20px;">${z+1}) ${pergunta.texto}</p>
-                <p ${pergunta.alternativas[0] == pergunta.resposta ? "style='color: green; font-weight: bold;'" : ""}>${pergunta.alternativas[0] == pergunta.resposta ? "C" : "X"} - ${pergunta.alternativas[0]}</p>
-                <p ${pergunta.alternativas[1] == pergunta.resposta ? "style='color: green; font-weight: bold;'" : ""}>${pergunta.alternativas[1] == pergunta.resposta ? "C" : "X"} - ${pergunta.alternativas[1]}</p>
-                <p ${pergunta.alternativas[2] == pergunta.resposta ? "style='color: green; font-weight: bold;'" : ""}>${pergunta.alternativas[2] == pergunta.resposta ? "C" : "X"} - ${pergunta.alternativas[2]}</p>
-                <p ${pergunta.alternativas[3] == pergunta.resposta ? "style='color: green; font-weight: bold;'" : ""}>${pergunta.alternativas[3] == pergunta.resposta ? "C" : "X"} - ${pergunta.alternativas[3]}</p>
-                <p ${pergunta.alternativas[4] == pergunta.resposta ? "style='color: green; font-weight: bold;'" : ""}>${pergunta.alternativas[4] == pergunta.resposta ? "C" : "X"} - ${pergunta.alternativas[4]}</p>
+                <p class="textoPerguntaMostrar" style="font-size: 20px;">${z+1}) ${pergunta.texto.toString().replaceAll("\n", "<br>")}</p>
+                <p ${pergunta.alternativas[0] == pergunta.resposta ? "style='color: green; font-weight: bold;'" : ""}>${pergunta.alternativas[0] == pergunta.resposta ? "C" : "X"} - ${pergunta.alternativas[0].toString().replaceAll("\n", "<br>")}</p>
+                <p ${pergunta.alternativas[1] == pergunta.resposta ? "style='color: green; font-weight: bold;'" : ""}>${pergunta.alternativas[1] == pergunta.resposta ? "C" : "X"} - ${pergunta.alternativas[1].toString().replaceAll("\n", "<br>")}</p>
+                <p ${pergunta.alternativas[2] == pergunta.resposta ? "style='color: green; font-weight: bold;'" : ""}>${pergunta.alternativas[2] == pergunta.resposta ? "C" : "X"} - ${pergunta.alternativas[2].toString().replaceAll("\n", "<br>")}</p>
+                <p ${pergunta.alternativas[3] == pergunta.resposta ? "style='color: green; font-weight: bold;'" : ""}>${pergunta.alternativas[3] == pergunta.resposta ? "C" : "X"} - ${pergunta.alternativas[3].toString().replaceAll("\n", "<br>")}</p>
+                <p ${pergunta.alternativas[4] == pergunta.resposta ? "style='color: green; font-weight: bold;'" : ""}>${pergunta.alternativas[4] == pergunta.resposta ? "C" : "X"} - ${pergunta.alternativas[4].toString().replaceAll("\n", "<br>")}</p>
                 <div class="opcoesMostrarPerguntas">
                     <div class="meusquestionariosPerguntaEditar" onclick="editarPergunta(${pergunta.id}, ${z+1})">
                         <img src="../../public/assets/Imagens/Icone-editar-branco.svg" alt="Editar">
