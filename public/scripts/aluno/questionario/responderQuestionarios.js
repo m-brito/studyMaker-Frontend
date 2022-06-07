@@ -54,12 +54,12 @@ async function mostrarQuestionarioRQ() {
         const alternativa = embaralharArray(pergunta["alternativa"]);
         let cartaoPerguntaMostrar = `
             <div class="pergunta" id="${pergunta["id"]}">
-                <p>${x+1}) ${pergunta["texto"]}</p>
-                <input type="radio" value="${alternativa[0]["texto"]}" name="pergunta${pergunta["id"]}" id="p${pergunta["id"]}x1" required> <label for="p${pergunta["id"]}x1"> - ${alternativa[0]["texto"]}</label> <br>
-                <input type="radio" value="${alternativa[1]["texto"]}" name="pergunta${pergunta["id"]}" id="p${pergunta["id"]}x2" required> <label for="p${pergunta["id"]}x2"> - ${alternativa[1]["texto"]}</label> <br>
-                <input type="radio" value="${alternativa[2]["texto"]}" name="pergunta${pergunta["id"]}" id="p${pergunta["id"]}x3" required> <label for="p${pergunta["id"]}x3"> - ${alternativa[2]["texto"]}</label> <br>
-                <input type="radio" value="${alternativa[3]["texto"]}" name="pergunta${pergunta["id"]}" id="p${pergunta["id"]}x4" required> <label for="p${pergunta["id"]}x4"> - ${alternativa[3]["texto"]}</label> <br>
-                <input type="radio" value="${alternativa[4]["texto"]}" name="pergunta${pergunta["id"]}" id="p${pergunta["id"]}x5" required> <label for="p${pergunta["id"]}x5"> - ${alternativa[4]["texto"]}</label> <br>
+                <p>${x+1}) ${pergunta["texto"].toString().replaceAll("\n", "<br>")}</p>
+                <input type="radio" value="${alternativa[0]["texto"]}" name="pergunta${pergunta["id"]}" id="p${pergunta["id"]}x1" required> <label for="p${pergunta["id"]}x1"> - ${alternativa[0]["texto"].toString().replaceAll("\n", "<br>")}</label> <br>
+                <input type="radio" value="${alternativa[1]["texto"]}" name="pergunta${pergunta["id"]}" id="p${pergunta["id"]}x2" required> <label for="p${pergunta["id"]}x2"> - ${alternativa[1]["texto"].toString().replaceAll("\n", "<br>")}</label> <br>
+                <input type="radio" value="${alternativa[2]["texto"]}" name="pergunta${pergunta["id"]}" id="p${pergunta["id"]}x3" required> <label for="p${pergunta["id"]}x3"> - ${alternativa[2]["texto"].toString().replaceAll("\n", "<br>")}</label> <br>
+                <input type="radio" value="${alternativa[3]["texto"]}" name="pergunta${pergunta["id"]}" id="p${pergunta["id"]}x4" required> <label for="p${pergunta["id"]}x4"> - ${alternativa[3]["texto"].toString().replaceAll("\n", "<br>")}</label> <br>
+                <input type="radio" value="${alternativa[4]["texto"]}" name="pergunta${pergunta["id"]}" id="p${pergunta["id"]}x5" required> <label for="p${pergunta["id"]}x5"> - ${alternativa[4]["texto"].toString().replaceAll("\n", "<br>")}</label> <br>
             </div>
         `;
         document.querySelector("div#responderQuestionarios form#responderQuestionariosForm div.responderQuestionariosConteudoPerguntas").innerHTML += cartaoPerguntaMostrar;
