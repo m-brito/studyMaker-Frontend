@@ -43,6 +43,10 @@ async function editarOcultoQuestionario(idQuestionario, acao) {
     }
 }
 
+async function relatorioQuestionario(idQuestionario) {
+    window.location.href += `/questionario/${idQuestionario}/relatorio`;
+}
+
 async function mostrarQuestionarios() {
     carregamento();
     
@@ -65,6 +69,7 @@ async function mostrarQuestionarios() {
                         <div class="meusquestionariosEstados">
                             <img src="${meusQuestionarios["resultados"][x]["publico"] == "true" ? '../../public/assets/Imagens/Icone-publico.svg' : '../../public/assets/Imagens/Icone-privado.svg'}" alt="Questionario ${meusQuestionarios["resultados"][x]["privado"] == "true" ? 'privado' : 'publico'}">
                             <img onclick="editarOcultoQuestionario(${meusQuestionarios["resultados"][x]["id"]}, '${meusQuestionarios["resultados"][x]["oculto"] == "true" ? 'exposto' : 'ocultado'}')" src="${meusQuestionarios["resultados"][x]["oculto"] == "true" ? '../../public/assets/Imagens/Icone-oculto.svg' : '../../public/assets/Imagens/Icone-exposto.svg'}" alt="Curso ${meusQuestionarios["resultados"][x]["oculto"] == true ? 'oculto' : 'exposto'}">
+                            <img onclick="relatorioQuestionario(${meusQuestionarios["resultados"][x]["id"]})" src="../../public/assets/Imagens/Icone-notas.svg">
                         </div>
                         <div class="meusquestionariosCartaoOpcoes">
                             <button class="meusquestionariosAbrir" onclick="abrirQuestionario(${meusQuestionarios["resultados"][x]["id"]})">

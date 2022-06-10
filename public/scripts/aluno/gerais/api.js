@@ -683,6 +683,26 @@ async function resultadoHistorico(idResponde) {
     return data;
 }
 
+async function resultadoHistoricoIdQuestionario(idQuestionario) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/historico/buscarHistoricoIdQuestionario.php?idQuestionario=${idQuestionario}&token=${buscarToken()}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json'
+                },
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
 // verificar disponibilidade de email
 async function disponibilidadeEmail(email) {
     var tentativas = 0;

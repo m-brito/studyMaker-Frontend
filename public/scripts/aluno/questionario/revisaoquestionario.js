@@ -21,8 +21,8 @@ async function iniciarRevisaoQuestionarios(parametrosJson) {
 
         document.querySelector("#revisaoQuestionarios form#revisaoQuestionariosForm h2#nomeQuestionarioRevisao").innerHTML = respBuscarQuestionario["resultados"][0]["nome"];
         document.querySelector("#revisaoQuestionarios form#revisaoQuestionariosForm p#descricaoQuestionarioRevisao").innerHTML = respBuscarQuestionario["resultados"][0]["descricao"];
-        document.querySelector("#revisaoQuestionarios form#revisaoQuestionariosForm p#notaQuestionarioRevisao").innerHTML = "Nota: "+respHistorico["resultados"]["historico"]["nota"];
-        document.querySelector("#revisaoQuestionarios form#revisaoQuestionariosForm p#dataQuestionarioRevisao").innerHTML = "Data: "+respHistorico["resultados"]["historico"]["data"];
+        document.querySelector("#revisaoQuestionarios form#revisaoQuestionariosForm p#notaQuestionarioRevisao").innerHTML = "Nota: "+arredondar(respHistorico["resultados"]["historico"]["nota"]);
+        document.querySelector("#revisaoQuestionarios form#revisaoQuestionariosForm p#dataQuestionarioRevisao").innerHTML = "Data: "+formatarData(respHistorico["resultados"]["historico"]["data"]);
         document.querySelector("#revisaoQuestionarios form#revisaoQuestionariosForm p#horaQuestionarioRevisao").innerHTML = "Hora: "+respHistorico["resultados"]["historico"]["hora"];
         document.querySelector("#revisaoQuestionarios form#revisaoQuestionariosForm p#qtdeAcertosQuestionarioRevisao").innerHTML = "Acertos: "+respHistorico["resultados"]["historico"]["qtdAcertos"];
         document.querySelector("#revisaoQuestionarios form#revisaoQuestionariosForm p#qtdeErrosQuestionarioRevisao").innerHTML = "Erros: "+respHistorico["resultados"]["historico"]["qtdErros"];

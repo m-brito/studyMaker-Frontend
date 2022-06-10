@@ -29,6 +29,27 @@ function mostrarMensagem(mensagem) {
     return;
 }
 
+// Arredondar
+function arredondar(n) {
+    return (Math.round(n * 100) / 100).toFixed(2);
+}
+
+// Formatar data
+function adicionaZero(numero){
+    if (numero <= 9) 
+        return "0" + numero;
+    else
+        return numero; 
+}
+
+function formatarData(data) {
+    let dataAtual = new Date(data);
+    let dataAtualFormatada = (adicionaZero((dataAtual.getDate()+1).toString()) + "/" + (adicionaZero(dataAtual.getMonth()+1).toString()) + "/" + dataAtual.getFullYear());
+    return(dataAtualFormatada);
+}
+
+// Formatar hora
+
 // Embaralhar Array
 function embaralharArray(inputArray){
     inputArray.sort(()=> Math.random() - 0.5);
