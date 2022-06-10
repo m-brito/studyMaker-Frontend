@@ -1,79 +1,100 @@
 #responderQuestionarios {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    background-color: var(--cor-secundaria);
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    /* display: none; */
-    justify-content: center;
-    padding: 20px;
-    overflow-y: auto;
-    box-sizing: border-box;
-  }
-  
-  #responderQuestionarios #responderQuestionariosForm {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    min-width: 400px;
-    height: fit-content;
-    background-color: var(--branco);
-    padding: 20px;
-    border-radius: 10px;
-  }
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: var(--cor-secundaria);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  /* display: none; */
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
 
-  #responderQuestionarios #responderQuestionariosForm h2 {
-    font-weight: bold;
-    font-size: 20px;
-  }
-  
-  #responderQuestionarios #responderQuestionariosForm h2#tituloQuestionario {
-    font-weight: bold;
-    font-size: 30px;
-    color: var(--verde-escuro);
-    text-align: center;
-    margin: 10px 0;
-  }
-  
-  #responderQuestionarios #responderQuestionariosForm div.responderQuestionariosConteudoPerguntas {
-    width: 100%;
-  }
-  
-  #responderQuestionarios #responderQuestionariosForm div.responderQuestionariosConteudoPerguntas div.pergunta {
-    width: 100%;
-    margin: 20px 0;
-  }
+#responderQuestionarios #responderQuestionariosForm {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  min-width: 400px;
+  height: fit-content;
+  background-color: var(--branco);
+  padding: 20px;
+  border-radius: 10px;
+}
 
-  #responderQuestionarios #responderQuestionariosForm .responderQuestionariosCadastrarAcoes {
-    margin: 15px 0;
-    width: 100%;
-    display: flex;
-    justify-content: end;
-  }
+#responderQuestionarios #responderQuestionariosForm h2 {
+  font-weight: bold;
+  font-size: 20px;
+}
 
-  #responderQuestionarios #responderQuestionariosForm .responderQuestionariosCadastrarAcoes button {
-    border: 0;
-    border-radius: 10px;
-    height: 50px;
-    width: 150px;
-    margin-left: 20px;
-    font-weight: bold;
-    font-size: 20px;
-    transition: 0.5s;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--verde-confirmar);
-    color: white;
-  }
+#responderQuestionarios #responderQuestionariosForm h2#tituloQuestionario {
+  font-weight: bold;
+  font-size: 30px;
+  color: var(--verde-escuro);
+  text-align: center;
+  margin: 10px 0;
+}
 
-  #responderQuestionarios #responderQuestionariosForm .responderQuestionariosCadastrarAcoes button:hover {
-    background-color: var(--verde-confirmar-hover);
-    transition: 0.5s;
-  }
+#responderQuestionarios
+  #responderQuestionariosForm
+  div.responderQuestionariosConteudoPerguntas {
+  width: 100%;
+}
+
+#responderQuestionarios
+  #responderQuestionariosForm
+  div.responderQuestionariosConteudoPerguntas
+  div.pergunta {
+  width: 100%;
+  margin: 20px 0;
+}
+
+#responderQuestionarios
+  #responderQuestionariosForm
+  div.responderQuestionariosConteudoPerguntas
+  div.pergunta
+  p {
+  font-size: 20px;
+}
+
+#responderQuestionarios
+  #responderQuestionariosForm
+  .responderQuestionariosCadastrarAcoes {
+  margin: 15px 0;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+#responderQuestionarios
+  #responderQuestionariosForm
+  .responderQuestionariosCadastrarAcoes
+  button {
+  border: 0;
+  border-radius: 10px;
+  height: 50px;
+  width: 150px;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.5s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--verde-confirmar);
+  color: white;
+}
+
+#responderQuestionarios
+  #responderQuestionariosForm
+  .responderQuestionariosCadastrarAcoes
+  button:hover {
+  background-color: var(--verde-confirmar-hover);
+  transition: 0.5s;
+}
