@@ -19,7 +19,7 @@ async function feedEditarOcultoMateria(idMateria, acao) {
             cor: "green"
         });
     }
-    mostrarCursosFeed();
+    mostrarMateriasFeed();
     pararCarregamento();
 }
 
@@ -35,7 +35,7 @@ async function feedDeletarMateria(idMateria) {
                     mensagem: "Sua materia foi excluida com sucesso!",
                     cor: "green"
                 });
-                mostrarCursosFeed(buscarToken())
+                mostrarMateriasFeed(buscarToken())
             }
         }
     })
