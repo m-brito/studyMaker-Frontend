@@ -338,6 +338,26 @@ async function apiBuscarMaterias(idCurso) {
     return data;
 }
 
+async function apiBuscarMateriasPublicas(idCurso) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/materia/dadosMateriasPublico.php?token=${buscarToken()}&idCurso=${idCurso}`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
 async function apiOcultarMateria(idMateria, idCurso) {
     var tentativas = 0;
     var ok = false

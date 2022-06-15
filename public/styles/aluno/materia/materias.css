@@ -1,0 +1,263 @@
+#materiasPrincipal {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  #materiasPrincipal #materiasCabecalho {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+  }
+  
+  #materiasPrincipal #materiasCabecalho h1 {
+    color: var(--cor-principal);
+  }
+  
+  #materiasPrincipal #materiasFerramentas {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #materiasPrincipal #materiasFerramentas p {
+    margin: 0 0 30px 30px;
+  }
+  
+  #materiasPrincipal #materiasFerramentas h2 {
+    display: flex;
+    margin-right: 30px;
+    font-size: 20px;
+    color: var(--verde-escuro);
+    cursor: pointer;
+    transition: 0.5s;
+    margin: 0 30px 30px 0;
+  }
+  
+  #materiasPrincipal #materiasFerramentas h2:hover {
+    color: var(--verde-escuro-hover);
+    transition: 0.5s;
+  }
+  
+  #materiasPrincipal #materiasConteudo {
+    box-sizing: border-box;
+    padding: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  #materiasPrincipal #materiasConteudo .materiasCartao {
+    width: 270px;
+    height: auto;
+    /* min-height: 300px; */
+    background-color: var(--branco);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    margin: 70px 20px;
+    padding: 20px;
+  }
+  
+  #materiasPrincipal
+    #materiasConteudo
+    .materiasCartao
+    .materiasNomeCartao {
+    width: 100%;
+    text-align: center;
+    flex-wrap: nowrap;
+    word-wrap: break-word;
+  }
+  
+  #materiasPrincipal
+    #materiasConteudo
+    .materiasCartao
+    .materiasImagemCartao {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    top: -50px;
+    border-radius: 50%;
+    background-color: rgb(209, 209, 209);
+    border: 5px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #materiasPrincipal
+    #materiasConteudo
+    .materiasCartao
+    .materiasImagemCartao
+    img {
+    height: 100px;
+    width: 100px;
+  }
+  
+  #materiasPrincipal .materiasCartao .materiasConteudoCartao {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasEstados {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 15px 0;
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasEstados
+    img, #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasEstados div img {
+    height: 35px;
+    width: 35px;
+  }
+
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasEstados div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasEstados
+    img + img {
+    cursor: pointer;
+    transition: 0.5s;
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasEstados
+    img + img:hover {
+        transform: scale(1.5);
+      transition: 0.5s;
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasCartaoOpcoes {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasCartaoOpcoes
+    button {
+    height: 45px;
+    padding: 10px 15px;
+    border: 0;
+    cursor: pointer;
+    transition: 0.5s;
+    overflow: hidden;
+    border-radius: 10px;
+    flex: 1;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasCartaoOpcoes
+    button
+    img {
+    height: 25px;
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasCartaoOpcoes
+    button.materiasAbrir {
+    background-color: var(--verde-confirmar);
+    min-width: 70px !important;
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasCartaoOpcoes
+    button.materiasAbrir:hover {
+    background-color: var(--verde-confirmar-hover);
+    transition: 0.5s;
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasCartaoOpcoes
+    button.materiasAbrir
+    p {
+    font-weight: bold;
+    color: white;
+    font-size: 17px;
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasCartaoOpcoes
+    button.materiasEditar {
+    background-color: var(--azul);
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasCartaoOpcoes
+    button.materiasEditar:hover {
+    background-color: var(--azul-hover);
+    transition: 0.5s;
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasCartaoOpcoes
+    button.materiasDeletar {
+    background-color: var(--vermelho);
+  }
+  
+  #materiasPrincipal
+    .materiasCartao
+    .materiasConteudoCartao
+    .materiasCartaoOpcoes
+    button.materiasDeletar:hover {
+    background-color: var(--vermelho-hover);
+    transition: 0.5s;
+  }

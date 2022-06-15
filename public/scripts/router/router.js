@@ -174,13 +174,26 @@ let router = Router.routes([
   },
   {
     path: "",
-    render: "../views/aluno/feed/feed.html",
+    exact: true,
+    render: "../views/aluno/feed/cursos.html",
     funcao: iniciarFeedCursos,
   },
   {
     path: "/aluno/feed",
-    render: "../views/aluno/feed/feed.html",
-    funcao: iniciarFeedCursos,
+    children: [
+      {
+        path: "",
+        exact: true,
+        render: "../views/aluno/feed/cursos.html",
+        funcao: iniciarFeedCursos,
+      },
+      {
+        path: "/curso/:idCurso",
+        exact: true,
+        render: "../views/aluno/feed/materias.html",
+        funcao: iniciarFeedMaterias,
+      },
+    ]
   },
 ]);
 

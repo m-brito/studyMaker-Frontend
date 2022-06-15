@@ -3,6 +3,35 @@ async function iniciarFeedCursos() {
     await mostrarCursosFeed(buscarToken());
 }
 
+async function feedDeletarCurso(idCurso) {
+    Confirm.open({
+        mensagem: "Tem certeza que deseja exluir este curso?",
+        textoOK: "Sim",
+        textoCancelar: "Cancelar",
+        onok: async () => {
+            const respExcluirCurso = await apiDeletarCurso(idCurso);
+            if(respExcluirCurso["status"] && respExcluirCurso["status"] == sucessoRequisicao) {
+                mensagemPopUp.show({
+                    mensagem: "Curso excluido com sucesso!",
+                    cor: "green"
+                });
+                mostrarCursos(buscarToken());
+            }
+        }
+    })
+}
+
+async function feedEditarOculto(idCurso, acao) {
+    const respEditaCurso = await ocultarDesocultarCurso(idCurso);
+    if(respEditaCurso["status"] && respEditaCurso["status"] == sucessoRequisicao) {
+        mensagemPopUp.show({
+            mensagem: "Seu curso foi "+acao+" com sucesso!",
+            cor: "green"
+        });
+        mostrarCursos(buscarToken())
+    }
+}
+
 async function mostrarCursosFeed(token) {
     carregamento();
     
@@ -25,7 +54,7 @@ async function mostrarCursosFeed(token) {
                         <div class="cursosEstados">
                             ${meusCursos["resultados"][x]["permissao"] ? `
                                 <img src="${meusCursos["resultados"][x]["publico"] == "true" ? '../../public/assets/Imagens/Icone-publico.svg' : '../../public/assets/Imagens/Icone-privado.svg'}" alt="Curso ${meusCursos["resultados"][x]["privado"] == "true" ? 'privado' : 'publico'}">
-                                <img onclick="editarOculto(${meusCursos["resultados"][x]["id"]}, '${meusCursos["resultados"][x]["oculto"] == "true" ? 'exposto' : 'ocultado'}')" src="${meusCursos["resultados"][x]["oculto"] == "true" ? '../../public/assets/Imagens/Icone-oculto.svg' : '../../public/assets/Imagens/Icone-exposto.svg'}" alt="Curso ${meusCursos["resultados"][x]["oculto"] == true ? 'oculto' : 'exposto'}">
+                                <img onclick="feedEditarOculto(${meusCursos["resultados"][x]["id"]}, '${meusCursos["resultados"][x]["oculto"] == "true" ? 'exposto' : 'ocultado'}')" src="${meusCursos["resultados"][x]["oculto"] == "true" ? '../../public/assets/Imagens/Icone-oculto.svg' : '../../public/assets/Imagens/Icone-exposto.svg'}" alt="Curso ${meusCursos["resultados"][x]["oculto"] == true ? 'oculto' : 'exposto'}">
                             `: `
                                 <div>
                                     <img src="../../public/assets/Imagens/Icone-autor.svg" alt="Autor">
@@ -36,17 +65,17 @@ async function mostrarCursosFeed(token) {
                         </div>
                         <div class="cursosCartaoOpcoes">
                             ${meusCursos["resultados"][x]["permissao"] ? `
-                                <button class="cursosAbrir" onclick="abrirCurso(${meusCursos["resultados"][x]["id"]})">
+                                <button class="cursosAbrir" onclick="feedAbrirCurso(${meusCursos["resultados"][x]["id"]})">
                                     <p id="${meusCursos["resultados"][x]["id"]}">Abrir</p>
                                 </button>
-                                <button class="cursosEditar" onclick="redirecionarEditarCurso(${meusCursos["resultados"][x]["id"]})" id="${meusCursos["resultados"][x]["id"]}">
+                                <button class="cursosEditar" onclick="feedRedirecionarEditarCurso(${meusCursos["resultados"][x]["id"]})" id="${meusCursos["resultados"][x]["id"]}">
                                     <img src="../../public/assets/Imagens/Icone-editar-branco.svg" alt="Editar">
                                 </button>
-                                <button class="cursosDeletar" onclick="deletarCurso(${meusCursos["resultados"][x]["id"]})" id="${meusCursos["resultados"][x]["id"]}">
+                                <button class="cursosDeletar" onclick="feedDeletarCurso(${meusCursos["resultados"][x]["id"]})" id="${meusCursos["resultados"][x]["id"]}">
                                     <img src="../../public/assets/Imagens/Icone-deletar.svg" alt="Deletar">
                                 </button>
                             ` : `
-                                <button class="cursosAbrir" onclick="abrirCurso(${meusCursos["resultados"][x]["id"]})">
+                                <button class="cursosAbrir" onclick="feedAbrirCurso(${meusCursos["resultados"][x]["id"]})">
                                     <p id="${meusCursos["resultados"][x]["id"]}">Abrir</p>
                                 </button>
                             `}
@@ -61,6 +90,10 @@ async function mostrarCursosFeed(token) {
 }
 
 // Redirecionamentos
-function abrirCurso(idCurso) {
-    window.location.href += `/${idCurso}`;
+function feedAbrirCurso(idCurso) {
+    window.location.href = `./aluno.html#/aluno/feed/curso/${idCurso}`;
+}
+
+function feedRedirecionarEditarCurso(idCurso) {
+    window.location.href += `./aluno.html#/aluno/meuscursos/editar/${idCurso}`;
 }
