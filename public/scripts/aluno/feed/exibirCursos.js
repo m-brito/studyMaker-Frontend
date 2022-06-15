@@ -15,7 +15,7 @@ async function feedDeletarCurso(idCurso) {
                     mensagem: "Curso excluido com sucesso!",
                     cor: "green"
                 });
-                mostrarCursos(buscarToken());
+                mostrarCursosFeed(buscarToken());
             }
         }
     })
@@ -28,7 +28,7 @@ async function feedEditarOculto(idCurso, acao) {
             mensagem: "Seu curso foi "+acao+" com sucesso!",
             cor: "green"
         });
-        mostrarCursos(buscarToken())
+        mostrarCursosFeed(buscarToken())
     }
 }
 
@@ -95,5 +95,5 @@ function feedAbrirCurso(idCurso) {
 }
 
 function feedRedirecionarEditarCurso(idCurso) {
-    window.location.href += `./aluno.html#/aluno/meuscursos/editar/${idCurso}`;
+    window.location.href = `./aluno.html#/aluno/meuscursos/editar/${idCurso}`;
 }

@@ -139,11 +139,6 @@ let router = Router.routes([
                         render: "../views/aluno/questionario/editarquestionario.html",
                         funcao: iniciarEditarQuestionario,
                       },
-                      {
-                        path: "/:idQuestionario/relatorio",
-                        render: "../views/aluno/relatorio/relatorio.html",
-                        funcao: iniciarRelatorioQuestionario,
-                      }
                     ],
                   },
                 ]
@@ -164,6 +159,12 @@ let router = Router.routes([
     path: "/revisao/curso/:idCurso/materia/:idMateria/questionario/:idQuestionario/resultado/:idResultado",
     render: "../views/aluno/questionario/revisaoquestionario.html",
     funcao: iniciarRevisaoQuestionarios,
+    exact: false,
+  },
+  {
+    path: "/relatorio/curso/:idCurso/materia/:idMateria/questionario/:idQuestionario",
+    render: "../views/aluno/relatorio/relatorio.html",
+    funcao: iniciarRelatorioQuestionario,
     exact: false,
   },
   {
@@ -189,9 +190,20 @@ let router = Router.routes([
       },
       {
         path: "/curso/:idCurso",
-        exact: true,
-        render: "../views/aluno/feed/materias.html",
-        funcao: iniciarFeedMaterias,
+        children: [
+          {
+            path: "",
+            exact: true,
+            render: "../views/aluno/feed/materias.html",
+            funcao: iniciarFeedMaterias,
+          },
+          {
+            path: "/materia/:idMateria",
+            exact: true,
+            render: "../views/aluno/feed/questionarios.html",
+            funcao: iniciarFeedQuestionarios,
+          },
+        ]
       },
     ]
   },

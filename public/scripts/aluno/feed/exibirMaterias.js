@@ -19,7 +19,7 @@ async function feedEditarOcultoMateria(idMateria, acao) {
             cor: "green"
         });
     }
-    mostrarMaterias();
+    mostrarCursosFeed();
     pararCarregamento();
 }
 
@@ -35,7 +35,7 @@ async function feedDeletarMateria(idMateria) {
                     mensagem: "Sua materia foi excluida com sucesso!",
                     cor: "green"
                 });
-                mostrarMaterias(buscarToken())
+                mostrarCursosFeed(buscarToken())
             }
         }
     })
@@ -68,7 +68,7 @@ async function mostrarMateriasFeed() {
                         </div>
                         <div class="materiasCartaoOpcoes">
                             ${respMaterias["resultados"][x]["permissao"] ? `
-                                <button class="materiasAbrir" onclick="redirecionarAbrirMateria(${respMaterias["resultados"][x]["id"]})">
+                                <button class="materiasAbrir" onclick="feedRedirecionarAbrirMateria(${respMaterias["resultados"][x]["id"]})">
                                     <p id="${respMaterias["resultados"][x]["id"]}">Abrir</p>
                                 </button>
                                 <button class="materiasEditar" onclick="feedRedirecionarEditarMateria(${respMaterias["resultados"][x]["id"]})" id="${respMaterias["resultados"][x]["id"]}">
@@ -100,5 +100,5 @@ function feedRedirecionarEditarMateria(idMateria) {
 }
 
 function feedRedirecionarAbrirMateria(idMateria) {
-    window.location.href = `./aluno.html#/aluno/feed/${parametrosJson["idCurso"]}/materia/${idMateria}`;
+    window.location.href = `./aluno.html#/aluno/feed/curso/${parametrosJson["idCurso"]}/materia/${idMateria}`;
 }

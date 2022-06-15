@@ -1,0 +1,259 @@
+#questionariosPrincipal {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #questionariosPrincipal #questionariosCabecalho {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+  }
+  
+  #questionariosPrincipal #questionariosCabecalho h1 {
+    color: var(--cor-principal);
+  }
+  
+  #questionariosPrincipal #questionariosFerramentas {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+  
+  #questionariosPrincipal #questionariosFerramentas h2 {
+    display: flex;
+    margin-right: 30px;
+    font-size: 20px;
+    color: var(--verde-escuro);
+    cursor: pointer;
+    transition: 0.5s;
+    margin: 0 30px 30px 0;
+  }
+  
+  #questionariosPrincipal #questionariosFerramentas h2:hover {
+    color: var(--verde-escuro-hover);
+    transition: 0.5s;
+  }
+  
+  #questionariosPrincipal #questionariosConteudo {
+    box-sizing: border-box;
+    padding: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  #questionariosPrincipal #questionariosConteudo .questionariosCartao {
+    width: 270px;
+    height: auto;
+    /* min-height: 300px; */
+    background-color: var(--branco);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    margin: 70px 20px;
+    padding: 20px;
+  }
+  
+  #questionariosPrincipal
+    #questionariosConteudo
+    .questionariosCartao
+    .questionariosNomeCartao {
+    width: 100%;
+    text-align: center;
+    flex-wrap: nowrap;
+    word-wrap: break-word;
+  }
+  
+  #questionariosPrincipal
+    #questionariosConteudo
+    .questionariosCartao
+    .questionariosImagemCartao {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    top: -50px;
+    border-radius: 50%;
+    background-color: rgb(209, 209, 209);
+    border: 5px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #questionariosPrincipal
+    #questionariosConteudo
+    .questionariosCartao
+    .questionariosImagemCartao
+    img {
+    height: 100px;
+    width: 100px;
+  }
+  
+  #questionariosPrincipal .questionariosCartao .questionariosConteudoCartao {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosEstados {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 15px 0;
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosEstados
+    img, #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    div.divAutor img {
+    height: 35px;
+    width: 35px;
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    div.divAutor {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px 0;
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosEstados
+    img {
+    cursor: pointer;
+    transition: 0.5s;
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosEstados
+    img:hover {
+        transform: scale(1.5);
+      transition: 0.5s;
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosCartaoOpcoes {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosCartaoOpcoes
+    button {
+    height: 45px;
+    padding: 10px 15px;
+    border: 0;
+    cursor: pointer;
+    transition: 0.5s;
+    overflow: hidden;
+    border-radius: 10px;
+    flex: 1;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosCartaoOpcoes
+    button
+    img {
+    height: 25px;
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosCartaoOpcoes
+    button.questionariosAbrir {
+    background-color: var(--verde-confirmar);
+    min-width: 70px !important;
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosCartaoOpcoes
+    button.questionariosAbrir:hover {
+    background-color: var(--verde-confirmar-hover);
+    transition: 0.5s;
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosCartaoOpcoes
+    button.questionariosAbrir
+    p {
+    font-weight: bold;
+    color: white;
+    font-size: 17px;
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosCartaoOpcoes
+    button.questionariosEditar {
+    background-color: var(--azul);
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosCartaoOpcoes
+    button.questionariosEditar:hover {
+    background-color: var(--azul-hover);
+    transition: 0.5s;
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosCartaoOpcoes
+    button.questionariosDeletar {
+    background-color: var(--vermelho);
+  }
+  
+  #questionariosPrincipal
+    .questionariosCartao
+    .questionariosConteudoCartao
+    .questionariosCartaoOpcoes
+    button.questionariosDeletar:hover {
+    background-color: var(--vermelho-hover);
+    transition: 0.5s;
+  }

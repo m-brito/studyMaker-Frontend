@@ -9,7 +9,8 @@ async function iniciarRevisaoQuestionarios(parametrosJson) {
 
     document.querySelector("#revisaoQuestionarios form#revisaoQuestionariosForm").addEventListener("submit", async(event) => {
         event.preventDefault();
-        window.location.href=`./aluno.html#/aluno/meuscursos/${parametrosJsonRevisaoQuestionario["idCurso"]}/materia/${parametrosJsonRevisaoQuestionario["idMateria"]}`;
+        // window.location.href=`./aluno.html#/aluno/meuscursos/${parametrosJsonRevisaoQuestionario["idCurso"]}/materia/${parametrosJsonRevisaoQuestionario["idMateria"]}`;
+        window.location.href=`./aluno.html#/aluno/feed`;
     });
 
     carregamento();

@@ -462,6 +462,26 @@ async function buscarMeusQuestionarios(idMateria, idCurso) {
     return data;
 }
 
+async function buscarQuestionariosPublicos(idMateria, idCurso) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/questionario/dadosQuestionariosPublico.php?token=${buscarToken()}&idMateria=${idMateria}&idCurso=${idCurso}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json',
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
 async function apiDeletarQuestionario(idQuestionario) {
     carregamento();
     var tentativas = 0;
