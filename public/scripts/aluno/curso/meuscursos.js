@@ -2,7 +2,7 @@ async function iniciarMeuscursos() {
     await verificarLogado(buscarToken());
     await mostrarCursos(buscarToken());
 
-    document.querySelector("#meuscursosPrincipal #bttCadastrarNovoCurso").addEventListener("click", (event) => {
+    document.querySelector("#cursosPrincipal #bttCadastrarNovoCurso").addEventListener("click", (event) => {
         window.location.href += "/cadastrar"
     });
 }
@@ -39,7 +39,7 @@ async function editarOculto(idCurso, acao) {
 async function mostrarCursos(token) {
     carregamento();
     
-    let divCartoes = document.querySelector("#meuscursosPrincipal #meuscursosConteudo");
+    let divCartoes = document.querySelector("#cursosPrincipal #cursosConteudo");
     divCartoes.innerHTML = "";
 
     const meusCursos = await buscarMeusCursos(token);
@@ -49,24 +49,24 @@ async function mostrarCursos(token) {
     } else {
         for(let x = 0; x<meusCursos["resultados"].length; x++) {
             let divCartao = `
-                <div class="meuscursosCartao" id="${meusCursos["resultados"][x]["id"]}">
-                    <div class="meuscursosImagemCartao" style="background-color: ${meusCursos["resultados"][x]["cor"]} !important">
+                <div class="cursosCartao" id="${meusCursos["resultados"][x]["id"]}">
+                    <div class="cursosImagemCartao" style="background-color: ${meusCursos["resultados"][x]["cor"]} !important">
                         <img src="${meusCursos["resultados"][x]["imagem"]}" alt="Letra ${meusCursos["resultados"][x]["nome"][0]}">
                     </div>
-                    <div class="meuscursosConteudoCartao">
-                        <h2 class="meuscursosNomeCartao">${meusCursos["resultados"][x]["nome"]}</h2>
-                        <div class="meuscursosEstados">
+                    <div class="cursosConteudoCartao">
+                        <h2 class="cursosNomeCartao">${meusCursos["resultados"][x]["nome"]}</h2>
+                        <div class="cursosEstados">
                             <img src="${meusCursos["resultados"][x]["publico"] == "true" ? '../../public/assets/Imagens/Icone-publico.svg' : '../../public/assets/Imagens/Icone-privado.svg'}" alt="Curso ${meusCursos["resultados"][x]["privado"] == "true" ? 'privado' : 'publico'}">
                             <img onclick="editarOculto(${meusCursos["resultados"][x]["id"]}, '${meusCursos["resultados"][x]["oculto"] == "true" ? 'exposto' : 'ocultado'}')" src="${meusCursos["resultados"][x]["oculto"] == "true" ? '../../public/assets/Imagens/Icone-oculto.svg' : '../../public/assets/Imagens/Icone-exposto.svg'}" alt="Curso ${meusCursos["resultados"][x]["oculto"] == true ? 'oculto' : 'exposto'}">
                         </div>
-                        <div class="meuscursosCartaoOpcoes">
-                            <button class="meuscursosAbrir" onclick="abrirCurso(${meusCursos["resultados"][x]["id"]})">
+                        <div class="cursosCartaoOpcoes">
+                            <button class="cursosAbrir" onclick="abrirCurso(${meusCursos["resultados"][x]["id"]})">
                                 <p id="${meusCursos["resultados"][x]["id"]}">Abrir</p>
                             </button>
-                            <button class="meuscursosEditar" onclick="redirecionarEditarCurso(${meusCursos["resultados"][x]["id"]})" id="${meusCursos["resultados"][x]["id"]}">
+                            <button class="cursosEditar" onclick="redirecionarEditarCurso(${meusCursos["resultados"][x]["id"]})" id="${meusCursos["resultados"][x]["id"]}">
                                 <img src="../../public/assets/Imagens/Icone-editar-branco.svg" alt="Editar">
                             </button>
-                            <button class="meuscursosDeletar" onclick="deletarCurso(${meusCursos["resultados"][x]["id"]})" id="${meusCursos["resultados"][x]["id"]}">
+                            <button class="cursosDeletar" onclick="deletarCurso(${meusCursos["resultados"][x]["id"]})" id="${meusCursos["resultados"][x]["id"]}">
                                 <img src="../../public/assets/Imagens/Icone-deletar.svg" alt="Deletar">
                             </button>
                         </div>

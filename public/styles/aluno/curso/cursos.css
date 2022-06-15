@@ -1,11 +1,11 @@
-#meuscursosPrincipal {
+#cursosPrincipal {
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-#meuscursosPrincipal #meuscursosCabecalho {
+#cursosPrincipal #cursosCabecalho {
   width: 100%;
   display: flex;
   align-items: center;
@@ -13,17 +13,17 @@
   height: 20vh;
 }
 
-#meuscursosPrincipal #meuscursosCabecalho h1 {
+#cursosPrincipal #cursosCabecalho h1 {
   color: var(--cor-principal);
 }
 
-#meuscursosPrincipal #meuscursosFerramentas {
+#cursosPrincipal #cursosFerramentas {
   width: 100%;
   display: flex;
   justify-content: end;
 }
 
-#meuscursosPrincipal #meuscursosFerramentas h2 {
+#cursosPrincipal #cursosFerramentas h2 {
   display: flex;
   margin-right: 30px;
   font-size: 20px;
@@ -33,12 +33,12 @@
   margin: 0 30px 30px 0;
 }
 
-#meuscursosPrincipal #meuscursosFerramentas h2:hover {
+#cursosPrincipal #cursosFerramentas h2:hover {
   color: var(--verde-escuro-hover);
   transition: 0.5s;
 }
 
-#meuscursosPrincipal #meuscursosConteudo {
+#cursosPrincipal #cursosConteudo {
   box-sizing: border-box;
   padding: 50px;
   width: 100%;
@@ -47,7 +47,7 @@
   flex-wrap: wrap;
 }
 
-#meuscursosPrincipal #meuscursosConteudo .meuscursosCartao {
+#cursosPrincipal #cursosConteudo .cursosCartao {
   width: 270px;
   height: auto;
   /* min-height: 300px; */
@@ -62,20 +62,20 @@
   padding: 20px;
 }
 
-#meuscursosPrincipal
-  #meuscursosConteudo
-  .meuscursosCartao
-  .meuscursosNomeCartao {
+#cursosPrincipal
+  #cursosConteudo
+  .cursosCartao
+  .cursosNomeCartao {
   width: 100%;
   text-align: center;
   flex-wrap: nowrap;
   word-wrap: break-word;
 }
 
-#meuscursosPrincipal
-  #meuscursosConteudo
-  .meuscursosCartao
-  .meuscursosImagemCartao {
+#cursosPrincipal
+  #cursosConteudo
+  .cursosCartao
+  .cursosImagemCartao {
   position: absolute;
   width: 100px;
   height: 100px;
@@ -89,16 +89,16 @@
   justify-content: center;
 }
 
-#meuscursosPrincipal
-  #meuscursosConteudo
-  .meuscursosCartao
-  .meuscursosImagemCartao
+#cursosPrincipal
+  #cursosConteudo
+  .cursosCartao
+  .cursosImagemCartao
   img {
   height: 100px;
   width: 100px;
 }
 
-#meuscursosPrincipal .meuscursosCartao .meuscursosConteudoCartao {
+#cursosPrincipal .cursosCartao .cursosConteudoCartao {
   margin-top: 50px;
   width: 100%;
   display: flex;
@@ -108,56 +108,68 @@
   height: 100%;
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosEstados {
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosEstados {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
   margin: 15px 0;
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosEstados
-  img {
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosEstados
+  img, #cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosEstados div img {
   height: 35px;
   width: 35px;
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosEstados
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosEstados div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosEstados
   img + img {
   cursor: pointer;
   transition: 0.5s;
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosEstados
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosEstados
   img + img:hover {
       transform: scale(1.5);
     transition: 0.5s;
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosCartaoOpcoes {
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosCartaoOpcoes {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosCartaoOpcoes
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosCartaoOpcoes
   button {
   height: 45px;
   padding: 10px 15px;
@@ -173,74 +185,74 @@
   justify-content: center;
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosCartaoOpcoes
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosCartaoOpcoes
   button
   img {
   height: 25px;
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosCartaoOpcoes
-  button.meuscursosAbrir {
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosCartaoOpcoes
+  button.cursosAbrir {
   background-color: var(--verde-confirmar);
   min-width: 70px !important;
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosCartaoOpcoes
-  button.meuscursosAbrir:hover {
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosCartaoOpcoes
+  button.cursosAbrir:hover {
   background-color: var(--verde-confirmar-hover);
   transition: 0.5s;
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosCartaoOpcoes
-  button.meuscursosAbrir
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosCartaoOpcoes
+  button.cursosAbrir
   p {
   font-weight: bold;
   color: white;
   font-size: 17px;
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosCartaoOpcoes
-  button.meuscursosEditar {
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosCartaoOpcoes
+  button.cursosEditar {
   background-color: var(--azul);
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosCartaoOpcoes
-  button.meuscursosEditar:hover {
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosCartaoOpcoes
+  button.cursosEditar:hover {
   background-color: var(--azul-hover);
   transition: 0.5s;
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosCartaoOpcoes
-  button.meuscursosDeletar {
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosCartaoOpcoes
+  button.cursosDeletar {
   background-color: var(--vermelho);
 }
 
-#meuscursosPrincipal
-  .meuscursosCartao
-  .meuscursosConteudoCartao
-  .meuscursosCartaoOpcoes
-  button.meuscursosDeletar:hover {
+#cursosPrincipal
+  .cursosCartao
+  .cursosConteudoCartao
+  .cursosCartaoOpcoes
+  button.cursosDeletar:hover {
   background-color: var(--vermelho-hover);
   transition: 0.5s;
 }

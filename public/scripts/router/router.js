@@ -175,12 +175,12 @@ let router = Router.routes([
   {
     path: "",
     render: "../views/aluno/feed/feed.html",
-    funcao: () => {},
+    funcao: iniciarFeedCursos,
   },
   {
     path: "/aluno/feed",
     render: "../views/aluno/feed/feed.html",
-    funcao: () => {},
+    funcao: iniciarFeedCursos,
   },
 ]);
 

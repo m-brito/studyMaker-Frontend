@@ -155,6 +155,26 @@ async function buscarMeusCursos() {
     return data;
 }
 
+async function buscarCursosPublicos() {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/curso/dadosCursosPublico.php?token=${buscarToken()}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json',
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
 async function apiDeletarCurso(idCurso) {
     carregamento();
     var tentativas = 0;
