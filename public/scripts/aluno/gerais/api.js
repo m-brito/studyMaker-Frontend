@@ -805,6 +805,66 @@ async function resultadoRequisicoes() {
     return data;
 }
 
+async function resultadoRequisicoesCursosAluno(idAluno) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/dadosRequisicoesCursosAluno.php?token=${buscarToken()}&idAluno=${idAluno}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function resultadoRequisicoesMateriasAluno(idAluno) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/dadosRequisicoesMateriasAluno.php?token=${buscarToken()}&idAluno=${idAluno}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function resultadoRequisicoesQuestionariosAluno(idAluno) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/dadosRequisicoesQuestionariosAluno.php?token=${buscarToken()}&idAluno=${idAluno}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
 // Deslogar do site
 async function deslogar(tokenAluno) {
     var tentativas = 0;

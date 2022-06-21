@@ -11,8 +11,8 @@ async function iniciarRequisicoes(parametros) {
     mostrarRequisicoes();
 }
 
-function revisaoRequisicoes(idResponde) {
-    window.location.href = `./aluno.html#/revisao/curso/${parametrosJsonRelatorio["idCurso"]}/materia/${parametrosJsonRelatorio["idMateria"]}/questionario/${parametrosJsonRelatorio["idQuestionario"]}/resultado/${idResponde}`;
+function revisaoRequisicoes(idAluno) {
+    window.location.href = `./administrador.html#/administrador/requisicoes/aluno/${idAluno}`;
 }
 
 async function mostrarRequisicoes() {
@@ -38,6 +38,5 @@ async function mostrarRequisicoes() {
     } else if (respReq && respReq["status"]==erroRequisicao && respReq["mensagem"] == "Nenhum registro encontrado!") {
         document.querySelector("div#principalRequisicoesAdm #conteudoRequisicoes").innerHTML = `<p>${respReq["mensagem"]}</p>`;
     }
-    console.log(respReq)
     pararCarregamento();
 }

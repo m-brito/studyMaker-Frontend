@@ -1,0 +1,219 @@
+#principalRequisicoesAluno {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #principalRequisicoesAluno .cabecalho {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15vh;
+  }
+  
+  #principalRequisicoesAluno .cabecalho h1 {
+    color: var(--cor-principal);
+  }
+  
+  #principalRequisicoesAluno .conteudoCartao {
+    box-sizing: border-box;
+    padding: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  #principalRequisicoesAluno .conteudoCartao .cartaoRequisicao {
+    width: 270px;
+    height: auto;
+    /* min-height: 300px; */
+    background-color: var(--branco);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    margin: 50px 20px;
+    padding: 20px;
+  }
+  
+  #principalRequisicoesAluno
+  .conteudoCartao
+    .cartaoRequisicao
+    .requisicoesNomeCartao {
+    width: 100%;
+    text-align: center;
+    flex-wrap: nowrap;
+    word-wrap: break-word;
+  }
+  
+  #principalRequisicoesAluno
+  .conteudoCartao
+    .cartaoRequisicao
+    .requisicoesImagemCartao {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    top: -50px;
+    border-radius: 50%;
+    background-color: rgb(209, 209, 209);
+    border: 5px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #principalRequisicoesAluno
+  .conteudoCartao
+    .cartaoRequisicao
+    .requisicoesImagemCartao
+    img {
+    height: 100px;
+    width: 100px;
+  }
+  
+  #principalRequisicoesAluno .cartaoRequisicao .requisicoesConteudoCartao {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .requisicoesEstados {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 15px 0;
+  }
+  
+  #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .requisicoesEstados
+    img, #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .requisicoesEstados div img {
+    height: 35px;
+    width: 35px;
+  }
+  
+  #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .requisicoesEstados div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .requisicoesEstados img {
+    cursor: pointer;
+    transition: 0.5s;
+  }
+  
+  #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .requisicoesEstados img:hover {
+        transform: scale(1.5);
+      transition: 0.5s;
+  }
+  
+  #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .cartaoRequisicaoOpcoes {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .cartaoRequisicaoOpcoes
+    button {
+    height: 45px;
+    padding: 10px 15px;
+    border: 0;
+    cursor: pointer;
+    transition: 0.5s;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .cartaoRequisicaoOpcoes
+    button
+    img {
+    height: 25px;
+  }
+  
+  #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .cartaoRequisicaoOpcoes
+    button.requisicoesAceitar {
+        width: calc(100% - 45px);
+    background-color: var(--verde-confirmar);
+    min-width: 70px !important;
+  }
+  
+  #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .cartaoRequisicaoOpcoes
+    button.requisicoesAceitar:hover {
+    background-color: var(--verde-confirmar-hover);
+    transition: 0.5s;
+  }
+  
+  #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .cartaoRequisicaoOpcoes
+    button.requisicoesAceitar
+    p {
+    font-weight: bold;
+    color: white;
+    font-size: 17px;
+  }
+
+  #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .cartaoRequisicaoOpcoes
+    button.requisicoesRecusar {
+        width: 45px !important;
+    background-color: var(--vermelho);
+  }
+  
+  #principalRequisicoesAluno
+    .cartaoRequisicao
+    .requisicoesConteudoCartao
+    .cartaoRequisicaoOpcoes
+    button.requisicoesRecusar:hover {
+    background-color: var(--vermelho-hover);
+    transition: 0.5s;
+  }

@@ -200,6 +200,35 @@ let router = Router.routes([
             render: "../views/administrador/requisicoes/requisicoes.html",
             funcao: iniciarRequisicoes,
           },
+          {
+            path: "/aluno/:idAluno",
+            children: [
+              {
+                path: "",
+                exact: true,
+                render: "../views/administrador/requisicoes/requisicoesaluno.html",
+                funcao: iniciarRequisicoesAluno,
+              },
+              {
+                path: "/curso/:idCurso",
+                exact: true,
+                render: "../views/administrador/analisar/curso.html",
+                funcao: () => {},
+              },
+              {
+                path: "/materia/:idMateria",
+                exact: true,
+                render: "../views/administrador/analisar/materia.html",
+                funcao: () => {},
+              },
+              {
+                path: "/questionario/:idQuestionario",
+                exact: true,
+                render: "../views/administrador/analisar/questionario.html",
+                funcao: () => {},
+              },
+            ]
+          },
         ]
       },
       {
