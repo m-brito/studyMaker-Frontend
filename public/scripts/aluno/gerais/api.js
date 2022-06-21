@@ -784,6 +784,27 @@ async function disponibilidadeEmail(email) {
     return data;
 }
 
+// Requisicoes
+async function resultadoRequisicoes() {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/dadosRequisicoes.php?token=${buscarToken()}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
 // Deslogar do site
 async function deslogar(tokenAluno) {
     var tentativas = 0;

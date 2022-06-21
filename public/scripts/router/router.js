@@ -198,7 +198,7 @@ let router = Router.routes([
             path: "",
             exact: true,
             render: "../views/administrador/requisicoes/requisicoes.html",
-            funcao: () => {},
+            funcao: iniciarRequisicoes,
           },
         ]
       },
