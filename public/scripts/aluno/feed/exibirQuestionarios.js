@@ -67,10 +67,12 @@ async function mostrarQuestionariosFeed() {
                                 <img onclick="feedRelatorioQuestionario(${meusQuestionarios["resultados"][x]["id"]})" src="../../public/assets/Imagens/Icone-notas.svg">
                             `}                            
                         </div>
-                        <div class="divAutor">
-                            <img src="../../public/assets/Imagens/Icone-autor.svg" alt="Autor">
-                            <p>${meusQuestionarios["resultados"][x]["nomeAutor"]}</p>
-                        </div>
+                        ${meusQuestionarios["resultados"][x]["permissao"] ? `` : `
+                            <div class="divAutor">
+                                <img src="../../public/assets/Imagens/Icone-autor.svg" alt="Autor">
+                                <p>${meusQuestionarios["resultados"][x]["nomeAutor"]}</p>
+                            </div>
+                        `}
                         <div class="questionariosCartaoOpcoes">
                             ${meusQuestionarios["resultados"][x]["permissao"] ? `
                                 <button class="questionariosAbrir" onclick="feedAbrirQuestionario(${meusQuestionarios["resultados"][x]["id"]})">

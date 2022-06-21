@@ -63,7 +63,7 @@ async function enviarCodigo(para, nomepara) {
     var ok = false
     while(tentativas <= 4 && ok == false) {
         try {
-            const resp = await fetch(`${HOSTEMAIL}/enviarcodigo`, {
+            const resp = await fetch(`${HOSTEMAIL}enviarcodigo`, {
                 "method": "POST",
                 headers: {
                     'Accept': 'application/json'

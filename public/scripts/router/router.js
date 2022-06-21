@@ -73,140 +73,167 @@ window.Router = Router;
 
 let router = Router.routes([
   {
-    path: "/aluno/meuscursos",
+    path: "/aluno",
     children: [
       {
-        path: "",
-        exact: true,
-        render: "../views/aluno/curso/meuscursos.html",
-        funcao: iniciarMeuscursos,
-      },
-      {
-        path: "/cadastrar",
-        exact: true,
-        render: "../views/aluno/curso/cadastrarcurso.html",
-        funcao: iniciarCadastrarCurso,
-      },
-      {
-        path: "/editar/:idCurso",
-        exact: true,
-        render: "../views/aluno/curso/editarCurso.html",
-        funcao: iniciarEditarCurso,
-      },
-      {
-        path: "/:idCurso",
+        path: "/meuscursos",
         children: [
           {
             path: "",
             exact: true,
-            render: "../views/aluno/materia/minhasmaterias.html",
-            funcao: iniciarMinhasMaterias,
+            render: "../views/aluno/curso/meuscursos.html",
+            funcao: () => {iniciarMeuscursos},
           },
           {
-            path: "/materia",
+            path: "/cadastrar",
+            exact: true,
+            render: "../views/aluno/curso/cadastrarcurso.html",
+            funcao: () => {iniciarCadastrarCurso},
+          },
+          {
+            path: "/editar/:idCurso",
+            exact: true,
+            render: "../views/aluno/curso/editarCurso.html",
+            funcao: () => {iniciarEditarCurso},
+          },
+          {
+            path: "/:idCurso",
             children: [
               {
-                path: "/cadastrar",
+                path: "",
                 exact: true,
-                render: "../views/aluno/materia/cadastrarmateria.html",
-                funcao: iniciarCadastrarMateria,
+                render: "../views/aluno/materia/minhasmaterias.html",
+                funcao: () => {iniciarMinhasMaterias},
               },
               {
-                path: "/editar/:idMateria",
-                exact: true,
-                render: "../views/aluno/materia/editarmateria.html",
-                funcao: iniciarEditarMateria,
-              },
-              {
-                path: "/:idMateria",
+                path: "/materia",
                 children: [
                   {
-                    path: "",
+                    path: "/cadastrar",
                     exact: true,
-                    render: "../views/aluno/questionario/meusquestionarios.html",
-                    funcao: iniciarMeusQuestionarios,
+                    render: "../views/aluno/materia/cadastrarmateria.html",
+                    funcao: () => {iniciarCadastrarMateria},
                   },
                   {
-                    path: "/questionario",
+                    path: "/editar/:idMateria",
+                    exact: true,
+                    render: "../views/aluno/materia/editarmateria.html",
+                    funcao: () => {iniciarEditarMateria},
+                  },
+                  {
+                    path: "/:idMateria",
                     children: [
                       {
-                        path: "/cadastrar",
-                        render: "../views/aluno/questionario/cadastrarquestionario.html",
-                        funcao: iniciarCadastrarQuestionario,
+                        path: "",
+                        exact: true,
+                        render: "../views/aluno/questionario/meusquestionarios.html",
+                        funcao: () => {iniciarMeusQuestionarios},
                       },
                       {
-                        path: "/editar/:idQuestionario",
-                        render: "../views/aluno/questionario/editarquestionario.html",
-                        funcao: iniciarEditarQuestionario,
+                        path: "/questionario",
+                        children: [
+                          {
+                            path: "/cadastrar",
+                            render: "../views/aluno/questionario/cadastrarquestionario.html",
+                            funcao: () => {iniciarCadastrarQuestionario},
+                          },
+                          {
+                            path: "/editar/:idQuestionario",
+                            render: "../views/aluno/questionario/editarquestionario.html",
+                            funcao: () => {iniciarEditarQuestionario},
+                          },
+                        ],
                       },
-                    ],
+                    ]
                   },
-                ]
+                ],
               },
             ],
           },
-        ],
+        ]
+      },
+      {
+        path: "/requisicoes",
+        render: "../views/requisicoes/requisicoes.html",
+        exact: false,
+        funcao: () => {},
+      },
+      {
+        path: "/feed",
+        children: [
+          {
+            path: "",
+            exact: true,
+            render: "../views/aluno/feed/cursos.html",
+            funcao: () => {iniciarFeedCursos},
+          },
+          {
+            path: "/curso/:idCurso",
+            children: [
+              {
+                path: "",
+                exact: true,
+                render: "../views/aluno/feed/materias.html",
+                funcao: () => {iniciarFeedMaterias},
+              },
+              {
+                path: "/materia/:idMateria",
+                exact: true,
+                render: "../views/aluno/feed/questionarios.html",
+                funcao: () => {iniciarFeedQuestionarios},
+              },
+            ]
+          },
+        ]
+      },
+    ],
+  },
+  {
+    path: "/administrador",
+    children: [
+      {
+        path: "/requisicoes",
+        children: [
+          {
+            path: "",
+            exact: true,
+            render: "../views/administrador/requisicoes/requisicoes.html",
+            funcao: () => {},
+          },
+        ]
+      },
+      {
+        path: "/usuariosconfiaveis",
+        render: "../views/administrador/usuariosconfiaveis/usuariosconfiaveis.html",
+        exact: false,
+        funcao: () => {},
       },
     ],
   },
   {
     path: "/responderQuestionario/curso/:idCurso/materia/:idMateria/questionario/:idQuestionario",
     render: "../views/aluno/questionario/responderquestionario.html",
-    funcao: iniciarResponderQuestionarios,
+    funcao: () => {iniciarResponderQuestionarios},
     exact: false,
   },
   {
     path: "/revisao/curso/:idCurso/materia/:idMateria/questionario/:idQuestionario/resultado/:idResultado",
     render: "../views/aluno/questionario/revisaoquestionario.html",
-    funcao: iniciarRevisaoQuestionarios,
+    funcao: () => {iniciarRevisaoQuestionarios},
     exact: false,
   },
   {
     path: "/relatorio/curso/:idCurso/materia/:idMateria/questionario/:idQuestionario",
     render: "../views/aluno/relatorio/relatorio.html",
-    funcao: iniciarRelatorioQuestionario,
+    funcao: () => {iniciarRelatorioQuestionario},
     exact: false,
   },
-  {
-    path: "/aluno/requisicoes",
-    render: "../views/requisicoes/requisicoes.html",
-    exact: false,
-    funcao: () => {},
-  },
-  {
-    path: "",
-    exact: true,
-    render: "../views/aluno/feed/cursos.html",
-    funcao: iniciarFeedCursos,
-  },
-  {
-    path: "/aluno/feed",
-    children: [
-      {
-        path: "",
-        exact: true,
-        render: "../views/aluno/feed/cursos.html",
-        funcao: iniciarFeedCursos,
-      },
-      {
-        path: "/curso/:idCurso",
-        children: [
-          {
-            path: "",
-            exact: true,
-            render: "../views/aluno/feed/materias.html",
-            funcao: iniciarFeedMaterias,
-          },
-          {
-            path: "/materia/:idMateria",
-            exact: true,
-            render: "../views/aluno/feed/questionarios.html",
-            funcao: iniciarFeedQuestionarios,
-          },
-        ]
-      },
-    ]
-  },
+  // {
+  //   path: "",
+  //   exact: true,
+  //   render: "../views/aluno/feed/cursos.html",
+  //   funcao: () => {iniciarFeedCursos},
+  // },
 ]);
 
 window.config = {

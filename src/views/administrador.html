@@ -1,0 +1,37 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluno</title>
+    <script src="../../public/scripts/aluno/gerais/gerais.js"></script>
+    <script src="../../public/scripts/aluno/gerais/api.js"></script>
+    <script src="../../variaveisGlobais.js"></script>
+
+    <link rel="stylesheet" href="../../public/styles/aluno/gerais/gerais.css">
+    <link rel="stylesheet" href="../../public/styles/aluno/gerais/fontes.css">
+
+    <script src="../../public/scripts/administrador/administrador.js"></script>
+    <link rel="stylesheet" href="../../public/styles/administrador/administrador.css">
+
+</head>
+<body>
+    <div id="divMensagens"></div>
+    <div id="principal">
+        <div id="menu">
+            <div id="containerImgPerfil">
+                <img src="../../public/assets/Imagens/semimagem.png" alt="Procurando imagem de perfil">
+            </div>
+            <h2 id="nomeUsuario">Carregando...</h2>
+            <div id="linkAcoes">
+                <a is="router-link" href="/administrador/requisicoes"><p>Requisições</p></a>
+                <a is="router-link" href="/administrador/usuariosconfiaveis"><p>Usuarios Confiaveis</p></a>
+                <p id="deslogar">Sair</p>
+            </div>
+        </div>
+        <router-outlet id="router" config="config"></router-outlet>
+    </div>
+
+    <script type="module" src="../../public/scripts/router/router.js"></script>
+</body>
+</html>

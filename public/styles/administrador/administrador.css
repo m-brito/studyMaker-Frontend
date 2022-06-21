@@ -1,0 +1,97 @@
+#principal{
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+#principal div#menu{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background-color: var(--cor-principal);
+    width: 15%;
+    min-width: 250px;
+}
+
+#principal div#menu #containerImgPerfil{
+    height: 200px;
+    width: 200px;
+    background-size: cover;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 15px 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#principal div#menu #containerImgPerfil img{
+    min-height: 200px;
+    min-width: 200px;
+    max-width: 230px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    min-height: 100%;
+    min-width: 100%;
+    transform: translate(-50%,-50%);
+}
+
+#principal div#menu h2{
+    color: var(--branco);
+    margin: 0 0 20px 0;
+}
+
+#principal div#menu div#linkAcoes{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+#principal div#menu div#linkAcoes a{
+    width: 95%;
+    background-color: var(--verde-botao-menu);
+    box-sizing: border-box;
+    margin: 7px 0;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--verde-escuro);
+    font-size: 20px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+#principal div#menu div#linkAcoes p#deslogar {
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 10px 0;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--verde-escuro);
+    font-size: 20px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+#principal div#menu div#linkAcoes p#deslogar:hover {
+    transition: 0.5s;
+    color: var(--verde-escuro-hover);
+}
+
+#principal div#menu div#linkAcoes a:hover{
+    transition: 0.5s;
+    background-color: var(--verde-botao-menu-hover);
+}
+
+#principal router-outlet#router{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cor-secundaria);
+    width: 85%;
+    align-items: center;
+    justify-content: center;
+}
