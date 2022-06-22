@@ -15,8 +15,8 @@ function analisarCurso(idCurso) {
     window.location.href = `./administrador.html#/administrador/requisicoes/aluno/${parametrosJsonRequisicoesAluno["idAluno"]}/curso/${idCurso}`;
 }
 
-function analisarMateria(idMateria) {
-    window.location.href = `./administrador.html#/administrador/requisicoes/aluno/${parametrosJsonRequisicoesAluno["idAluno"]}/materia/${idMateria}`;
+function analisarMateria(idMateria, idCurso) {
+    window.location.href = `./administrador.html#/administrador/requisicoes/aluno/${parametrosJsonRequisicoesAluno["idAluno"]}/curso/${idCurso}/materia/${idMateria}`;
 }
 
 function analisarQuestionario(idQuestionario) {
@@ -76,7 +76,7 @@ async function mostrarRequisicoesAluno() {
                     <div class="requisicoesConteudoCartao">
                         <h2 class="requisicoesNomeCartao">${respReqMaterias["resultados"][x]["nomeMateria"]}</h2>
                         <div class="requisicoesEstados">
-                            <img onclick="analisarMateria(${respReqMaterias["resultados"][x]["idMateria"]})" src="../../public/assets/Imagens/Icone-analisar.svg" alt="Analisar">
+                            <img onclick="analisarMateria(${respReqMaterias["resultados"][x]["idMateria"]}, ${respReqMaterias["resultados"][x]["idCurso"]})" src="../../public/assets/Imagens/Icone-analisar.svg" alt="Analisar">
                         </div>
                         <div class="cartaoRequisicaoOpcoes">
                             <button class="requisicoesAceitar" onclick="aceitarRequisicaoMateria(${respReqMaterias["resultados"][x]["idTornarPublico"]})">

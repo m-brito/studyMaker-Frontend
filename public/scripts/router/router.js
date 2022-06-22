@@ -211,15 +211,20 @@ let router = Router.routes([
               },
               {
                 path: "/curso/:idCurso",
-                exact: true,
-                render: "../views/administrador/analisar/curso.html",
-                funcao: () => {},
-              },
-              {
-                path: "/materia/:idMateria",
-                exact: true,
-                render: "../views/administrador/analisar/materia.html",
-                funcao: () => {},
+                children: [
+                  {
+                    path: "",
+                    exact: true,
+                    render: "../views/administrador/analisar/curso.html",
+                    funcao: () => {},
+                  },
+                  {
+                    path: "/materia/:idMateria",
+                    exact: true,
+                    render: "../views/administrador/analisar/materia.html",
+                    funcao: iniciarAnalisarMateria,
+                  },
+                ]
               },
               {
                 path: "/questionario/:idQuestionario",
