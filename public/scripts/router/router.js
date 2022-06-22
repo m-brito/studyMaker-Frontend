@@ -82,19 +82,19 @@ let router = Router.routes([
             path: "",
             exact: true,
             render: "../views/aluno/curso/meuscursos.html",
-            funcao: () => {iniciarMeuscursos},
+            funcao: iniciarMeuscursos,
           },
           {
             path: "/cadastrar",
             exact: true,
             render: "../views/aluno/curso/cadastrarcurso.html",
-            funcao: () => {iniciarCadastrarCurso},
+            funcao: iniciarCadastrarCurso,
           },
           {
             path: "/editar/:idCurso",
             exact: true,
             render: "../views/aluno/curso/editarCurso.html",
-            funcao: () => {iniciarEditarCurso},
+            funcao: iniciarEditarCurso,
           },
           {
             path: "/:idCurso",
@@ -103,7 +103,7 @@ let router = Router.routes([
                 path: "",
                 exact: true,
                 render: "../views/aluno/materia/minhasmaterias.html",
-                funcao: () => {iniciarMinhasMaterias},
+                funcao: iniciarMinhasMaterias,
               },
               {
                 path: "/materia",
@@ -112,13 +112,13 @@ let router = Router.routes([
                     path: "/cadastrar",
                     exact: true,
                     render: "../views/aluno/materia/cadastrarmateria.html",
-                    funcao: () => {iniciarCadastrarMateria},
+                    funcao: iniciarCadastrarMateria,
                   },
                   {
                     path: "/editar/:idMateria",
                     exact: true,
                     render: "../views/aluno/materia/editarmateria.html",
-                    funcao: () => {iniciarEditarMateria},
+                    funcao: iniciarEditarMateria,
                   },
                   {
                     path: "/:idMateria",
@@ -127,7 +127,7 @@ let router = Router.routes([
                         path: "",
                         exact: true,
                         render: "../views/aluno/questionario/meusquestionarios.html",
-                        funcao: () => {iniciarMeusQuestionarios},
+                        funcao: iniciarMeusQuestionarios,
                       },
                       {
                         path: "/questionario",
@@ -135,12 +135,12 @@ let router = Router.routes([
                           {
                             path: "/cadastrar",
                             render: "../views/aluno/questionario/cadastrarquestionario.html",
-                            funcao: () => {iniciarCadastrarQuestionario},
+                            funcao: iniciarCadastrarQuestionario,
                           },
                           {
                             path: "/editar/:idQuestionario",
                             render: "../views/aluno/questionario/editarquestionario.html",
-                            funcao: () => {iniciarEditarQuestionario},
+                            funcao: iniciarEditarQuestionario,
                           },
                         ],
                       },
@@ -174,92 +174,36 @@ let router = Router.routes([
                 path: "",
                 exact: true,
                 render: "../views/aluno/feed/materias.html",
-                funcao: () => {iniciarFeedMaterias},
+                funcao: iniciarFeedMaterias,
               },
               {
                 path: "/materia/:idMateria",
                 exact: true,
                 render: "../views/aluno/feed/questionarios.html",
-                funcao: () => {iniciarFeedQuestionarios},
+                funcao: iniciarFeedQuestionarios,
               },
             ]
           },
         ]
-      },
-    ],
-  },
-  {
-    path: "/administrador",
-    children: [
-      {
-        path: "/requisicoes",
-        children: [
-          {
-            path: "",
-            exact: true,
-            render: "../views/administrador/requisicoes/requisicoes.html",
-            funcao: () => {iniciarRequisicoes},
-          },
-          {
-            path: "/aluno/:idAluno",
-            children: [
-              {
-                path: "",
-                exact: true,
-                render: "../views/administrador/requisicoes/requisicoesaluno.html",
-                funcao: () => {iniciarRequisicoesAluno},
-              },
-              {
-                path: "/curso/:idCurso",
-                children: [
-                  {
-                    path: "",
-                    exact: true,
-                    render: "../views/administrador/analisar/curso.html",
-                    funcao: () => {iniciarAnalisarCurso},
-                  },
-                  {
-                    path: "/materia/:idMateria",
-                    exact: true,
-                    render: "../views/administrador/analisar/materia.html",
-                    funcao: () => {iniciarAnalisarMateria},
-                  },
-                ]
-              },
-              {
-                path: "/questionario/:idQuestionario",
-                exact: true,
-                render: "../views/administrador/analisar/questionario.html",
-                funcao: () => {iniciarAnalisarQuestionario},
-              },
-            ]
-          },
-        ]
-      },
-      {
-        path: "/usuariosconfiaveis",
-        render: "../views/administrador/usuariosconfiaveis/usuariosconfiaveis.html",
-        exact: false,
-        funcao: () => {},
       },
     ],
   },
   {
     path: "/responderQuestionario/curso/:idCurso/materia/:idMateria/questionario/:idQuestionario",
     render: "../views/aluno/questionario/responderquestionario.html",
-    funcao: () => {iniciarResponderQuestionarios},
+    funcao: iniciarResponderQuestionarios,
     exact: false,
   },
   {
     path: "/revisao/curso/:idCurso/materia/:idMateria/questionario/:idQuestionario/resultado/:idResultado",
     render: "../views/aluno/questionario/revisaoquestionario.html",
-    funcao: () => {iniciarRevisaoQuestionarios},
+    funcao: iniciarRevisaoQuestionarios,
     exact: false,
   },
   {
     path: "/relatorio/curso/:idCurso/materia/:idMateria/questionario/:idQuestionario",
     render: "../views/aluno/relatorio/relatorio.html",
-    funcao: () => {iniciarRelatorioQuestionario},
+    funcao: iniciarRelatorioQuestionario,
     exact: false,
   },
   // {
