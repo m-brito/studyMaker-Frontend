@@ -216,7 +216,7 @@ let router = Router.routes([
                     path: "",
                     exact: true,
                     render: "../views/administrador/analisar/curso.html",
-                    funcao: () => {},
+                    funcao: iniciarAnalisarCurso,
                   },
                   {
                     path: "/materia/:idMateria",
