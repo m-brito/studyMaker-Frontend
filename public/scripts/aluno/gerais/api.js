@@ -48,6 +48,39 @@ async function buscarUsuario() {
 }
 
 // CURSO
+async function tornarCursoPublico(idCurso) {
+    carregamento();
+    var tentativas = 0;
+    var ok = false;
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/curso/publicarCurso.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "id": idCurso,
+                    "token": buscarToken()
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    pararCarregamento();
+    if(ok == true && data["status"] == erroRequisicao) {
+        mensagemPopUp.show({
+            mensagem: data["mensagem"],
+            cor: "red"
+        });
+        voltarPagina();
+    }
+    return data;
+}
+
 async function buscarCurso(idCurso) {
     carregamento();
     var tentativas = 0;
@@ -257,6 +290,40 @@ async function editarMateria(idMateria, idCurso, nome, descricao) {
     return data;
 }
 
+async function tornarMateriaPublico(idCurso, idMateria) {
+    carregamento();
+    var tentativas = 0;
+    var ok = false;
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/materia/publicarMateria.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "id": idMateria,
+                    "idCurso": idCurso,
+                    "token": buscarToken()
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    pararCarregamento();
+    if(ok == true && data["status"] == erroRequisicao) {
+        mensagemPopUp.show({
+            mensagem: data["mensagem"],
+            cor: "red"
+        });
+        voltarPagina();
+    }
+    return data;
+}
+
 async function buscarMateria(idMateria, idCurso) {
     carregamento();
     var tentativas = 0;
@@ -433,6 +500,39 @@ async function cadastrarQuestionario(nome, descricao, idMateria, idCurso, pergun
         } catch (error) {
             tentativas++;
         }
+    }
+    return data;
+}
+
+async function tornarQuestionarioPublico(idQuestionario) {
+    carregamento();
+    var tentativas = 0;
+    var ok = false;
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/questionario/publicarQuestionario.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "id": idQuestionario,
+                    "token": buscarToken()
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    pararCarregamento();
+    if(ok == true && data["status"] == erroRequisicao) {
+        mensagemPopUp.show({
+            mensagem: data["mensagem"],
+            cor: "red"
+        });
+        voltarPagina();
     }
     return data;
 }
@@ -785,6 +885,84 @@ async function disponibilidadeEmail(email) {
 }
 
 // Requisicoes
+async function avaliarRequisicaoCurso(idTornarPublico, mensagemAvaliacao, status) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/avaliarRequisicaoCurso.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "mensagemAvaliacao": mensagemAvaliacao,
+                    "idTornarPublico": idTornarPublico,
+                    "status": status,
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function avaliarRequisicaoMateria(idTornarPublico, mensagemAvaliacao, status) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/avaliarRequisicaoMateria.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "mensagemAvaliacao": mensagemAvaliacao,
+                    "idTornarPublico": idTornarPublico,
+                    "status": status,
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function avaliarRequisicaoQuestionario(idTornarPublico, mensagemAvaliacao, status) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/avaliarRequisicaoQuestionario.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "mensagemAvaliacao": mensagemAvaliacao,
+                    "idTornarPublico": idTornarPublico,
+                    "status": status,
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
 async function resultadoRequisicoes() {
     var tentativas = 0;
     var ok = false

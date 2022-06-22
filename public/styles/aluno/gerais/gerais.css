@@ -154,6 +154,12 @@ img.voltarPagina:hover {
     text-align: center;
 }
   
+.containerConfirmar .janelaConfirmar input {
+    height: 50px;
+    padding: 5px;
+    margin: 10px;
+}
+  
 .containerConfirmar .janelaConfirmar .janelaConfirmarAcoes {
     margin: 15px 0;
     width: 100%;
