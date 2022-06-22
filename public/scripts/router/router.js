@@ -198,7 +198,7 @@ let router = Router.routes([
             path: "",
             exact: true,
             render: "../views/administrador/requisicoes/requisicoes.html",
-            funcao: iniciarRequisicoes,
+            funcao: () => {iniciarRequisicoes},
           },
           {
             path: "/aluno/:idAluno",
@@ -207,7 +207,7 @@ let router = Router.routes([
                 path: "",
                 exact: true,
                 render: "../views/administrador/requisicoes/requisicoesaluno.html",
-                funcao: iniciarRequisicoesAluno,
+                funcao: () => {iniciarRequisicoesAluno},
               },
               {
                 path: "/curso/:idCurso",
@@ -216,13 +216,13 @@ let router = Router.routes([
                     path: "",
                     exact: true,
                     render: "../views/administrador/analisar/curso.html",
-                    funcao: iniciarAnalisarCurso,
+                    funcao: () => {iniciarAnalisarCurso},
                   },
                   {
                     path: "/materia/:idMateria",
                     exact: true,
                     render: "../views/administrador/analisar/materia.html",
-                    funcao: iniciarAnalisarMateria,
+                    funcao: () => {iniciarAnalisarMateria},
                   },
                 ]
               },
@@ -230,7 +230,7 @@ let router = Router.routes([
                 path: "/questionario/:idQuestionario",
                 exact: true,
                 render: "../views/administrador/analisar/questionario.html",
-                funcao: iniciarAnalisarQuestionario,
+                funcao: () => {iniciarAnalisarQuestionario},
               },
             ]
           },
