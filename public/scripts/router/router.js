@@ -154,7 +154,7 @@ let router = Router.routes([
       },
       {
         path: "/requisicoes",
-        render: "../views/requisicoes/requisicoes.html",
+        render: "../views/aluno/requisicoes/requisicoes.html",
         exact: false,
         funcao: () => {},
       },
@@ -165,7 +165,7 @@ let router = Router.routes([
             path: "",
             exact: true,
             render: "../views/aluno/feed/cursos.html",
-            funcao: () => {iniciarFeedCursos},
+            funcao: iniciarFeedCursos,
           },
           {
             path: "/curso/:idCurso",
