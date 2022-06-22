@@ -1,0 +1,114 @@
+#analisarQuestionarios {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor-secundaria);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    /* display: none; */
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  
+  #analisarQuestionarios #analisarQuestionariosForm {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    min-width: 400px;
+    height: fit-content;
+    background-color: var(--branco);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  #analisarQuestionarios #analisarQuestionariosForm img.imgAnalisarCorretoIncorreto {
+    width: 20px;
+    height: 20px;
+    margin: 0 10px 0 0;
+  }
+
+  #analisarQuestionarios #analisarQuestionariosForm h2 {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  #analisarQuestionarios #analisarQuestionariosForm h2#tituloQuestionarioAnalisar {
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--verde-escuro);
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  #analisarQuestionarios #analisarQuestionariosForm div.analisarQuestionariosConteudoPerguntas {
+    width: 100%;
+  }
+  
+  #analisarQuestionarios #analisarQuestionariosForm div.analisarQuestionariosConteudoPerguntas div.pergunta {
+    width: 100%;
+    margin: 20px 0;
+  }
+  
+  #analisarQuestionarios #analisarQuestionariosForm div.analisarQuestionariosConteudoPerguntas div.pergunta p {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: start;
+    font-size: 20px;
+  }
+  
+  #analisarQuestionarios #analisarQuestionariosForm div.analisarQuestionariosConteudoPerguntas div.pergunta div.alternativa {
+    display: flex;
+    width: calc(100%);
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  #analisarQuestionarios #analisarQuestionariosForm div.analisarQuestionariosConteudoPerguntas div.pergunta div.alternativa label {
+    width: calc(100% - 60px);
+  }
+  
+  #analisarQuestionarios #analisarQuestionariosForm div.analisarQuestionariosConteudoPerguntas div.pergunta div.alternativa label.alternativaCorreta {
+    font-weight: bold;
+    color: var(--verde-escuro);
+  }
+  
+  #analisarQuestionarios #analisarQuestionariosForm div.analisarQuestionariosConteudoPerguntas div.pergunta div.alternativa label.alternativaIncorreta {
+    font-weight: bold;
+    color: var(--vermelho);
+  }
+
+  #analisarQuestionarios #analisarQuestionariosForm .analisarQuestionariosAcoes {
+    margin: 15px 0;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+
+  #analisarQuestionarios #analisarQuestionariosForm .analisarQuestionariosAcoes button {
+    border: 0;
+    border-radius: 10px;
+    height: 60px;
+    width: 150px;
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--verde-confirmar);
+    color: white;
+  }
+
+  #analisarQuestionarios #analisarQuestionariosForm .analisarQuestionariosAcoes button:hover {
+    background-color: var(--verde-confirmar-hover);
+    transition: 0.5s;
+  }

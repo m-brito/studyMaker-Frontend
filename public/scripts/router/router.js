@@ -225,7 +225,7 @@ let router = Router.routes([
                 path: "/questionario/:idQuestionario",
                 exact: true,
                 render: "../views/administrador/analisar/questionario.html",
-                funcao: () => {},
+                funcao: iniciarAnalisarQuestionario,
               },
             ]
           },
