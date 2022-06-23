@@ -23,6 +23,59 @@ async function cadastrarUsuario(img, nome, email, senha) {
     return data;
 }
 
+async function editarFotoUsuario(img) {
+    var tentativas = 0;
+    var ok = false
+    if(img.value) {
+        var img = img.files[0];
+    } else {
+        var img = "";
+    }
+    dados = new FormData();
+    dados.append("imagem", img)
+    dados.append("token", buscarToken())
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/usuario/editarFotoUsuario.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: dados,
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function editarUsuario(nome) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/usuario/editarUsuario.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "nome": nome,
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
 // Buscar usuario
 async function buscarUsuario() {
     var tentativas = 0;

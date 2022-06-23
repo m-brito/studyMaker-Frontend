@@ -126,7 +126,19 @@
             exact: false,
             funcao: () => {},
           },
+          {
+            path: "/perfil",
+            render: "../views/aluno/usuario/perfil.html",
+            exact: false,
+            funcao: iniciarPerfilUsuario,
+          },
         ],
+    },
+    {
+      path: "",
+      exact: true,
+      render: "../views/administrador/requisicoes/requisicoes.html",
+      funcao: iniciarRequisicoes,
     },
   ]);
   

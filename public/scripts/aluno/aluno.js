@@ -34,6 +34,10 @@ window.onload = async () => {
             }, 2000)
         }
     })
+
+    document.querySelector("#containerImgPerfil img").addEventListener("click", () => {
+        window.location.href = "./aluno.html#/aluno/perfil";
+    })
 }
 
 function mostrarDados(dados) {

@@ -32,6 +32,10 @@ window.onload = async () => {
             }, 2000)
         }
     })
+
+    document.querySelector("#containerImgPerfil img").addEventListener("click", () => {
+        window.location.href = "./administrador.html#/administrador/perfil";
+    })
 }
 
 function mostrarDados(dados) {

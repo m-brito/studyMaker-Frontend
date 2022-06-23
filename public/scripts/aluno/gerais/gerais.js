@@ -188,9 +188,110 @@ async function verificarLogadoAdm(tkn) {
     }
 }
 
+// Verificar se esta logado Ambos
+async function verificarLogadoAmbos(tkn) {
+    if(tkn) {
+        var respDadosUsuario = await buscarUsuario(tkn);
+        if(respDadosUsuario.status == erroRequisicao && respDadosUsuario.mensagem == "Token expirado") {
+            mostrarMensagem(respDadosUsuario.mensagem);
+            setTimeout(() => {
+                window.location.href = "../../index.html";
+            }, 4000);
+        } else if(respDadosUsuario.status == erroRequisicao) {
+            window.location.href = "../../index.html";
+        } else if(respDadosUsuario.status == sucessoRequisicao) {
+            mostrarDados(respDadosUsuario);
+        }
+    } else {
+        window.location.href = "../../index.html";
+    }
+}
+
 // Funcao voltar
 function voltarPagina() {
     window.history.back();
+}
+
+// poPup confirmar com input mensagem
+const editarFotoPerfil = {
+    open (options) {
+        options = Object.assign({}, {
+            textoOK: "Confirmar",
+            textoCancelar: "Cancelar",
+            json: {},
+            onok: function () {},
+            oncancel: function () {}
+        }, options);
+
+        const html = `
+            <div class="containerConfirmar">
+                <div class="janelaConfirmar">
+                    <img src="${options.json.fotoUsuario}" id="fotoEditarPerfil">
+                    <button class="fecharJanelaConfirmar">&times;</button>
+                    <div id="containerArquivo">
+                        <input type="file" name="fotoPerfil" id="fotoPerfil">
+                        <div id="nomeArquivo"></div>
+                        <label for="fotoPerfil"><p>Selecionar</p></label>
+                    </div>
+                    <div class="janelaConfirmarAcoes">
+                        <button class="cancelar"><p>${options.textoCancelar}</p></button>
+                        <button class="confirmar"><p>${options.textoOK}</p></button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        const template = document.createElement('Template');
+        template.innerHTML = html;
+
+        const confirmEl = template.content.querySelector(".containerConfirmar");
+        const bttFechar = template.content.querySelector(".fecharJanelaConfirmar");
+        const bttOk = template.content.querySelector(".confirmar");
+        const bttCancelar = template.content.querySelector(".cancelar");
+
+        confirmEl.querySelector("input[id=fotoPerfil]").addEventListener('change', function(){
+            const valorInput = document.querySelector("input[id=fotoPerfil]").value;
+            const mostrarNome = document.querySelector("div[id=nomeArquivo]");
+            mostrarNome.innerHTML = valorInput;
+            let preview = confirmEl.querySelector('img#fotoEditarPerfil');
+            let reader = new FileReader();
+            let file = event.target.files[0];
+
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                preview.src = reader.result;
+            };
+        });
+
+        document.body.appendChild(template.content);
+
+        confirmEl.addEventListener("click", e => {
+            if(e.target === confirmEl) {
+                options.oncancel();
+                this._close(confirmEl);
+            }
+        });
+
+        bttOk.addEventListener("click", () => {
+            const fotoPerfilNova = confirmEl.querySelector("input[id=fotoPerfil]");
+            options.onok(fotoPerfilNova);
+            this._close(confirmEl);
+        });
+
+        [bttCancelar, bttFechar].forEach(el => {
+            el.addEventListener("click", () => {
+                options.oncancel();
+                this._close(confirmEl);
+            })
+        });
+    },
+    _close (confirmEl) {
+        confirmEl.classList.add("fecharConfirmar")
+
+        confirmEl.addEventListener("animationend", () => {
+            document.body.removeChild(confirmEl);
+        })
+    }
 }
 
 // poPup confirmar com input mensagem

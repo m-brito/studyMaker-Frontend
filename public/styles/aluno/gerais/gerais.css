@@ -113,6 +113,59 @@ img.voltarPagina:hover {
     animation-duration: 0.2s;
     animation-fill-mode: forwards;
   }
+
+.containerConfirmar #containerArquivo{
+    display: flex;
+    height: 50px;
+}
+
+.containerConfirmar #nomeArquivo{
+    flex: 1;
+    height: 50px;
+    background-color: var(--cinza);
+    border: 0.5px solid rgba(0, 0, 0, 0.507);
+    border-radius: 5px 0 0 5px;
+    font-size: 15px;
+    padding: 0 15px;
+    overflow: hidden;
+    border-right: none;
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.containerConfirmar input[type='file'] {
+    display: none;
+}
+
+.containerConfirmar label[for=foto], .containerConfirmar label[for=fotoPerfil] {
+    cursor: pointer;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(211, 211, 211);
+    border-radius: 0 5px 5px 0;
+    border: 0.5px solid rgba(0, 0, 0, 0.507);
+    transition: 0.5s;
+}
+
+.containerConfirmar label[for=foto]:hover, .containerConfirmar label[for=fotoPerfil]:hover {
+    transition: 0.5s;
+    background-color: rgb(233, 233, 233);
+}
+
+.containerConfirmar label[for=foto] p, .containerConfirmar label[for=fotoPerfil] p {
+    font-weight: bold;
+}
+  
+.containerConfirmar .janelaConfirmar #fotoEditarPerfil {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+}
   
 .containerConfirmar .janelaConfirmar {
     position: relative;

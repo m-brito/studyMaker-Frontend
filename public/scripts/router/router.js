@@ -159,6 +159,12 @@ let router = Router.routes([
         funcao: iniciarRequisicoesAluno,
       },
       {
+        path: "/perfil",
+        render: "../views/aluno/usuario/perfil.html",
+        exact: false,
+        funcao: iniciarPerfilUsuario,
+      },
+      {
         path: "/feed",
         children: [
           {
@@ -206,12 +212,12 @@ let router = Router.routes([
     funcao: iniciarRelatorioQuestionario,
     exact: false,
   },
-  // {
-  //   path: "",
-  //   exact: true,
-  //   render: "../views/aluno/feed/cursos.html",
-  //   funcao: () => {iniciarFeedCursos},
-  // },
+  {
+    path: "",
+    exact: true,
+    render: "../views/aluno/feed/cursos.html",
+    funcao: () => {iniciarFeedCursos},
+  },
 ]);
 
 window.config = {
