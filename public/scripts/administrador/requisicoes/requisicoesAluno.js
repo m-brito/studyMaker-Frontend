@@ -26,6 +26,12 @@ function analisarQuestionario(idQuestionario) {
 async function APIrecusarRequisicaoCurso(json, mensagem) {
     const status = "Recusado";
     const respAvaliarReqCurso = await avaliarRequisicaoCurso(json.idTornarPublico, mensagem, status);
+    if(respAvaliarReqCurso["status"] && respAvaliarReqCurso["status"] == sucessoRequisicao) {
+        mensagemPopUp.show({
+            mensagem: "Curso avaliado com sucesso!",
+            cor: "green"
+        });
+    }
     enviarMensagem(json.email.toString(), "Usuario", "Requisicao", "Requisicao de curso recusada!");
     mostrarRequisicoesAluno();
 }
@@ -34,6 +40,12 @@ async function APIaceitarRequisicaoCurso(json, mensagem) {
     const status = "Aceito";
     const respAvaliarReqCurso = await avaliarRequisicaoCurso(json.idTornarPublico, mensagem, status);
     const respTornarCursoPublico = await tornarCursoPublico(json.idCurso);
+    if(respAvaliarReqCurso["status"] && respAvaliarReqCurso["status"] == sucessoRequisicao) {
+        mensagemPopUp.show({
+            mensagem: "Curso avaliado com sucesso!",
+            cor: "green"
+        });
+    }
     enviarMensagem(json.email.toString(), "Usuario", "Requisicao", "Requisicao de curso aceita!");
     mostrarRequisicoesAluno();
 }
@@ -41,6 +53,12 @@ async function APIaceitarRequisicaoCurso(json, mensagem) {
 async function APIrecusarRequisicaoMateria(json, mensagem) {
     const status = "Recusado";
     const respAvaliarReqMateria = await avaliarRequisicaoMateria(json.idTornarPublico, mensagem, status);
+    if(respAvaliarReqMateria["status"] && respAvaliarReqMateria["status"] == sucessoRequisicao) {
+        mensagemPopUp.show({
+            mensagem: "Materia avaliada com sucesso!",
+            cor: "green"
+        });
+    }
     enviarMensagem(json.email.toString(), "Usuario", "Requisicao", "Requisicao de materia recusada!");
     mostrarRequisicoesAluno();
 }
@@ -49,6 +67,12 @@ async function APIaceitarRequisicaoMateria(json, mensagem) {
     const status = "Aceito";
     const respAvaliarReqMateria = await avaliarRequisicaoMateria(json.idTornarPublico, mensagem, status);
     const respTornarMateriaPublico = await tornarMateriaPublico(json.idCurso, json.idMateria);
+    if(respAvaliarReqMateria["status"] && respAvaliarReqMateria["status"] == sucessoRequisicao) {
+        mensagemPopUp.show({
+            mensagem: "Materia avaliada com sucesso!",
+            cor: "green"
+        });
+    }
     enviarMensagem(json.email.toString(), "Usuario", "Requisicao", "Requisicao de materia aceita!");
     mostrarRequisicoesAluno();
 }
@@ -56,6 +80,12 @@ async function APIaceitarRequisicaoMateria(json, mensagem) {
 async function APIrecusarRequisicaoQuestionario(json, mensagem) {
     const status = "Recusado";
     const respAvaliarReqQuestionario = await avaliarRequisicaoQuestionario(json.idTornarPublico, mensagem, status);
+    if(respAvaliarReqQuestionario["status"] && respAvaliarReqQuestionario["status"] == sucessoRequisicao) {
+        mensagemPopUp.show({
+            mensagem: "Questionario avaliado com sucesso!",
+            cor: "green"
+        });
+    }
     enviarMensagem(json.email.toString(), "Usuario", "Requisicao", "Requisicao de questionario recusada!");
     mostrarRequisicoesAluno();
 }
@@ -64,6 +94,12 @@ async function APIaceitarRequisicaoQuestionario(json, mensagem) {
     const status = "Aceito";
     const respAvaliarReqQuestionario = await avaliarRequisicaoQuestionario(json.idTornarPublico, mensagem, status);
     const respTornarQuestionarioPublico = await tornarQuestionarioPublico(json.idQuestionario);
+    if(respAvaliarReqQuestionario["status"] && respAvaliarReqQuestionario["status"] == sucessoRequisicao) {
+        mensagemPopUp.show({
+            mensagem: "Questionario avaliado com sucesso!",
+            cor: "green"
+        });
+    }
     enviarMensagem(json.email.toString(), "Usuario", "Requisicao", "Requisicao de questionario aceita!");
     mostrarRequisicoesAluno();
 }
