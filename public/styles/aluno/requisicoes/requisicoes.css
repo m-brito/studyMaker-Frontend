@@ -1,0 +1,81 @@
+#principalRequisicaoAluno {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#principalRequisicaoAluno #requisicaoAlunoCabecalho {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+  }
+
+#principalRequisicaoAluno #requisicaoAlunoCabecalho h1 {
+    color: var(--cor-principal);
+}
+
+#principalRequisicaoAluno #conteudoRequisicaoAluno {
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#principalRequisicaoAluno #conteudoRequisicaoAluno table {
+    width: 80%;
+    min-width: 450px;
+    background-color: var(--branco);
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 100px;
+    /* padding: 10px 0; */
+}
+
+#principalRequisicaoAluno #conteudoRequisicaoAluno table thead tr th {
+    font-size: 17px;
+    padding: 10px;
+}
+
+#principalRequisicaoAluno #conteudoRequisicaoAluno table td {
+    padding: 10px 0;
+}
+
+#principalRequisicaoAluno #conteudoRequisicaoAluno table td p.statusReq {
+    padding: 2px 2px;
+    border-left: 3px solid black;
+    border-radius: 0 5px 5px 0;
+    width: min-content;
+    margin: auto;
+    font-weight: bold;
+    color: white;
+}
+
+#principalRequisicaoAluno #conteudoRequisicaoAluno table tr:hover td:not(td.status) {
+    font-weight: bold;
+    color: var(--verde-escuro) !important;
+    font-size: 17px;
+}
+
+#principalRequisicaoAluno #conteudoRequisicaoAluno table tr.cinza {
+    background-color: #ebebeb;
+}
+
+#principalRequisicaoAluno #conteudoRequisicaoAluno table tr:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+#principalRequisicaoAluno #conteudoRequisicaoAluno table tr td button {
+    background-color: var(--verde-confirmar);
+    border: 0;
+    padding: 3px;
+    color: white;
+    font-size: 13px;
+    border-radius: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+}
