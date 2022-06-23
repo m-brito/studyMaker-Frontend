@@ -13,16 +13,23 @@ async function iniciarEditarCurso(parametros) {
     })
 
     document.querySelector("#meuscursosEditar .meuscursosEditarAcoes #editar").addEventListener("click", async () => {
-        var nome = document.querySelector("#meuscursosEditar input").value;
-        var descricao = document.querySelector("#meuscursosEditar textarea").value;
-        const respCadastro = await editarCurso(nome, descricao, parametros["idCurso"]);
-        if(respCadastro["status"] && respCadastro["status"] == sucessoRequisicao) {
-            mensagemPopUp.show({
-                mensagem: "Curso editado com sucesso!",
-                cor: "green"
-            });
-            window.location.href = "./aluno.html#/meuscursos"
-        }
+        Confirm.open({
+            mensagem: "Caso voce editar, o curso sera despublicado! <br> Tem certeza que deseja continuar?",
+            textoOK: "Sim",
+            textoCancelar: "Cancelar",
+            onok: async () => {
+                var nome = document.querySelector("#meuscursosEditar input").value;
+                var descricao = document.querySelector("#meuscursosEditar textarea").value;
+                const respCadastro = await editarCurso(nome, descricao, parametros["idCurso"]);
+                if(respCadastro["status"] && respCadastro["status"] == sucessoRequisicao) {
+                    mensagemPopUp.show({
+                        mensagem: "Curso editado com sucesso!",
+                        cor: "green"
+                    });
+                    window.location.href = "./aluno.html#/aluno/meuscursos"
+                }
+            }
+        })
     })
 
     document.querySelector("#voltarPagina").addEventListener("click", () => {
