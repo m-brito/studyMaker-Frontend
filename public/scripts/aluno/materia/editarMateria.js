@@ -21,16 +21,23 @@ async function iniciarEditarMateria(parametros) {
     })
 
     document.querySelector("#minhasmateriasEditar .minhasmateriasEditarAcoes #editar").addEventListener("click", async () => {
-        var nome = document.querySelector("#minhasmateriasEditar input").value;
-        var descricao = document.querySelector("#minhasmateriasEditar textarea").value;
-        const respCadastro = await editarMateria(parametros["idMateria"], parametros["idCurso"], nome, descricao);
-        if(respCadastro["status"] && respCadastro["status"] == sucessoRequisicao) {
-            mensagemPopUp.show({
-                mensagem: "Materia editada com sucesso!",
-                cor: "green"
-            });
-            window.location.href = `./aluno.html#/meuscursos/${parametros["idCurso"]}`;
-        }
+        Confirm.open({
+            mensagem: "Caso voce editar, a materia sera despublicada! <br> Tem certeza que deseja continuar?",
+            textoOK: "Sim",
+            textoCancelar: "Cancelar",
+            onok: async () => {
+                var nome = document.querySelector("#minhasmateriasEditar input").value;
+                var descricao = document.querySelector("#minhasmateriasEditar textarea").value;
+                const respCadastro = await editarMateria(parametros["idMateria"], parametros["idCurso"], nome, descricao);
+                if(respCadastro["status"] && respCadastro["status"] == sucessoRequisicao) {
+                    mensagemPopUp.show({
+                        mensagem: "Materia editada com sucesso!",
+                        cor: "green"
+                    });
+                    window.location.href = `./aluno.html#/aluno/meuscursos/${parametros["idCurso"]}`;
+                }
+            }
+        })
     })
 
     document.querySelector("#voltarPagina").addEventListener("click", () => {
