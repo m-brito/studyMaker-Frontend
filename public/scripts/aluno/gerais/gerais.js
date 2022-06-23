@@ -535,33 +535,40 @@ const EditarPergunta = {
 
         bttOk.addEventListener("submit", (event) => {
             event.preventDefault();
-            const resps = criarPerguntaEl.querySelectorAll(".resposta")
-            if(resps.length <=1) {
-                mensagemPopUp.show({
-                    mensagem: "Para cadastrar uma pergunta é necessário pelo menos duas respostas!",
-                    cor: "red"
-                });
-            } else {
-                const opcoesRadios = criarPerguntaEl.querySelectorAll(".containerCadastrarPergunta .respostasRadios input[name=respostaPergunta]");
-                let textoPergunta = criarPerguntaEl.querySelector(".containerCadastrarPergunta textarea[name=textopergunta]").value;
-                let alternativaCorreta;
-                let alternativas = [];
-                for (var i=0;i<opcoesRadios.length;i++){
-                    alternativas.push(opcoesRadios[i].value);
-                    if ( opcoesRadios[i].checked ) {
-                        alternativaCorreta = opcoesRadios[i].value;
+            Confirm.open({
+                mensagem: "Caso voce editar, o questionario sera despublicada! <br> Tem certeza que deseja continuar?",
+                textoOK: "Sim",
+                textoCancelar: "Cancelar",
+                onok: async () => {
+                    const resps = criarPerguntaEl.querySelectorAll(".resposta")
+                    if(resps.length <=1) {
+                        mensagemPopUp.show({
+                            mensagem: "Para cadastrar uma pergunta é necessário pelo menos duas respostas!",
+                            cor: "red"
+                        });
+                    } else {
+                        const opcoesRadios = criarPerguntaEl.querySelectorAll(".containerCadastrarPergunta .respostasRadios input[name=respostaPergunta]");
+                        let textoPergunta = criarPerguntaEl.querySelector(".containerCadastrarPergunta textarea[name=textopergunta]").value;
+                        let alternativaCorreta;
+                        let alternativas = [];
+                        for (var i=0;i<opcoesRadios.length;i++){
+                            alternativas.push(opcoesRadios[i].value);
+                            if ( opcoesRadios[i].checked ) {
+                                alternativaCorreta = opcoesRadios[i].value;
+                            }
+                        }
+                        options.onok({
+                            "idPergunta": options.idPergunta,
+                            "excluido": false,
+                            "id": options.numero,
+                            "texto": textoPergunta,
+                            "resposta": alternativaCorreta.toString().replaceAll(",", "&#44;"),
+                            "alternativas": [alternativas[0].toString().replaceAll(",", "&#44;"), alternativas[1].toString().replaceAll(",", "&#44;"), alternativas[2].toString().replaceAll(",", "&#44;"), alternativas[3].toString().replaceAll(",", "&#44;"), alternativas[4].toString().replaceAll(",", "&#44;")]
+                        }, options.idQuestionario);
+                        this._close(criarPerguntaEl);   
                     }
                 }
-                options.onok({
-                    "idPergunta": options.idPergunta,
-                    "excluido": false,
-                    "id": options.numero,
-                    "texto": textoPergunta,
-                    "resposta": alternativaCorreta.toString().replaceAll(",", "&#44;"),
-                    "alternativas": [alternativas[0].toString().replaceAll(",", "&#44;"), alternativas[1].toString().replaceAll(",", "&#44;"), alternativas[2].toString().replaceAll(",", "&#44;"), alternativas[3].toString().replaceAll(",", "&#44;"), alternativas[4].toString().replaceAll(",", "&#44;")]
-                }, options.idQuestionario);
-                this._close(criarPerguntaEl);   
-            }
+            })
         });
 
         bttCancelar.addEventListener("click", () => {

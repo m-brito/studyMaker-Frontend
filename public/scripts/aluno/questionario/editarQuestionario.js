@@ -19,20 +19,27 @@ async function iniciarEditarQuestionario(parametros) {
 
     document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm").addEventListener("submit", async (event) => {
         event.preventDefault();
-        const respEditarQuestionario = await editarQuestionarioAPI(document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm input[name=nomeQuestionario]").value, document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm textarea[name=descricao]").value, parametrosJsonEQ["idQuestionario"]);
-        if(respEditarQuestionario["status"] && respEditarQuestionario["status"] == sucessoRequisicao) {
-            mensagemPopUp.show({
-                mensagem: "Questionario editado com sucesso!",
-                cor: "green"
-            });
-            voltarPagina();
-        } else {
-            mensagemPopUp.show({
-                mensagem: respEditarQuestionario["mensagem"],
-                cor: "red"
-            });
-            voltarPagina();
-        }
+        Confirm.open({
+            mensagem: "Caso voce editar, o questionario sera despublicada! <br> Tem certeza que deseja continuar?",
+            textoOK: "Sim",
+            textoCancelar: "Cancelar",
+            onok: async () => {
+                const respEditarQuestionario = await editarQuestionarioAPI(document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm input[name=nomeQuestionario]").value, document.querySelector("#meusquestionariosCadastrar form#meusquestionariosCadastrarForm textarea[name=descricao]").value, parametrosJsonEQ["idQuestionario"]);
+                if(respEditarQuestionario["status"] && respEditarQuestionario["status"] == sucessoRequisicao) {
+                    mensagemPopUp.show({
+                        mensagem: "Questionario editado com sucesso!",
+                        cor: "green"
+                    });
+                    voltarPagina();
+                } else {
+                    mensagemPopUp.show({
+                        mensagem: respEditarQuestionario["mensagem"],
+                        cor: "red"
+                    });
+                    voltarPagina();
+                }
+            }
+        })
     })
 }
 
