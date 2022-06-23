@@ -963,12 +963,164 @@ async function avaliarRequisicaoQuestionario(idTornarPublico, mensagemAvaliacao,
     return data;
 }
 
+async function cadastrarRequisicaoCurso(idCurso) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/cadastrarRequisicaoCurso.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "idCurso": idCurso,
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function cadastrarRequisicaoMateria(idMateria) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/cadastrarRequisicaoMateria.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "idMateria": idMateria,
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function cadastrarRequisicaoQuestionario(idQuestionario) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/cadastrarRequisicaoQuestionario.php`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    "token": buscarToken(),
+                    "idQuestionario": idQuestionario,
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
 async function resultadoRequisicoes() {
     var tentativas = 0;
     var ok = false
     while(tentativas <= 4 && ok == false) {
         try {
             const resp = await fetch(`${HOST}/requisicoes/dadosRequisicoes.php?token=${buscarToken()}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function resultadoRequisicoesAluno() {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/dadosRequisicoesAluno.php?token=${buscarToken()}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function resultadoRequisicoesCursoId(idCurso) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/dadosRequisicoesCursosAlunoIdCurso.php?token=${buscarToken()}&idCurso=${idCurso}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function resultadoRequisicoesMateriaId(idMateria) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/dadosRequisicoesMateriasAlunoIdMateria.php?token=${buscarToken()}&idMateria=${idMateria}`, {
+                "method": "GET",
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
+async function resultadoRequisicoesQuestionarioId(idQuestionario) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOST}/requisicoes/dadosRequisicoesQuestionariosAlunoIdQuestionario.php?token=${buscarToken()}&idQuestionario=${idQuestionario}`, {
                 "method": "GET",
                 headers: {
                     'Accept': 'application/json'

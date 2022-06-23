@@ -156,7 +156,7 @@ let router = Router.routes([
         path: "/requisicoes",
         render: "../views/aluno/requisicoes/requisicoes.html",
         exact: false,
-        funcao: () => {},
+        funcao: iniciarRequisicoesAluno,
       },
       {
         path: "/feed",

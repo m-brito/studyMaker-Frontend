@@ -142,8 +142,7 @@
 #cursosPrincipal
   .cursosCartao
   .cursosConteudoCartao
-  .cursosEstados
-  img + img {
+  .cursosEstados img {
   cursor: pointer;
   transition: 0.5s;
 }
@@ -151,8 +150,7 @@
 #cursosPrincipal
   .cursosCartao
   .cursosConteudoCartao
-  .cursosEstados
-  img + img:hover {
+  .cursosEstados img:hover {
       transform: scale(1.5);
     transition: 0.5s;
 }

@@ -25,6 +25,38 @@ async function deletarCurso(idCurso) {
     })
 }
 
+async function publicarCurso(idCurso, publico) {
+    if(publico == true) {
+        mensagemPopUp.show({
+            mensagem: "Este curso ja esta publico!",
+            cor: "orange"
+        });
+    } else {
+        const respReqCursoId = await resultadoRequisicoesCursoId(idCurso);
+        if(respReqCursoId["status"] && respReqCursoId["status"] != erroRequisicao) {
+            mensagemPopUp.show({
+                mensagem: `Este curso ja tem uma requisição pendente feita no dia ${formatarData(respReqCursoId["resultados"][0]["data"])}!`,
+                cor: "red"
+            });
+        } else {
+            Confirm.open({
+                mensagem: "Tem certeza que deseja publicar este curso?",
+                textoOK: "Sim",
+                textoCancelar: "Cancelar",
+                onok: async () => {
+                    const respCadReqCurso = await cadastrarRequisicaoCurso(idCurso);
+                    if(respCadReqCurso["status"] && respCadReqCurso["status"] != erroRequisicao) {
+                        mensagemPopUp.show({
+                            mensagem: `Requisicao feita com sucesso!`,
+                            cor: "green"
+                        });
+                    }
+                }
+            })
+        }
+    }
+}
+
 async function editarOculto(idCurso, acao) {
     const respEditaCurso = await ocultarDesocultarCurso(idCurso);
     if(respEditaCurso["status"] && respEditaCurso["status"] == sucessoRequisicao) {
@@ -56,7 +88,7 @@ async function mostrarCursos(token) {
                     <div class="cursosConteudoCartao">
                         <h2 class="cursosNomeCartao">${meusCursos["resultados"][x]["nome"]}</h2>
                         <div class="cursosEstados">
-                            <img src="${meusCursos["resultados"][x]["publico"] == "true" ? '../../public/assets/Imagens/Icone-publico.svg' : '../../public/assets/Imagens/Icone-privado.svg'}" alt="Curso ${meusCursos["resultados"][x]["privado"] == "true" ? 'privado' : 'publico'}">
+                            <img onclick="publicarCurso(${meusCursos["resultados"][x]["id"]}, ${meusCursos["resultados"][x]["publico"]})" src="${meusCursos["resultados"][x]["publico"] == "true" ? '../../public/assets/Imagens/Icone-publico.svg' : '../../public/assets/Imagens/Icone-privado.svg'}" alt="Curso ${meusCursos["resultados"][x]["privado"] == "true" ? 'privado' : 'publico'}">
                             <img onclick="editarOculto(${meusCursos["resultados"][x]["id"]}, '${meusCursos["resultados"][x]["oculto"] == "true" ? 'exposto' : 'ocultado'}')" src="${meusCursos["resultados"][x]["oculto"] == "true" ? '../../public/assets/Imagens/Icone-oculto.svg' : '../../public/assets/Imagens/Icone-exposto.svg'}" alt="Curso ${meusCursos["resultados"][x]["oculto"] == true ? 'oculto' : 'exposto'}">
                         </div>
                         <div class="cursosCartaoOpcoes">
