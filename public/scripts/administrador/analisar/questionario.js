@@ -31,7 +31,7 @@ async function iniciarAnalisarQuestionario(parametrosJson) {
         const imagemCorreta = '<img src="../../../../public/assets/Imagens/correto.png" class="imgAnalisarCorretoIncorreto" alt="Alternativa Correta">';
         for(let x=0; x<perguntas.length; x++) {
             const alternativas = perguntas[x]["alternativa"];
-            const alternativaCorreta = perguntas[0]["resposta"]["texto"]
+            const alternativaCorreta = perguntas[x]["resposta"]["texto"]
             const cartaoAnalisarPergunta = `
                 <div class="pergunta">
                     <p>${x+1}) ${perguntas[x]["texto"].toString().replaceAll("\n", "<br>")}</p>
