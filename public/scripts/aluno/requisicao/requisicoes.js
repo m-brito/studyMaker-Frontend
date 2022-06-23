@@ -26,7 +26,8 @@ async function mostrarRequisicoesAluno() {
                     <td>${respReqAluno["resultados"][x]["nome"+respReqAluno["resultados"][x]["tipo"]]}</td>
                     <td>${formatarData(respReqAluno["resultados"][x]["data"])}</td>
                     <td>${respReqAluno["resultados"][x]["dataAvaliado"] != null ? formatarData(respReqAluno["resultados"][x]["dataAvaliado"]) : "-----"}</td>
-                    <td>${respReqAluno["resultados"][x]["mensagem"] != null ? respReqAluno["resultados"][x]["mensagem"] : "-----"}</td>
+                    <td>${respReqAluno["resultados"][x]["mensagemAvaliacao"] != null && respReqAluno["resultados"][x]["mensagemAvaliacao"] != "" ? respReqAluno["resultados"][x]["mensagemAvaliacao"] : "-----"}</td>
+                    <td>${respReqAluno["resultados"][x]["nomeAdministrador"] != null && respReqAluno["resultados"][x]["nomeAdministrador"] != "" ? respReqAluno["resultados"][x]["nomeAdministrador"] : "-----"}</td>
                     <td class="status"><p class="statusReq" style="background-color: ${respReqAluno["resultados"][x]["status"] == null ? "#e9ab2c" : respReqAluno["resultados"][x]["status"] == "Recusado" ? "#ff5a5a" : "#37c537"}">${respReqAluno["resultados"][x]["status"] != null ? respReqAluno["resultados"][x]["status"] : "Pendente"}</p></td>
                 </tr>
             `;
