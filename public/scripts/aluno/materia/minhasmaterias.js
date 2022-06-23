@@ -14,6 +14,38 @@ async function iniciarMinhasMaterias(parametros) {
     })
 }
 
+async function publicarMateria(idMateria, publico) {
+    if(publico == true) {
+        mensagemPopUp.show({
+            mensagem: "Esta materia ja esta publico!",
+            cor: "orange"
+        });
+    } else {
+        const respReqMateriaId = await resultadoRequisicoesMateriaId(idMateria);
+        if(respReqMateriaId["status"] && respReqMateriaId["status"] != erroRequisicao) {
+            mensagemPopUp.show({
+                mensagem: `Esta materia ja tem uma requisição pendente feita no dia ${formatarData(respReqMateriaId["resultados"][0]["data"])}!`,
+                cor: "red"
+            });
+        } else {
+            Confirm.open({
+                mensagem: "Tem certeza que deseja publicar esta materia?",
+                textoOK: "Sim",
+                textoCancelar: "Cancelar",
+                onok: async () => {
+                    const respCadReqMateria = await cadastrarRequisicaoMateria(idMateria);
+                    if(respCadReqMateria["status"] && respCadReqMateria["status"] != erroRequisicao) {
+                        mensagemPopUp.show({
+                            mensagem: `Requisicao feita com sucesso!`,
+                            cor: "green"
+                        });
+                    }
+                }
+            })
+        }
+    }
+}
+
 async function editarOcultoMateria(idMateria, acao) {
     carregamento();
     const respOcultarMateria = await apiOcultarMateria(idMateria, parametrosJson["idCurso"]);
@@ -60,7 +92,7 @@ async function mostrarMaterias() {
                     <div class="materiasConteudoCartao">
                         <h2 class="materiasNomeCartao">${respMaterias["resultados"][x]["nome"]}</h2>
                         <div class="materiasEstados">
-                            <img src="${respMaterias["resultados"][x]["publico"] == "true" ? '../../public/assets/Imagens/Icone-publico.svg' : '../../public/assets/Imagens/Icone-privado.svg'}" alt="Materia ${respMaterias["resultados"][x]["privado"] == "true" ? 'privado' : 'publico'}">
+                            <img onclick="publicarMateria(${respMaterias["resultados"][x]["id"]}, ${respMaterias["resultados"][x]["publico"]})" src="${respMaterias["resultados"][x]["publico"] == "true" ? '../../public/assets/Imagens/Icone-publico.svg' : '../../public/assets/Imagens/Icone-privado.svg'}" alt="Materia ${respMaterias["resultados"][x]["privado"] == "true" ? 'privado' : 'publico'}">
                             <img onclick="editarOcultoMateria(${respMaterias["resultados"][x]["id"]}, '${respMaterias["resultados"][x]["oculto"] == "true" ? 'exposta' : 'ocultado'}')" src="${respMaterias["resultados"][x]["oculto"] == "true" ? '../../public/assets/Imagens/Icone-oculto.svg' : '../../public/assets/Imagens/Icone-exposto.svg'}" alt="Materia ${respMaterias["resultados"][x]["oculto"] == true ? 'oculto' : 'exposto'}">
                         </div>
                         <div class="materiasCartaoOpcoes">

@@ -147,8 +147,7 @@
   #materiasPrincipal
     .materiasCartao
     .materiasConteudoCartao
-    .materiasEstados
-    img + img {
+    .materiasEstados img {
     cursor: pointer;
     transition: 0.5s;
   }
@@ -156,8 +155,7 @@
   #materiasPrincipal
     .materiasCartao
     .materiasConteudoCartao
-    .materiasEstados
-    img + img:hover {
+    .materiasEstados img:hover {
         transform: scale(1.5);
       transition: 0.5s;
   }
