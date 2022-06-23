@@ -148,14 +148,14 @@
     .materiasCartao
     .materiasConteudoCartao
     .materiasEstados img {
-    cursor: pointer;
     transition: 0.5s;
   }
   
   #materiasPrincipal
     .materiasCartao
     .materiasConteudoCartao
-    .materiasEstados img:hover {
+    .materiasEstados img:hover:not(img.autor) {
+      cursor: pointer;
         transform: scale(1.5);
       transition: 0.5s;
   }

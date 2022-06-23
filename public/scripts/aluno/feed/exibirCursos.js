@@ -57,7 +57,7 @@ async function mostrarCursosFeed(token) {
                                 <img onclick="feedEditarOculto(${meusCursos["resultados"][x]["id"]}, '${meusCursos["resultados"][x]["oculto"] == "true" ? 'exposto' : 'ocultado'}')" src="${meusCursos["resultados"][x]["oculto"] == "true" ? '../../public/assets/Imagens/Icone-oculto.svg' : '../../public/assets/Imagens/Icone-exposto.svg'}" alt="Curso ${meusCursos["resultados"][x]["oculto"] == true ? 'oculto' : 'exposto'}">
                             `: `
                                 <div>
-                                    <img src="../../public/assets/Imagens/Icone-autor.svg" alt="Autor">
+                                    <img class="autor" src="../../public/assets/Imagens/Icone-autor.svg" alt="Autor">
                                     <p>${meusCursos["resultados"][x]["nomeAutor"]}</p>
                                 </div>
                             `}

@@ -69,7 +69,7 @@ async function mostrarQuestionariosFeed() {
                         </div>
                         ${meusQuestionarios["resultados"][x]["permissao"] ? `` : `
                             <div class="divAutor">
-                                <img src="../../public/assets/Imagens/Icone-autor.svg" alt="Autor">
+                                <img class="autor" src="../../public/assets/Imagens/Icone-autor.svg" alt="Autor">
                                 <p>${meusQuestionarios["resultados"][x]["nomeAutor"]}</p>
                             </div>
                         `}

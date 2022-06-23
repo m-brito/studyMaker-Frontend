@@ -61,7 +61,7 @@ async function mostrarMateriasFeed() {
                                 <img onclick="feedEditarOcultoMateria(${respMaterias["resultados"][x]["id"]}, '${respMaterias["resultados"][x]["oculto"] == "true" ? 'exposta' : 'ocultado'}')" src="${respMaterias["resultados"][x]["oculto"] == "true" ? '../../public/assets/Imagens/Icone-oculto.svg' : '../../public/assets/Imagens/Icone-exposto.svg'}" alt="Materia ${respMaterias["resultados"][x]["oculto"] == true ? 'oculto' : 'exposto'}">
                             ` : `
                                 <div>
-                                    <img src="../../public/assets/Imagens/Icone-autor.svg" alt="Autor">
+                                    <img class="autor" src="../../public/assets/Imagens/Icone-autor.svg" alt="Autor">
                                     <p>${respMaterias["resultados"][x]["nomeAutor"]}</p>
                                 </div>
                             `}

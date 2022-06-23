@@ -143,14 +143,14 @@
   .cursosCartao
   .cursosConteudoCartao
   .cursosEstados img {
-  cursor: pointer;
   transition: 0.5s;
 }
 
 #cursosPrincipal
   .cursosCartao
   .cursosConteudoCartao
-  .cursosEstados img:hover {
+  .cursosEstados img:hover:not(img.autor) {
+    cursor: pointer;
       transform: scale(1.5);
     transition: 0.5s;
 }

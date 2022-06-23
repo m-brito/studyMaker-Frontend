@@ -145,7 +145,6 @@
     .questionariosConteudoCartao
     .questionariosEstados
     img {
-    cursor: pointer;
     transition: 0.5s;
   }
   
@@ -153,7 +152,8 @@
     .questionariosCartao
     .questionariosConteudoCartao
     .questionariosEstados
-    img:hover {
+    img:hover:not(img.autor) {
+      cursor: pointer;
         transform: scale(1.5);
       transition: 0.5s;
   }
