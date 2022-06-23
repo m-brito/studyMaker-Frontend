@@ -57,6 +57,7 @@ async function publicarQuestionario(idQuestionario, publico) {
                             mensagem: `Requisicao feita com sucesso!`,
                             cor: "green"
                         });
+                        enviarMensagem(EMAILSITE, NOMEPARA, "Requisicao", "Acaba de chegar uma nova requisicao de questionario!");
                     }
                 }
             })

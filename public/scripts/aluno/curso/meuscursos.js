@@ -50,6 +50,7 @@ async function publicarCurso(idCurso, publico) {
                             mensagem: `Requisicao feita com sucesso!`,
                             cor: "green"
                         });
+                        enviarMensagem(EMAILSITE, NOMEPARA, "Requisicao", "Acaba de chegar uma nova requisicao de curso!");
                     }
                 }
             })

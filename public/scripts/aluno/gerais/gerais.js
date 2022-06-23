@@ -83,6 +83,33 @@ async function enviarCodigo(para, nomepara) {
     return data;
 }
 
+async function enviarMensagem(para, nomepara, assunto, texto) {
+    var tentativas = 0;
+    var ok = false
+    while(tentativas <= 4 && ok == false) {
+        try {
+            const resp = await fetch(`${HOSTEMAIL}enviaremail`, {
+                "method": "POST",
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    "nomeemail": "Study Maker",
+                    "para": para,
+                    "nomepara": nomepara,
+                    "assunto": assunto,
+                    "texto": texto,
+                })
+            })
+            var data = await resp.json();
+            ok = true;
+        } catch (error) {
+            tentativas++;
+        }
+    }
+    return data;
+}
+
 // Criptografias
 // Criptografar um texto
 async function criptografa(codigo) {

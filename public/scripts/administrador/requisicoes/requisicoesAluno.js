@@ -26,6 +26,7 @@ function analisarQuestionario(idQuestionario) {
 async function APIrecusarRequisicaoCurso(json, mensagem) {
     const status = "Recusado";
     const respAvaliarReqCurso = await avaliarRequisicaoCurso(json.idTornarPublico, mensagem, status);
+    enviarMensagem(json.email.toString(), "Usuario", "Requisicao", "Requisicao de curso recusada!");
     mostrarRequisicoesAluno();
 }
 
@@ -33,12 +34,14 @@ async function APIaceitarRequisicaoCurso(json, mensagem) {
     const status = "Aceito";
     const respAvaliarReqCurso = await avaliarRequisicaoCurso(json.idTornarPublico, mensagem, status);
     const respTornarCursoPublico = await tornarCursoPublico(json.idCurso);
+    enviarMensagem(json.email.toString(), "Usuario", "Requisicao", "Requisicao de curso aceita!");
     mostrarRequisicoesAluno();
 }
 
 async function APIrecusarRequisicaoMateria(json, mensagem) {
     const status = "Recusado";
     const respAvaliarReqMateria = await avaliarRequisicaoMateria(json.idTornarPublico, mensagem, status);
+    enviarMensagem(json.email.toString(), "Usuario", "Requisicao", "Requisicao de materia recusada!");
     mostrarRequisicoesAluno();
 }
 
@@ -46,12 +49,14 @@ async function APIaceitarRequisicaoMateria(json, mensagem) {
     const status = "Aceito";
     const respAvaliarReqMateria = await avaliarRequisicaoMateria(json.idTornarPublico, mensagem, status);
     const respTornarMateriaPublico = await tornarMateriaPublico(json.idCurso, json.idMateria);
+    enviarMensagem(json.email.toString(), "Usuario", "Requisicao", "Requisicao de materia aceita!");
     mostrarRequisicoesAluno();
 }
 
 async function APIrecusarRequisicaoQuestionario(json, mensagem) {
     const status = "Recusado";
     const respAvaliarReqQuestionario = await avaliarRequisicaoQuestionario(json.idTornarPublico, mensagem, status);
+    enviarMensagem(json.email.toString(), "Usuario", "Requisicao", "Requisicao de questionario recusada!");
     mostrarRequisicoesAluno();
 }
 
@@ -59,10 +64,11 @@ async function APIaceitarRequisicaoQuestionario(json, mensagem) {
     const status = "Aceito";
     const respAvaliarReqQuestionario = await avaliarRequisicaoQuestionario(json.idTornarPublico, mensagem, status);
     const respTornarQuestionarioPublico = await tornarQuestionarioPublico(json.idQuestionario);
+    enviarMensagem(json.email.toString(), "Usuario", "Requisicao", "Requisicao de questionario aceita!");
     mostrarRequisicoesAluno();
 }
 
-function recusarRequisicaoCurso(idTornarPublico, idCurso) {
+function recusarRequisicaoCurso(idTornarPublico, idCurso, email) {
     ConfirmInput.open({
         mensagem: "Tem certeza que deseja recusar este curso?",
         textoOK: "Sim",
@@ -70,37 +76,40 @@ function recusarRequisicaoCurso(idTornarPublico, idCurso) {
         json: {
             "idTornarPublico" : idTornarPublico,
             "idCurso" : idCurso,
+            "email" : email,
         },
         onok: APIrecusarRequisicaoCurso
     });
 }
 
-function aceitarRequisicaoCurso(idTornarPublico, idCurso) {
+function aceitarRequisicaoCurso(idTornarPublico, idCurso, email) {
     ConfirmInput.open({
         mensagem: "Tem certeza que deseja aceitar este curso?",
         textoOK: "Sim",
         textoCancelar: "Cancelar",
         json: {
             "idTornarPublico": idTornarPublico,
-            "idCurso": idCurso
+            "idCurso": idCurso,
+            "email": email
         },
         onok: APIaceitarRequisicaoCurso
     });
 }
 
-function recusarRequisicaoMateria(idTornarPublico) {
+function recusarRequisicaoMateria(idTornarPublico, email) {
     ConfirmInput.open({
         mensagem: "Tem certeza que deseja recusar esta materia?",
         textoOK: "Sim",
         textoCancelar: "Cancelar",
         json: {
             "idTornarPublico" : idTornarPublico,
+            "email" : email,
         },
         onok: APIrecusarRequisicaoMateria
     });
 }
 
-function aceitarRequisicaoMateria(idTornarPublico, idMateria, idCurso) {
+function aceitarRequisicaoMateria(idTornarPublico, idMateria, idCurso, email) {
     ConfirmInput.open({
         mensagem: "Tem certeza que deseja aceitar esta materia?",
         textoOK: "Sim",
@@ -109,24 +118,26 @@ function aceitarRequisicaoMateria(idTornarPublico, idMateria, idCurso) {
             "idTornarPublico": idTornarPublico,
             "idMateria": idMateria,
             "idCurso": idCurso,
+            "email": email,
         },
         onok: APIaceitarRequisicaoMateria
     });
 }
 
-function recusarRequisicaoQuestionario(idTornarPublico, idQuestionario) {
+function recusarRequisicaoQuestionario(idTornarPublico, idQuestionario, email) {
     ConfirmInput.open({
         mensagem: "Tem certeza que deseja recusar este questionario?",
         textoOK: "Sim",
         textoCancelar: "Cancelar",
         json: {
             "idTornarPublico" : idTornarPublico,
+            "email" : email,
         },
         onok: APIrecusarRequisicaoQuestionario
     });
 }
 
-function aceitarRequisicaoQuestionario(idTornarPublico, idQuestionario) {
+function aceitarRequisicaoQuestionario(idTornarPublico, idQuestionario, email) {
     ConfirmInput.open({
         mensagem: "Tem certeza que deseja aceitar este questionario?",
         textoOK: "Sim",
@@ -134,6 +145,7 @@ function aceitarRequisicaoQuestionario(idTornarPublico, idQuestionario) {
         json: {
             "idTornarPublico": idTornarPublico,
             "idQuestionario": idQuestionario,
+            "email": email,
         },
         onok: APIaceitarRequisicaoQuestionario
     });
@@ -164,10 +176,10 @@ async function mostrarRequisicoesAluno() {
                             <img onclick="analisarCurso(${respReqCursos["resultados"][x]["idCurso"]})" src="../../public/assets/Imagens/Icone-analisar.svg" alt="Analisar">
                         </div>
                         <div class="cartaoRequisicaoOpcoes">
-                            <button class="requisicoesAceitar" onclick="aceitarRequisicaoCurso(${respReqCursos["resultados"][x]["idTornarPublico"]}, ${respReqCursos["resultados"][x]["idCurso"]})">
+                            <button class="requisicoesAceitar" onclick="aceitarRequisicaoCurso(${respReqCursos["resultados"][x]["idTornarPublico"]}, ${respReqCursos["resultados"][x]["idCurso"]}, '${respReqCursos["resultados"][x]["email"]}')">
                                 <p id="${respReqCursos["resultados"][x]["idTornarPublico"]}">Aceitar</p>
                             </button>
-                            <button class="requisicoesRecusar" onclick="recusarRequisicaoCurso(${respReqCursos["resultados"][x]["idTornarPublico"]}, ${respReqCursos["resultados"][x]["idCurso"]})" id="${respReqCursos["resultados"][x]["id"]}">
+                            <button class="requisicoesRecusar" onclick="recusarRequisicaoCurso(${respReqCursos["resultados"][x]["idTornarPublico"]}, ${respReqCursos["resultados"][x]["idCurso"]}, '${respReqCursos["resultados"][x]["email"]}')" id="${respReqCursos["resultados"][x]["id"]}">
                                 <img src="../../public/assets/Imagens/Icone-x.svg" alt="Recusar">
                             </button>
                         </div>
@@ -195,10 +207,10 @@ async function mostrarRequisicoesAluno() {
                             <img onclick="analisarMateria(${respReqMaterias["resultados"][x]["idMateria"]}, ${respReqMaterias["resultados"][x]["idCurso"]})" src="../../public/assets/Imagens/Icone-analisar.svg" alt="Analisar">
                         </div>
                         <div class="cartaoRequisicaoOpcoes">
-                            <button class="requisicoesAceitar" onclick="aceitarRequisicaoMateria(${respReqMaterias["resultados"][x]["idTornarPublico"]}, ${respReqMaterias["resultados"][x]["idMateria"]}, ${respReqMaterias["resultados"][x]["idCurso"]})">
+                            <button class="requisicoesAceitar" onclick="aceitarRequisicaoMateria(${respReqMaterias["resultados"][x]["idTornarPublico"]}, ${respReqMaterias["resultados"][x]["idMateria"]}, ${respReqMaterias["resultados"][x]["idCurso"]}, '${respReqMaterias["resultados"][x]["email"]}')">
                                 <p id="${respReqMaterias["resultados"][x]["idMateria"]}">Aceitar</p>
                             </button>
-                            <button class="requisicoesRecusar" onclick="recusarRequisicaoMateria(${respReqMaterias["resultados"][x]["idTornarPublico"]})" id="${respReqMaterias["resultados"][x]["idMateria"]}">
+                            <button class="requisicoesRecusar" onclick="recusarRequisicaoMateria(${respReqMaterias["resultados"][x]["idTornarPublico"]}, '${respReqMaterias["resultados"][x]["email"]}')" id="${respReqMaterias["resultados"][x]["idMateria"]}">
                                 <img src="../../public/assets/Imagens/Icone-x.svg" alt="Recusar">
                             </button>
                         </div>
@@ -226,10 +238,10 @@ async function mostrarRequisicoesAluno() {
                             <img onclick="analisarQuestionario(${respReqQuestionarios["resultados"][x]["idQuestionario"]})" src="../../public/assets/Imagens/Icone-analisar.svg" alt="Analisar">
                         </div>
                         <div class="cartaoRequisicaoOpcoes">
-                            <button class="requisicoesAceitar" onclick="aceitarRequisicaoQuestionario(${respReqQuestionarios["resultados"][x]["idTornarPublico"]}, ${respReqQuestionarios["resultados"][x]["idQuestionario"]})">
+                            <button class="requisicoesAceitar" onclick="aceitarRequisicaoQuestionario(${respReqQuestionarios["resultados"][x]["idTornarPublico"]}, ${respReqQuestionarios["resultados"][x]["idQuestionario"]}, '${respReqQuestionarios["resultados"][x]["email"]}')">
                                 <p id="${respReqQuestionarios["resultados"][x]["idTornarPublico"]}">Aceitar</p>
                             </button>
-                            <button class="requisicoesRecusar" onclick="recusarRequisicaoQuestionario(${respReqQuestionarios["resultados"][x]["idTornarPublico"]}, ${respReqQuestionarios["resultados"][x]["idQuestionario"]})" id="${respReqQuestionarios["resultados"][x]["id"]}">
+                            <button class="requisicoesRecusar" onclick="recusarRequisicaoQuestionario(${respReqQuestionarios["resultados"][x]["idTornarPublico"]}, ${respReqQuestionarios["resultados"][x]["idQuestionario"]}, '${respReqQuestionarios["resultados"][x]["email"]}')" id="${respReqQuestionarios["resultados"][x]["id"]}">
                                 <img src="../../public/assets/Imagens/Icone-x.svg" alt="Recusar">
                             </button>
                         </div>
