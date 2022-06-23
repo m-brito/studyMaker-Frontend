@@ -32,6 +32,38 @@ async function deletarQuestionario(idQuestionario) {
     })
 }
 
+async function publicarQuestionario(idQuestionario, publico) {
+    if(publico == true) {
+        mensagemPopUp.show({
+            mensagem: "Este questionario ja esta publico!",
+            cor: "orange"
+        });
+    } else {
+        const respReqQuestionarioId = await resultadoRequisicoesQuestionarioId(idQuestionario);
+        if(respReqQuestionarioId["status"] && respReqQuestionarioId["status"] != erroRequisicao) {
+            mensagemPopUp.show({
+                mensagem: `Este questionario ja tem uma requisição pendente feita no dia ${formatarData(respReqQuestionarioId["resultados"][0]["data"])}!`,
+                cor: "red"
+            });
+        } else {
+            Confirm.open({
+                mensagem: "Tem certeza que deseja publicar este questionario?",
+                textoOK: "Sim",
+                textoCancelar: "Cancelar",
+                onok: async () => {
+                    const respCadReqQuestionario = await cadastrarRequisicaoQuestionario(idQuestionario);
+                    if(respCadReqQuestionario["status"] && respCadReqQuestionario["status"] != erroRequisicao) {
+                        mensagemPopUp.show({
+                            mensagem: `Requisicao feita com sucesso!`,
+                            cor: "green"
+                        });
+                    }
+                }
+            })
+        }
+    }
+}
+
 async function editarOcultoQuestionario(idQuestionario, acao) {
     const respEditaQuestionario = await ocultarDesocultarQuestionario(idQuestionario);
     if(respEditaQuestionario["status"] && respEditaQuestionario["status"] == sucessoRequisicao) {
@@ -67,7 +99,7 @@ async function mostrarQuestionarios() {
                     <div class="questionariosConteudoCartao">
                         <h2 class="questionariosNomeCartao">${meusQuestionarios["resultados"][x]["nome"]}</h2>
                         <div class="questionariosEstados">
-                            <img src="${meusQuestionarios["resultados"][x]["publico"] == "true" ? '../../public/assets/Imagens/Icone-publico.svg' : '../../public/assets/Imagens/Icone-privado.svg'}" alt="Questionario ${meusQuestionarios["resultados"][x]["privado"] == "true" ? 'privado' : 'publico'}">
+                            <img onclick="publicarQuestionario(${meusQuestionarios["resultados"][x]["id"]}, ${meusQuestionarios["resultados"][x]["publico"]})" src="${meusQuestionarios["resultados"][x]["publico"] == "true" ? '../../public/assets/Imagens/Icone-publico.svg' : '../../public/assets/Imagens/Icone-privado.svg'}" alt="Questionario ${meusQuestionarios["resultados"][x]["privado"] == "true" ? 'privado' : 'publico'}">
                             <img onclick="editarOcultoQuestionario(${meusQuestionarios["resultados"][x]["id"]}, '${meusQuestionarios["resultados"][x]["oculto"] == "true" ? 'exposto' : 'ocultado'}')" src="${meusQuestionarios["resultados"][x]["oculto"] == "true" ? '../../public/assets/Imagens/Icone-oculto.svg' : '../../public/assets/Imagens/Icone-exposto.svg'}" alt="Curso ${meusQuestionarios["resultados"][x]["oculto"] == true ? 'oculto' : 'exposto'}">
                             <img onclick="relatorioQuestionario(${meusQuestionarios["resultados"][x]["id"]})" src="../../public/assets/Imagens/Icone-notas.svg">
                         </div>
