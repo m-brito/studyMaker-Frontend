@@ -45,6 +45,8 @@ Projeto desenvolvido durante **A Jornada #kick** organizado pela [#Kick](http://
 
 ## 🎨 Layout
 
+...
+
 ### Web
 
 
