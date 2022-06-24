@@ -9,7 +9,7 @@
 </p>
 
 <h4 align="center"> 
-	🚧  StudiMaker ♻️ Em desenvolvimento... 🚀 🚧
+	🚧  StudyMaker ♻️ Em desenvolvimento... 🚀 🚧
 </h4>
 
 <h4 align="center"> 
@@ -71,7 +71,7 @@ Instale a extensão Live Server no Visual Studio: <br>
 ```bash
 
 # Clone este repositório
-$ git clone git@github.com:m-brito/novo-website-shueisha-poc.git
+$ git clone git@github.com:m-brito/studyMaker-Frontend.git
 
 # Acesse a pasta do projeto no seu terminal/cmd
 $ cd study-maker
