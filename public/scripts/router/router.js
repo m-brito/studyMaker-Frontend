@@ -216,7 +216,7 @@ let router = Router.routes([
     path: "",
     exact: true,
     render: "../views/aluno/feed/cursos.html",
-    funcao: () => {iniciarFeedCursos},
+    funcao: iniciarFeedCursos,
   },
 ]);
 
